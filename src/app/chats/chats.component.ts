@@ -3,7 +3,7 @@ import { Chat, ChatService } from './shared';
 
 @Component({
   selector: 'ct-chats',
-  styleUrls: ['./chats.component.css'],
+  styleUrls: ['./chats.component.scss'],
   templateUrl: './chats.component.html'
 })
 
@@ -14,7 +14,6 @@ export class ChatsComponent implements OnInit {
 
   ngOnInit() {
     this.chats = this.chatService.getAll();
-    console.log(this.chats)
   }
 
 }

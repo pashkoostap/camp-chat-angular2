@@ -4,7 +4,7 @@ import { Chat } from '../shared';
 
 @Component({
   selector: 'ct-chat-list',
-  styleUrls: ['./chat-list.component.css'],
+  styleUrls: ['./chat-list.component.scss'],
   templateUrl: './chat-list.component.html'
 })
 
