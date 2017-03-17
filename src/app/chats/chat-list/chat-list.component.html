@@ -1,0 +1,8 @@
+<h3> Chat List </h3>
+
+<ul>
+  <li (click)="select({id: chat.id})" *ngFor="let chat of chats | async" routerLinkActive="active">
+    {{ chat.name }}
+  </li>
+
+</ul>
