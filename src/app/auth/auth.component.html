@@ -1,3 +1,13 @@
-<h1>AUTH</h1>
+<h1>Authorization</h1>
 
-<router-outlet></router-outlet>
+
+<!--BEGIN LOGIN FORMS-->
+<div class="osp-chat-form-wrap">
+    <nav class="osp-chat-form-nav">
+        <a routerLink="/auth/login" routerLinkActive="active" class="osp-chat-form-nav__btn  osp-chat-form-nav__btn--login">Login</a>
+        <a routerLink="/auth/register" routerLinkActive="active" class="osp-chat-form-nav__btn  osp-chat-form-nav__btn--sign-in">Sign-in</a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
+<!--END LOGIN FORMS-->
+
