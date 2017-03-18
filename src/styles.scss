@@ -24,6 +24,24 @@ app-root {
     width: 100%;
 }
 
+ct-chat-holder,
+ct-chat-detail,
+ct-message-list {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+ct-chat-holder {
+    align-items: center;
+    justify-content: center;
+}
+ct-message-new {
+    display: flex;
+    flex-shrink: 0;
+}
+ct-message-list {
+    overflow: auto;
+}
 // BUTTON STYLES
 .osp-chat-nav-btn {
     background: none;

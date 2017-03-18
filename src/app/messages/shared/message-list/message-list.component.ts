@@ -10,8 +10,8 @@ import { MessageService } from '../message.service'
 })
 
 export class MessageListComponent implements OnInit {
-
   chatId: number;
+  userId: number = 1;
   messages: Promise<Message[]>;
 
   constructor(private route: ActivatedRoute,

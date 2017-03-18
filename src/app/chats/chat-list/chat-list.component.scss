@@ -15,7 +15,6 @@
     flex-direction: row;
     flex-shrink: 0;
     cursor: pointer;
-    transition: background-color 0.2s ease;
     &:hover {
         background-color: #1f2162;
         .left-chat-user-photo__message-badge {

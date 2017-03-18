@@ -1,9 +1,22 @@
-<h3>MESSAGES LIST</h3>
-
-<ul>
+<!--<ul>
     <li *ngFor="let message of messages | async">
         {{message.text}}
         <b>Sent at: </b>
         <span> {{message.sentAt | date:'medium'}}</span>
+    </li>
+</ul>-->
+
+<ul class="right-chat-messages">
+    <li class="right-chat-message"
+        *ngFor="let message of messages | async"
+        [ngClass]="{'to-user': userId !== message.senderId,
+                    'from-user': userId === message.senderId}">
+        <div class="right-chat-message__user-photo" style="background-image: url(assets/img/avatar__1.jpg)"></div>
+        <div class="right-chat-notice">
+            <p class="right-chat-notice__content">
+                {{message.text}}
+            </p>
+        </div>
+        <span class="right-chat-message__date">{{message.sentAt | date:'small'}}</span>
     </li>
 </ul>
