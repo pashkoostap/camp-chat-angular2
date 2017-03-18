@@ -1,0 +1,23 @@
+<!--BEGIN LEFT CHAT NAVIGATION-->
+<nav class="left-chat-nav">
+    <button class="left-chat-nav__open  osp-chat-nav-btn" 
+            (click)="onChatPanelOpen()" 
+            [ngClass]="{'active': isChatPanelOpen}"></button>
+    <form class="chat-search-panel" action="/">
+        <input type="text" class="chat-search-panel__input">
+        <button type="submit" class="chat-search-panel__search-btn    osp-chat-nav-btn  chat-icon-search"></button>
+    </form>
+    <button class="left-chat-nav__menu  osp-chat-nav-btn" 
+    (click)="onMenuOpen()" 
+    [ngClass]="{'active': isMenuOpen}"></button>
+    <!--BEGIN CHAT MENU NAVIGATION-->
+    <ul class="osp-chat-menu" [ngClass]="{'hidden': !isMenuOpen}">
+        <li class="osp-chat-menu__item">Menu item 1</li>
+        <li class="osp-chat-menu__item">Menu item 2</li>
+        <li class="osp-chat-menu__item  osp-chat-menu__item--divider"></li>
+        <li class="osp-chat-menu__item">Menu item 3</li>
+        <li class="osp-chat-menu__item">Menu item 4</li>
+    </ul>
+    <!--END CHAT MENU NAVIGATION-->
+</nav>
+<!--END LEFT CHAT NAVIGATION-->

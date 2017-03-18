@@ -23,3 +23,24 @@ app-root {
     flex-direction: column;
     width: 100%;
 }
+
+// BUTTON STYLES
+.osp-chat-nav-btn {
+    background: none;
+    border: none;
+    outline: none;
+    width: 35px;
+    height: 32px;
+    color: #ffffff;
+    font-size: 21px;
+    cursor: pointer;
+    position: relative;
+}
+.osp-chat-nav-btn::before {
+    font-family: 'chat-icons';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

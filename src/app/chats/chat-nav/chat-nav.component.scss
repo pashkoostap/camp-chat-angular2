@@ -1,0 +1,103 @@
+// CHAT NAVIGATION
+.left-chat-nav {
+    display: flex;
+    width: 100%;
+    background-color: #3b3e99;
+    padding: 24px 20px;
+    justify-content: space-between;
+    flex-shrink: 0;
+    position: relative;
+    // OPEN LEFT PANEL BUTTON
+    &__open {
+        &::before {
+            content: "\e904";
+        }
+        &.active {
+            &::before {
+                content: "\e900";
+            }
+        }
+    }
+    // OPEN MENU BUTTON
+    &__menu {
+        &::before {
+            content: "\e903";
+            font-size: 18px;
+        }
+        &.active {
+            &::before {
+                content: "\e901";
+                font-size: 18px;
+            }
+        }
+    }
+}
+// CHAT SEARCH PANEL
+.chat-search-panel {
+    display: flex;
+    position: relative;
+    flex-shrink: 0;
+    // SEARCH PANEL INPUT
+    &__input {
+        background-color: #ededfa;
+        outline: none;
+        border: none;
+        width: 165px;
+        border-radius: 16px;
+        font-family: "Ubuntu";
+        line-height: 20px;
+        height: 32px;
+        font-size: 14px;
+        padding: 6px 40px 6px 15px;
+    }
+    // SEARCH BUTTON
+    &__search-btn {
+        position: absolute;
+        width: 44px;
+        right: 0;
+        top: 0;
+        color: #3b3e99;
+        &::before {
+            font-size: 18px;
+            transition: opacity 0.2s ease;
+        }
+        &:hover {
+            &::before {
+                opacity: 0.7;
+            }
+        }
+    }
+}
+// CHAT MENU
+.osp-chat-menu {
+    position: absolute;
+    padding: 10px 0px;
+    right: 24px;
+    top: 70px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    z-index: 10;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    &.hidden {
+        display: none;
+    }
+    // CHAT MENU ITEM
+    &__item {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 5px 15px;
+        cursor: pointer;
+        background-color: #ffffff;
+        transition: background-color 0.2s ease;
+        &:hover {
+            background-color: #ededfa;
+        }
+        // CHAT MENU DIVIDER
+        &--divider {
+            height: 1px;
+            background-color: #e8e8e7;
+            padding: 0;
+            margin: 5px 15px;
+        }
+    }
+}

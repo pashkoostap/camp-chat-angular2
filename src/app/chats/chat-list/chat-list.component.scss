@@ -1,0 +1,121 @@
+// LEFT CHAT USERS WRAPPER
+.left-chat-users {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: hidden;
+}
+// LEFT CHAT USER
+.left-chat-user {
+    background-color: #3b3e99;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    &:hover {
+        background-color: #1f2162;
+        .left-chat-user-photo__message-badge {
+            border: 2px solid #1f2162;
+        }
+    }
+    // ACTIVE USER
+    &.active {
+        background-color: #ed145b;
+        &:hover {
+            background-color: #ed145b;
+        }
+        .left-chat-user__status {
+            background-color: #ffffff;
+            color: #ed145b;
+        }
+    }
+    // USER STATUS
+    &__status {
+        display: flex;
+        min-width: 50px;
+        line-height: 20px;
+        padding: 0px 5px;
+        text-align: center;
+        height: 20px;
+        margin: auto;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        background-color: #37398d;
+        justify-content: center;
+        border-radius: 10px;
+    }
+}
+// USER INFO
+.left-chat-user-info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 30px;
+    overflow: hidden;
+    @media (max-width: 991px) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    // USER INFO NAME
+    &__name {
+        margin: 0;
+        font-size: 16px;
+        line-height: 26px;
+        color: #ffffff;
+        font-weight: 400;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    // USER INFO MESSAGE
+    &__message {
+        margin: 0;
+        font-size: 14px;
+        line-height: 24px;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 400;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+// USER PHOTO 
+.left-chat-user-photo {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    // USER PHOTO IMAGE
+    &__img {
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    // USER PHOTO BADGE
+    &__message-badge {
+        position: absolute;
+        font-size: 12px;
+        color: #ffffff;
+        width: 21px;
+        height: 21px;
+        background-color: #ed145b;
+        display: block;
+        text-align: center;
+        border: 2px solid #3b3e99;
+        line-height: 17px;
+        border-radius: 50%;
+        right: -2px;
+        top: -2px;
+        transition: border-color 0.2s ease;
+    }
+}

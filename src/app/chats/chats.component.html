@@ -1,5 +1,21 @@
-<h1> Chats Page </h1>
+<!--BEGIN CHAT WRAPPER-->
+<div class="osp-chat">
+    <!--BEGIN LEFT CHAT WRAPPER-->
+    <div class="left-chat-wrap  hidden"
+         [ngClass]="{'hidden': !isChatPanelOpen, 'visible': isChatPanelOpen}">
 
-<ct-chat-list [chats]="chats"></ct-chat-list>
+        <ct-chat-nav (isLeftChatOpen)="onChatPanelOpen($event)"></ct-chat-nav>
 
-<router-outlet></router-outlet>
+        <ct-chat-list [chats]="chats"></ct-chat-list>
+    </div>
+    <!--END LEFT CHAT WRAPPER-->
+
+
+    <!--BEGIN RIGHT CHAT WRAPPER-->
+    <div class="right-chat-wrap">
+        <router-outlet></router-outlet>
+    </div>
+    <!--END RIGHT CHAT WRAPPER-->
+
+</div>
+<!--END CHAT WRAPPER-->
