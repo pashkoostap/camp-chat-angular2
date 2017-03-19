@@ -10,23 +10,23 @@
     // OPEN LEFT PANEL BUTTON
     &__open {
         &::before {
-            content: "\e904";
+            content: "\e901";
         }
         &.active {
             &::before {
-                content: "\e900";
+                content: "\e905";
             }
         }
     }
     // OPEN MENU BUTTON
     &__menu {
         &::before {
-            content: "\e903";
+            content: "\e904";
             font-size: 18px;
         }
         &.active {
             &::before {
-                content: "\e901";
+                content: "\e902";
                 font-size: 18px;
             }
         }

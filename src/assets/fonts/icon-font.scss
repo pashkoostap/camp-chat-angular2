@@ -21,30 +21,28 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.chat-icon-sign-out:before {
+  content: "\e900";
+}
 .chat-icon-back:before {
-    content: "\e900";
+  content: "\e901";
 }
-
 .chat-icon-close:before {
-    content: "\e901";
+  content: "\e902";
 }
-
 .chat-icon-doc:before {
-    content: "\e902";
+  content: "\e903";
 }
-
 .chat-icon-menu:before {
-    content: "\e903";
+  content: "\e904";
 }
-
 .chat-icon-next:before {
-    content: "\e904";
+  content: "\e905";
 }
-
 .chat-icon-search:before {
-    content: "\e905";
+  content: "\e906";
+}
+.chat-icon-smile:before {
+  content: "\e907";
 }
 
-.chat-icon-smile:before {
-    content: "\e906";
-}
