@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: '<h2>Page not found</h2>'
+  selector: 'ct-not-found',
+  template: '<h1>Page not found</h1>'
 })
 
 export class PageNotFoundComponent {}

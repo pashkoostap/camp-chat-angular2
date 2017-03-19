@@ -5,8 +5,12 @@
     background-color: #ffffff;
     display: flex;
     overflow: hidden;
-    height: 700px;
+    height: 600px;
     margin: auto;
+    border-radius: 15px;
+    @media (max-width: 767px) {
+        border-radius: 0px;
+    }
 }
 // LEFT CHAT WRAPPER
 .left-chat-wrap {
