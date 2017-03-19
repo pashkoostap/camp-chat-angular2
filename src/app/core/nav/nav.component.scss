@@ -3,19 +3,39 @@
     max-width: 1170px;
     margin: auto;
     margin-bottom: 0;
+    @media (max-width: 1199px) {
+        max-width: 970px;
+    }
+    @media (max-width: 992px) {
+        max-width: 750px;
+    }
+    @media (max-width: 767px) {
+        max-width: 100%;
+        flex-direction: column;
+    }
 }
 .chat-links {
     display: flex;
     align-items: center;
     flex-grow: 1;
+    @media (max-width: 767px) {
+        padding: 0px 15px;
+        justify-content: center;
+    }
     a {
         display: flex;
         line-height: 30px;
         text-decoration: none;
         color: #000;
         font-size: 16px;
-        font-weight: bold;
-        margin: 15px 10px 15px 0px;
+        margin: 15px 20px 15px 0px;
+    }
+}
+.user-profile {
+    display: flex;
+    cursor: pointer;
+    @media (max-width: 767px) {
+        justify-content: center;
     }
 }
 .log-out {
@@ -24,13 +44,30 @@
     outline: none;
     width: 50px;
     display: flex;
-    align-self: flex-end;
     padding: 0;
-    height: 60px;
+    height: 70px;
     justify-content: center;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    font-size: 20px;
     &:hover {
         opacity: 0.5;
+    }
+}
+.user-profile-link {
+    display: flex;
+    align-items: center;
+    &__name {
+        font-size: 16px;
+    }
+    &__photo {
+        display: flex;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-left: 20px;
     }
 }

@@ -3,6 +3,10 @@
     font-size: 20px;
     text-align: center;
     margin: auto 0px 20px 0px;
+    @media (max-width: 767px) {
+        margin: 30px auto;
+        max-width: 290px;
+    }
 }
 // LOGIN FORM WRAPPER
 .osp-chat-form-wrap {
@@ -21,6 +25,7 @@
     }
     @media (max-width: 767px) {
         max-width: 290px;
+        margin-bottom: 40px;
     }
 }
 // FORM NAVIGATION
@@ -54,8 +59,8 @@
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
-    &--hidden {
-        display: none;
+    @media (max-width: 767px) {
+        padding: 20px;
     }
     // FORM INPUT
     &__input {
@@ -63,7 +68,7 @@
         font-size: 14px;
         line-height: 20px;
         padding: 14px 20px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         background-color: #ededfa;
         border: none;
         border-radius: 25px;

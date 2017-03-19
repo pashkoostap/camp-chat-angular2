@@ -9,7 +9,7 @@ body {
     background-color: #d7d8f1;
     display: flex;
     overflow-x: hidden;
-    height: 100vh;
+    min-height: 100vh;
 }
 ul,
 ol {
@@ -60,6 +60,11 @@ ct-not-found {
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+}
+ct-register,
+ct-login {
+    display: flex;
+    flex-direction: column;
 }
 // BUTTON STYLES
 .osp-chat-nav-btn {
