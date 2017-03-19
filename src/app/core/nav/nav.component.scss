@@ -7,6 +7,7 @@
 .chat-links {
     display: flex;
     align-items: center;
+    flex-grow: 1;
     a {
         display: flex;
         line-height: 30px;
@@ -15,5 +16,21 @@
         font-size: 16px;
         font-weight: bold;
         margin: 15px 10px 15px 0px;
+    }
+}
+.log-out {
+    background: none;
+    border: none;
+    outline: none;
+    width: 50px;
+    display: flex;
+    align-self: flex-end;
+    padding: 0;
+    height: 60px;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    &:hover {
+        opacity: 0.5;
     }
 }
