@@ -1,3 +1,9 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: auto;
+}
 // RIGHT CHAT MESSAGES WRAPPER
 .right-chat-messages {
     padding: 20px 30px 0px 30px;

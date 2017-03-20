@@ -1,3 +1,6 @@
+:host {
+    background-color: #ededfa;
+}
 .chat-nav {
     display: flex;
     max-width: 1170px;
@@ -29,6 +32,9 @@
         color: #000;
         font-size: 16px;
         margin: 15px 20px 15px 0px;
+        @media (max-width: 767px) {
+            margin: 10px;
+        }
     }
 }
 .user-profile {

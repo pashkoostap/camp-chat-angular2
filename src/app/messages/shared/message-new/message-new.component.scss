@@ -1,3 +1,7 @@
+:host {
+    display: flex;
+    flex-shrink: 0;
+}
 // CHAT SEND FORM
 .right-chat-form {
     padding: 20px 30px;

@@ -18,33 +18,6 @@ ol {
     list-style: none;
 }
 // STYLES FOR CORE COMPONENTS
-app-root {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-ct-chat-holder,
-ct-chat-detail,
-ct-message-list {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-ct-chat-holder {
-    align-items: center;
-    justify-content: center;
-}
-ct-message-new {
-    display: flex;
-    flex-shrink: 0;
-}
-ct-message-list {
-    overflow: auto;
-}
-ct-nav {
-    background-color: #ededfa;
-}
 ct-chats {
     display: flex;
     flex-grow: 1;
@@ -53,18 +26,6 @@ ct-auth {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-}
-ct-home,
-ct-not-found {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-}
-ct-register,
-ct-login {
-    display: flex;
-    flex-direction: column;
 }
 // BUTTON STYLES
 .osp-chat-nav-btn {
