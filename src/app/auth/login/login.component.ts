@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './login.interface';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ct-login',
@@ -13,14 +14,15 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   }
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,
+              private router: Router) {}
 
   ngOnInit() {
 
   }
   onSumbit(form) {
     console.log(form)
-    // localStorage.setItem('token', 'youlogged');
     this.auth.login(form);
+    this.router.navigate(['chat'])
   }
 }
