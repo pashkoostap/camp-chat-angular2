@@ -92,6 +92,12 @@
         &:hover {
             background-color: #ededfa;
         }
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            line-height: 20px;
+        }
         // CHAT MENU DIVIDER
         &--divider {
             height: 1px;
