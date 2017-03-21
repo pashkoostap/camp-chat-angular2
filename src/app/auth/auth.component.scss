@@ -54,7 +54,7 @@
         text-decoration: none;
     }
     &__btn.active {
-        background-color: #56588e;
+        background-color: #7b7da4;
     }
 }
 
@@ -83,9 +83,20 @@
         &:focus {
             border: 1px solid #3b3e99;
         }
+        &.ng-invalid.ng-touched {
+            border: 1px solid #ff0000;
+        }
         &--mb10 {
             margin-bottom: 10px;
         }
+    }
+    // HINT
+    &__hint {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0px 20px;
+        position: relative;
+        top: -10px
     }
     // SUBMIT BUTTON
     &__submit {
@@ -107,11 +118,11 @@
         border-radius: 25px;
         transition: background-color 0.2s ease, color 0.2s ease;
         &[disabled] {
-            background: grey;
-            border: 1px solid grey;
+            background: #7b7da4;
+            border: 1px solid #7b7da4;
             pointer-events: none;
             &:hover {
-                background-color: grey;
+                background-color: #7b7da4;
                 color: #ffffff;
             }
         }

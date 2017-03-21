@@ -9,26 +9,30 @@
         class="osp-chat-form__input" 
         placeholder="Username"
         formControlName="name">
-    <span *ngIf="!user.get('name').valid">Please enter name</span>
+    <span class="osp-chat-form__hint" 
+          *ngIf="!user.get('name').valid && user.get('name').touched">Your name must be at least 6 latin characters and digits</span>
     <input 
         type="email" 
         class="osp-chat-form__input" 
         placeholder="Email"
         formControlName="email">
-    <span *ngIf="!user.get('email').valid">Please enter email</span>
+    <span class="osp-chat-form__hint"  
+          *ngIf="!user.get('email').valid && user.get('email').touched">Please enter valid email</span>
     <div class="osp-chat-form-group" formGroupName="passwords">
         <input 
             type="password" 
             class="osp-chat-form__input" 
             placeholder="Enter password"
             formControlName="password">
-        <span *ngIf="!user.get('passwords').get('password').valid">Please enter password</span>
+        <span class="osp-chat-form__hint"  
+              *ngIf="!user.get('passwords').get('password').valid && user.get('passwords').get('password').touched">Your password must be at least 8 latin characters and digits</span>
         <input 
             type="password" 
             class="osp-chat-form__input" 
             placeholder="Password"
             formControlName="passwordConfirmed">
-        <span *ngIf="!user.get('passwords').get('passwordConfirmed').valid">Please enter password</span>
+        <span class="osp-chat-form__hint"  
+              *ngIf="!user.get('passwords').valid  && user.get('passwords').get('passwordConfirmed').touched">The passwords are not identical</span>
     </div>
     
     <input type="submit" 
