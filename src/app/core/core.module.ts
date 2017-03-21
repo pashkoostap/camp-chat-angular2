@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule }  from '@angular/router';
 import { NavComponent } from './nav';
 import { HeaderComponent } from './header'
+import { AuthService } from '../auth/auth.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,9 @@ import { HeaderComponent } from './header'
     HeaderComponent,
     NavComponent
   ],
-  providers: []
+  providers: [
+    AuthService
+  ]
 })
 
 export class CoreModule { }

@@ -1,9 +1,39 @@
 <!--BEGIN SIGN-IN FORM-->
-<form action="/" class="osp-chat-form  osp-chat-form--sign-in">
-    <input type="text" name="sign-in-user-name" id="sign-in-user-name" class="osp-chat-form__input" placeholder="Username">
-    <input type="email" name="sign-in-user-email" id="sign-in-user-email" class="osp-chat-form__input" placeholder="Email">
-    <input type="password" name="sign-in-user-password-1" id="sign-in-user-password-1" class="osp-chat-form__input" placeholder="Password">
-    <input type="password" name="sign-in-user-password-2" id="sign-in-user-password-2" class="osp-chat-form__input" placeholder="Password">
-    <input type="submit" class="osp-chat-form__submit  osp-chat-form__submit--sign-in" value="Sign-in">
+<form 
+    novalidate 
+    class="osp-chat-form  osp-chat-form--sign-in" 
+    [formGroup]="user"
+    (ngSubmit)="onSubmit(user)">
+    <input 
+        type="text" 
+        class="osp-chat-form__input" 
+        placeholder="Username"
+        formControlName="name">
+    <span *ngIf="!user.get('name').valid">Please enter name</span>
+    <input 
+        type="email" 
+        class="osp-chat-form__input" 
+        placeholder="Email"
+        formControlName="email">
+    <span *ngIf="!user.get('email').valid">Please enter email</span>
+    <div class="osp-chat-form-group" formGroupName="passwords">
+        <input 
+            type="password" 
+            class="osp-chat-form__input" 
+            placeholder="Enter password"
+            formControlName="password">
+        <span *ngIf="!user.get('passwords').get('password').valid">Please enter password</span>
+        <input 
+            type="password" 
+            class="osp-chat-form__input" 
+            placeholder="Password"
+            formControlName="passwordConfirmed">
+        <span *ngIf="!user.get('passwords').get('passwordConfirmed').valid">Please enter password</span>
+    </div>
+    
+    <input type="submit" 
+           class="osp-chat-form__submit  osp-chat-form__submit--sign-in"
+           value="Sign-in"
+           [disabled]="user.invalid">
 </form>
 <!--END SIGN-IN FORM-->

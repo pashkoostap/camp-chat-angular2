@@ -28,6 +28,10 @@
         margin-bottom: 40px;
     }
 }
+.osp-chat-form-group {
+    display: flex;
+    flex-direction: column;
+}
 // FORM NAVIGATION
 .osp-chat-form-nav {
     display: flex;
@@ -102,6 +106,15 @@
         cursor: pointer;
         border-radius: 25px;
         transition: background-color 0.2s ease, color 0.2s ease;
+        &[disabled] {
+            background: grey;
+            border: 1px solid grey;
+            pointer-events: none;
+            &:hover {
+                background-color: grey;
+                color: #ffffff;
+            }
+        }
         &:hover {
             background-color: transparent;
             color: #3b3e99;
