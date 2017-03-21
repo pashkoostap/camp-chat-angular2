@@ -6,7 +6,7 @@
     <a routerLink="/auth/register" routerLinkActive="active">Register</a>
   </nav>
   
-  <div class="user-profile" *ngIf="authService.IsLoggedIn">
+  <div class="user-profile" *ngIf="authService.isLoggedIn">
     <a class="user-profile-link">
       <span class="user-profile-link__name">User Name</span>
       <div class="user-profile-link__photo" style="background-image: url(assets/img/avatar__1.jpg)"></div>

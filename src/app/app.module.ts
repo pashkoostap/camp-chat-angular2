@@ -5,6 +5,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
+import { AuthGuard } from './auth/';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { PageNotFoundComponent } from './not-found.component';
     CoreModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 
