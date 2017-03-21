@@ -7,9 +7,9 @@ export class AuthService {
     }
 
     login(user) {
-        // if (user) {
+        if (user) {
             localStorage.setItem('token', 'youlogged');
-        // }
+        }
     }
 
     register() {

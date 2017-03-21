@@ -9,13 +9,24 @@
         name="email" 
         class="osp-chat-form__input" 
         placeholder="Email"
+        required
+        minlength="6"
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
         ngModel>
+    <span class="osp-chat-form__hint"  
+        *ngIf="!form.controls.email?.valid && form.controls.email?.touched">Please enter valid email</span>
     <input 
         type="password" 
         name="password" 
-        class="osp-chat-form__input  osp-chat-form__input--mb10"
+        class="osp-chat-form__input"
         placeholder="Password"
+        required
+        minlength="8"
+        pattern="[a-zA-Z0-9]*"
         ngModel>
+    <span class="osp-chat-form__hint"  
+        *ngIf="!form.controls.password?.valid && form.controls.password?.touched">Your password must be at least 8 latin characters and digits</span>
+
     <a href="#" class="osp-chat-form__link  osp-chat-form__link--forgot-pass">Forgot password?</a>
     <input 
         type="submit" 

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
   onSumbit(form) {
     console.log(form)
-    localStorage.setItem('token', 'youlogged');
-    // this.auth.login(form);
+    // localStorage.setItem('token', 'youlogged');
+    this.auth.login(form);
   }
 }
