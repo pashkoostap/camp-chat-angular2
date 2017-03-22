@@ -21,6 +21,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.chat-icon-send-button:before {
+  content: "\e908";
+}
 .chat-icon-sign-out:before {
   content: "\e900";
 }
