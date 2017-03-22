@@ -16,6 +16,10 @@ export class ChatNavComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  onMenuClose() {
+    this.isMenuOpen = false;
+  }
+
   onChatPanelOpen() {
     if (this.isChatPanelOpen) {
       this.isMenuOpen = false;
