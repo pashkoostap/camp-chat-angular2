@@ -10,7 +10,7 @@ import { Chat, ChatService } from './shared';
 
 export class ChatsComponent implements OnInit {
   chats: Promise<Chat[]>;
-  isChatPanelOpen:boolean = false;
+  isChatPanelOpen: boolean = false;
 
   constructor(private chatService: ChatService) { }
 
@@ -18,7 +18,7 @@ export class ChatsComponent implements OnInit {
     this.chats = this.chatService.getAll();
   }
 
-  onChatPanelOpen(event:boolean) {
+  onChatPanelOpen(event: boolean) {
     this.isChatPanelOpen = event;
   }
 }

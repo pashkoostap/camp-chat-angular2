@@ -21,7 +21,7 @@ export class ChatNavComponent {
       this.isMenuOpen = false;
     }
     this.isChatPanelOpen = !this.isChatPanelOpen;
-    this.isLeftChatOpen.emit(this.isChatPanelOpen)
+    this.isLeftChatOpen.emit(this.isChatPanelOpen);
   }
 
 }
