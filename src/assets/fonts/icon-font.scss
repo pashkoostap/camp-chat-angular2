@@ -20,6 +20,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.chat-icon-google-1:before {
+  content: "\e90d";
+}
+.chat-icon-facebook-1:before {
+  content: "\e90e";
+}
+.chat-icon-google:before {
+  content: "\e90b";
+}
+.chat-icon-facebook:before {
+  content: "\e90c";
+}
 .chat-icon-unchecked:before {
   content: "\e90a";
 }
