@@ -3,8 +3,8 @@
   <li class="left-chat-user" 
       (click)="select({id: chat.id})" 
       *ngFor="let chat of chats | async" 
-      routerLinkActive="active"
-      [class.active]="selectedId == chat.id">
+      routerLinkActive="active">
+      <!--[class.active]="selectedId == chat.id"-->
     <div class="left-chat-user-photo">
       <div class="left-chat-user-photo__img" style="background-image: url(assets/img/avatar__1.jpg)"></div>
       <span class="left-chat-user-photo__message-badge">1</span>

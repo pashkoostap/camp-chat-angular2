@@ -4,4 +4,112 @@
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+}
+.new-chat-title {
+    text-align: center;
+    margin: 15px 0px;
+}
+.new-chat-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    &__input {
+        display: flex;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 14px 20px;
+        margin-bottom: 20px;
+        background-color: #ededfa;
+        border: none;
+        border-radius: 25px;
+        outline: none;
+        font-family: "Ubuntu";
+        border: 1px solid #ededfa;
+        transition: all 0.2s ease;
+        &:focus {
+            border: 1px solid #3b3e99;
+        }
+        &.ng-invalid.ng-touched {
+            border: 1px solid #ff0000;
+        }
+    }
+    &__btn {
+        display: flex;
+        width: 100%;
+        font-family: "Ubuntu";
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        outline: none;
+        background-color: #3b3e99;
+        border: 1px solid #3b3e99;
+        justify-content: center;
+        color: #ffffff;
+        line-height: 20px;
+        padding: 9px 15px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        max-width: 280px;
+        margin: auto;
+        &[disabled] {
+            background: #7b7da4;
+            border: 1px solid #7b7da4;
+            pointer-events: none;
+            &:hover {
+                background-color: #7b7da4;
+                color: #ffffff;
+            }
+        }
+        &:hover {
+            background-color: transparent;
+            color: #3b3e99;
+        }
+    }
+}
+.new-chat-users {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    margin: 20px 0px;
+    border-radius: 20px;
+    // transition: max-height 0.3s linear;
+    &.hidden {
+        max-height: 0;
+        margin: 10px 0px;
+    }
+    &.visible {
+        max-height: 200px;
+    }
+}
+.new-chat-user {
+    display: flex;
+    flex-shrink: 0;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: #ededfa;
+    &__photo {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 20px;
+    }
+    &__badge {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        margin-left: auto;  
+        padding: 0;
+        justify-content: center;
+        font-size: 16px;
+        border: none;
+        background: none;
+        outline: none;
+        cursor: pointer;
+    }
 }

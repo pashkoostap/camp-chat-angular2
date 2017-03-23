@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User, UsersService } from '../../auth/users/'
 
 @Component({
   selector: 'ct-chat-new',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ChatNewComponent implements OnInit {
-  constructor() {}
+  users: Promise<User[]>;
+  isUsersWrapVisible: boolean = true;
+  constructor(private usersService: UsersService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.users = this.usersService.getUsers();
+  }
+
+  onOnenUsersWrap() {
+    this.isUsersWrapVisible = !this.isUsersWrapVisible;
+  }
+
+  onSubmit(form) {
+    console.log(form)
+  }
 
 }

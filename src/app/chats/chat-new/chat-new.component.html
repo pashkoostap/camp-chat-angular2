@@ -1,5 +1,28 @@
-<h1>Create new chat</h1>
-<form>
-    <input type="text" name="chat-name">
-    <button type="submit">Create new chat</button>
+<h1 class="new-chat-title">Create new chat</h1>
+<form 
+    class="new-chat-form" 
+    novalidate 
+    #form="ngForm" 
+    (ngSubmit)="onSubmit(form)">
+    <input 
+        type="text" 
+        name="chat-name" 
+        class="new-chat-form__input" 
+        placeholder="Enter chat name" 
+        ngModel
+        required>
+
+    <button type="button" class="new-chat-form__btn" (click)="onOnenUsersWrap()">Invite users</button>
+    <ul class="new-chat-users" [ngClass]="{'visible': isUsersWrapVisible, 'hidden': !isUsersWrapVisible}">
+        <li class="new-chat-user" *ngFor="let user of users | async; let i = index" (click)="onUserSelected()">
+            <div class="new-chat-user__photo" style="background-image: url({{user.photo}})"></div>
+            <span class="new-chat-user__info">{{user.name}} {{user.surname}} </span>
+            <button type="button" class="new-chat-user__badge  chat-icon-checked"></button>
+        </li>
+    </ul>
+
+    <button 
+        type="submit" 
+        class="new-chat-form__btn"
+        [disabled]="form.invalid">Create new chat</button>
 </form>

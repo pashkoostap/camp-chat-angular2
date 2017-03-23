@@ -15,18 +15,18 @@ export class MessageNewComponent {
   }
 
   onKeyPress(textArea: HTMLTextAreaElement) {
-    // clearTimeout(this.scrollTimeOut);
-    // this.scrollTimeOut = setTimeout(
-    //   () => {
-    //     let maxHeight = 110,
-    //       minHeight = 50;
-    //     if (textArea.scrollHeight < 110) {
-    //       textArea.setAttribute('style', `height: ${textArea.scrollHeight}px;`)
-    //     } else {
-    //       textArea.setAttribute('style', `height: ${maxHeight}px;`)
-    //     }
-    //   },
-    //   0);
+    clearTimeout(this.scrollTimeOut);
+    this.scrollTimeOut = setTimeout(
+      () => {
+        let maxHeight = 110,
+          minHeight = 50;
+        if (textArea.scrollHeight < 110) {
+          textArea.setAttribute('style', `height: ${textArea.scrollHeight}px;`)
+        } else {
+          textArea.setAttribute('style', `height: ${maxHeight}px;`)
+        }
+      },
+      0);
   }
 
 }
