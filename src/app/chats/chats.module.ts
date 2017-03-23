@@ -10,6 +10,7 @@ import { MessagesSharedModule } from '../messages';
 import { ChatService } from './shared/chat.service';
 import { ChatNavComponent } from './chat-nav/chat-nav.component';
 import { UsersService } from '../auth/users';
+import { HightLightDirective } from './shared/';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UsersService } from '../auth/users';
     ChatDetailComponent,
     ChatNewComponent,
     ChatHolderComponent,
-    ChatNavComponent
+    ChatNavComponent,
+    HightLightDirective
   ],
   imports: [
     SharedModule,

@@ -3,9 +3,10 @@
     class="new-chat-form" 
     novalidate 
     #form="ngForm" 
-    (ngSubmit)="onSubmit(form.value)">
+    (ngSubmit)="onSubmit(form.value); form.reset()">
     <input 
         type="text" 
+        autocomplete="off"
         name="chatName" 
         class="new-chat-form__input" 
         placeholder="Enter chat name" 
@@ -15,7 +16,8 @@
     <button type="button" class="new-chat-form__btn" (click)="onOnenUsersWrap()">Invite users</button>
     <ul class="new-chat-users" [ngClass]="{'visible': isUsersWrapVisible, 'hidden': !isUsersWrapVisible}">
         <li class="new-chat-user" *ngFor="let user of users | async; let i = index">
-            <div class="new-chat-user__photo" style="background-image: url({{user.photo}})"></div>
+            <!--<div class="new-chat-user__photo" style="background-image: url({{user.photo}})"></div>-->
+            <img [src]="user.photo" alt="" class="new-chat-user__photo">
             <span class="new-chat-user__info">{{user.name}} {{user.surname}} </span>
             <button type="button" class="new-chat-user__badge  chat-icon-checked" #checkBtn (click)="onAddUser(checkBtn, i)"></button>
         </li>
