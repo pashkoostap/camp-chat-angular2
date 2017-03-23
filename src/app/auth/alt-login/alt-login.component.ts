@@ -1,5 +1,7 @@
 /// <reference path="../../../../node_modules/@types/gapi/index.d.ts" />
 import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 declare let gapi: any;
 
 @Component({
@@ -9,7 +11,9 @@ declare let gapi: any;
 })
 export class AltLoginComponent implements OnInit {
   profile;
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone,
+              private router: Router,
+              private authService: AuthService) { }
 
 
 
@@ -35,6 +39,8 @@ export class AltLoginComponent implements OnInit {
     this.zone.run(() => {
       this.profile = user.getBasicProfile();
       console.log(this.profile);
+      this.authService.login(this.profile)
+      this.router.navigate(['chat']);
     });
   }
 
