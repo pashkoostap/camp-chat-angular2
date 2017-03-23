@@ -20,7 +20,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+.chat-icon-unchecked:before {
+  content: "\e90a";
+}
 .chat-icon-checked:before {
   content: "\e909";
 }

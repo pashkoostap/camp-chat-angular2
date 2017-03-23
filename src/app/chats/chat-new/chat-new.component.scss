@@ -55,7 +55,8 @@
         transition: background-color 0.2s ease, color 0.2s ease;
         max-width: 280px;
         margin: auto;
-        &[disabled] {
+        &[disabled],
+        &.disabled {
             background: #7b7da4;
             border: 1px solid #7b7da4;
             pointer-events: none;
@@ -111,5 +112,17 @@
         background: none;
         outline: none;
         cursor: pointer;
+        opacity: 0.2;
+        &:hover {
+            opacity: 1;
+        }
+        &.checked {
+            opacity: 1;
+            &:hover {
+                &::before {
+                    content: '\e90a';
+                }
+            }
+        }
     }
 }
