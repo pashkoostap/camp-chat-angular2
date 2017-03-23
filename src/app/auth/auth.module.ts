@@ -4,12 +4,14 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AuthRoutingModule} from './auth-routing.module';
+import { AltLoginComponent } from './alt-login/alt-login.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AltLoginComponent
   ],
   imports: [
     SharedModule,

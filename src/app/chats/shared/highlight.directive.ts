@@ -9,7 +9,12 @@ export class HightLightDirective {
     public highlight(activeClass: string) {
         this.elRef.nativeElement.classList.add(activeClass);
     }
+
     @HostListener('click') private onClick(): void {
-        this.highlight('active');
+        if (this.elRef.nativeElement.classList.contains('active')) {
+            this.elRef.nativeElement.classList.remove('active');
+        } else {
+            this.highlight('active');
+        }  
     }
 }

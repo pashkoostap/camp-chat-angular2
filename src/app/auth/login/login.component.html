@@ -28,6 +28,7 @@
         *ngIf="!form.controls.password?.valid && form.controls.password?.touched">Your password must be at least 8 latin characters and digits</span>
 
     <a href="#" class="osp-chat-form__link  osp-chat-form__link--forgot-pass">Forgot password?</a>
+
     <input 
         type="submit" 
         class="osp-chat-form__submit  osp-chat-form__submit--login" 
@@ -35,3 +36,4 @@
         [disabled]="form.invalid">
 </form>
 <!--END LOGIN FORM-->
+<app-alt-login></app-alt-login>

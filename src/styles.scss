@@ -11,6 +11,12 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
 }
+h1 {
+    font-size: 30px;
+    @media (max-width: 767px) {
+        font-size: 24px;
+    }
+}
 ul,
 ol {
     margin: 0;
