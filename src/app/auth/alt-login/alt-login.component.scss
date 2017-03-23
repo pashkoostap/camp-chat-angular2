@@ -38,13 +38,13 @@
 .alt-login-links {
     display: flex;
     justify-content: center;
-}
-.alt-login-link {
-    display: flex;
     &__btn {
-        text-decoration: none;
         font-size: 30px;
         padding: 7px;
+        border: none;
+        outline: none;
+        background: none;
+        cursor: pointer;
         &.google {
             color: #dd4b39;
         }
