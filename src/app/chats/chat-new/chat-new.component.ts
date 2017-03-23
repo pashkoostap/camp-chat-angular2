@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User, UsersService } from '../../auth/users/'
 import { Chat } from '../shared/';
 
@@ -8,7 +8,7 @@ import { Chat } from '../shared/';
   templateUrl: './chat-new.component.html'
 })
 
-export class ChatNewComponent implements OnInit, OnChanges {
+export class ChatNewComponent implements OnInit {
   users: Promise<User[]>;
   userId: number = 1;
   isUsersWrapVisible: boolean = true;
@@ -24,16 +24,10 @@ export class ChatNewComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.users = this.usersService.getUsers();
-
-  }
-
-  ngOnChanges() {
-    
-    console.log(this.isUserChecked)
   }
 
   onAddUser(btn: HTMLElement, i: number) {
-    
+
     if (!btn.classList.contains('checked')) {
       this.newChat.attendees.push(i);
     } else {
@@ -41,14 +35,15 @@ export class ChatNewComponent implements OnInit, OnChanges {
     }
     btn.classList.toggle('checked');
     this.isUserChecked = this.newChat.attendees.length > 0;
-    // console.log(this.newChat.attendees)
   }
 
   onOnenUsersWrap() {
     this.isUsersWrapVisible = !this.isUsersWrapVisible;
   }
 
-  onSubmit(form) {
-    console.log(form)
+  onSubmit(formValue) {
+    this.newChat.name = formValue.chatName;
+    console.log(formValue)
+    console.log(this.newChat)
   }
 }

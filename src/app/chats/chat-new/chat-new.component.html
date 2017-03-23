@@ -3,10 +3,10 @@
     class="new-chat-form" 
     novalidate 
     #form="ngForm" 
-    (ngSubmit)="onSubmit(form)">
+    (ngSubmit)="onSubmit(form.value)">
     <input 
         type="text" 
-        name="chat-name" 
+        name="chatName" 
         class="new-chat-form__input" 
         placeholder="Enter chat name" 
         ngModel
