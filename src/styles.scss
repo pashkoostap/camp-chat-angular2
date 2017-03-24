@@ -29,6 +29,10 @@ ct-chats {
     flex-grow: 1;
     flex-shrink: 0;
     width: 100%;
+    max-height: calc(100vh - 70px);
+    @media(max-width: 767px) {
+        max-height: calc(100vh - 120px);
+    }
 }
 ct-auth {
     display: flex;
