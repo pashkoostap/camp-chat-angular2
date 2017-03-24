@@ -7,10 +7,10 @@ import { ChatNewComponent } from './chat-new';
 import { ChatHolderComponent } from './chat-holder';
 import { ChatsRoutingModule } from './chats-routing.module';
 import { MessagesSharedModule } from '../messages';
-import { ChatService } from './shared/chat.service';
+import { ChatService, HightLightDirective, FilterChatByNamePipe } from './shared/';
 import { ChatNavComponent } from './chat-nav/chat-nav.component';
 import { UsersService } from '../auth/users';
-import { HightLightDirective } from './shared/';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { HightLightDirective } from './shared/';
     ChatNewComponent,
     ChatHolderComponent,
     ChatNavComponent,
-    HightLightDirective
+    HightLightDirective,
+    FilterChatByNamePipe
   ],
   imports: [
     SharedModule,
