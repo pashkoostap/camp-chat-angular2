@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ChatService } from "../shared";
 
 @Component({
   selector: 'ct-chat-nav',
@@ -7,10 +8,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 
 export class ChatNavComponent {
-  isMenuOpen:boolean = false;
-  isChatPanelOpen:boolean = false;
   @Output() isLeftChatOpen = new EventEmitter<boolean>();
-  constructor() { }
+  private isMenuOpen: boolean = false;
+  private isChatPanelOpen: boolean = false;
+  private searchValue: string = '';
+  constructor(private chatService: ChatService) { }
 
   onMenuOpen() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -20,12 +22,21 @@ export class ChatNavComponent {
     this.isMenuOpen = false;
   }
 
+  onBlur() {
+    this.searchValue = '';
+    this.chatService.setSearchValue('');
+  }
+
   onChatPanelOpen() {
     if (this.isChatPanelOpen) {
       this.isMenuOpen = false;
     }
     this.isChatPanelOpen = !this.isChatPanelOpen;
     this.isLeftChatOpen.emit(this.isChatPanelOpen);
+  }
+
+  onSearchValueChanged(value: string) {
+    this.chatService.setSearchValue(value)
   }
 
 }

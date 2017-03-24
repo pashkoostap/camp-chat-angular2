@@ -15,8 +15,6 @@ export class AltLoginComponent implements OnInit {
               private router: Router,
               private authService: AuthService) { }
 
-
-
   ngOnInit() {
     gapi.load('auth2', () => {
       let auth2 = gapi.auth2.init({

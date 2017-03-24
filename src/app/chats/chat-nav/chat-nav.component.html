@@ -3,8 +3,8 @@
     <button class="left-chat-nav__open  osp-chat-nav-btn" 
             (click)="onChatPanelOpen()" 
             [ngClass]="{'active': isChatPanelOpen}"></button>
-    <form class="chat-search-panel" action="/">
-        <input type="text" class="chat-search-panel__input">
+    <form class="chat-search-panel">
+        <input type="text" class="chat-search-panel__input" name="search" (blur)="onBlur()" [(ngModel)]="searchValue" (ngModelChange)="onSearchValueChanged($event)">
         <button type="submit" class="chat-search-panel__search-btn    osp-chat-nav-btn  chat-icon-search"></button>
     </form>
     <button class="left-chat-nav__menu  osp-chat-nav-btn" 
