@@ -7,7 +7,7 @@ import { ChatNewComponent } from './chat-new';
 import { ChatHolderComponent } from './chat-holder';
 import { ChatsRoutingModule } from './chats-routing.module';
 import { MessagesSharedModule } from '../messages';
-import { ChatService, HightLightDirective, FilterChatByNamePipe } from './shared/';
+import { ChatService, FilterChatByNamePipe } from './shared/';
 import { ChatNavComponent } from './chat-nav/chat-nav.component';
 import { UsersService } from '../auth/users';
 
@@ -20,7 +20,6 @@ import { UsersService } from '../auth/users';
     ChatNewComponent,
     ChatHolderComponent,
     ChatNavComponent,
-    HightLightDirective,
     FilterChatByNamePipe
   ],
   imports: [

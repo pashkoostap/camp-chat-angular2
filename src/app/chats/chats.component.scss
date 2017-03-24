@@ -5,19 +5,20 @@
     background-color: #ffffff;
     display: flex;
     overflow: hidden;
-    height: 600px;
-    margin: auto;
+    height: auto;
+    margin: 100px auto;
     border-radius: 15px;
     @media (max-width: 1199px) {
+        margin: 50px auto;
         max-width: 970px;
     }
     @media (max-width: 992px) {
         max-width: 750px;
     }
     @media (max-width: 767px) {
+        margin: 0 auto;
         max-width: 100%;
         border-radius: 0px;
-        height: calc(100vh - 120px);
     }
 }
 // LEFT CHAT WRAPPER
