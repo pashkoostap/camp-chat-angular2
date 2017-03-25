@@ -1,8 +1,8 @@
 <ul class="chat-info-attendees" 
     #elem
+    [style.width.px]="maxWidthValue"
     (mouseover)="onAttendessShow(elem)"
     (mouseout)="onAttendessHide(elem)">
-    <li class="chat-info-attendees__user  user__{{i}}" 
-        *ngFor="let user of attendees; let i = index"></li>
-
-<ul>
+    <li class="chat-info-attendees__user  user__{{i}}" *ngFor="let user of attendees; let i = index"></li>
+</ul>
+<span>Name</span>

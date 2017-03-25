@@ -6,16 +6,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-info.component.scss']
 })
 export class ChatInfoComponent implements OnInit {
-  attendees: number[] = [1,2,3,4];
+  private attendees: number[] = [1, 2, 3, 4];
+  private maxWidthValue: number = 0;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
+  }
+
+  setAttendessWrapWidth(elWidth: number, elOffset?: number) {
+    if (!elOffset) {
+      return this.attendees.length * elWidth;
+    } else {
+      return this.attendees.length * elWidth - (this.attendees.length - 1) * elOffset;
+    }
+  }
 
   onAttendessShow(el: HTMLUListElement) {
+    this.maxWidthValue = this.setAttendessWrapWidth(50);
     el.classList.add('selected')
   }
 
   onAttendessHide(el: HTMLUListElement) {
+    this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
     el.classList.remove('selected')
   }
 
