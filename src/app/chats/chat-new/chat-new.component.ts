@@ -36,13 +36,13 @@ export class ChatNewComponent implements OnInit, OnDestroy {
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 
-  onAddUser(btn: HTMLElement, i: number) {
-    if (!btn.classList.contains('checked')) {
+  onAddUser(event, user: User, i: number) {
+    if (!event.target.classList.contains('selected')) {
       this.newChat.attendees.push(i);
     } else {
       this.newChat.attendees.splice(this.newChat.attendees[i], 1);
     }
-    btn.classList.toggle('checked');
+    event.target.classList.toggle('selected');
     this.isUserChecked = this.newChat.attendees.length > 0;
   }
 
