@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    overflow: auto;
 }
 // RIGHT CHAT MESSAGES WRAPPER
 .right-chat-messages {
@@ -13,6 +12,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    overflow: auto;
 }
 // CHAT MESSAGE
 .right-chat-message {

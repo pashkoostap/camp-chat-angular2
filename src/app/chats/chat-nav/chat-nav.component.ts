@@ -23,8 +23,10 @@ export class ChatNavComponent {
   }
 
   onBlur() {
-    this.searchValue = '';
-    this.chatService.setSearchValue('');
+    setTimeout(() => {
+      this.searchValue = '';
+      this.chatService.setSearchValue('');
+    }, 300)
   }
 
   onChatPanelOpen() {
