@@ -21,7 +21,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
     private chatService: ChatService) { }
 
   ngOnInit() {
-    // this.subscription = this.chatService.getSearchValue().subscribe(value => this.searchValue = value);
     this.subscriptions.push(
       this.chatService.getAll().subscribe(
         chats => this.chats = chats, error => console.log(error)
@@ -31,7 +30,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.subscription.unsubscribe();
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 

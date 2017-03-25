@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { User, UsersService } from '../../auth/users/'
 import { Chat } from '../shared/';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ct-chat-new',
@@ -8,11 +9,12 @@ import { Chat } from '../shared/';
   templateUrl: './chat-new.component.html'
 })
 
-export class ChatNewComponent implements OnInit {
-  users: Promise<User[]>;
+export class ChatNewComponent implements OnInit, OnDestroy {
+  users: User[];
   userId: number = 1;
   isUsersWrapVisible: boolean = true;
   isUserChecked: boolean = false;
+  subscriptions: Subscription[] = [];
   newChat: Chat = {
     id: this.userId,
     name: '',
@@ -23,11 +25,18 @@ export class ChatNewComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.users = this.usersService.getUsers();
+    this.subscriptions.push(
+      this.usersService.getAllUsers().subscribe(
+        users => this.users = users, error => console.log(error)
+      )
+    )
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 
   onAddUser(btn: HTMLElement, i: number) {
-
     if (!btn.classList.contains('checked')) {
       this.newChat.attendees.push(i);
     } else {
