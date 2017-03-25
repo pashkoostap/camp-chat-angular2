@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatInfoComponent implements OnInit {
   private attendees: number[] = [1, 2, 3, 4];
+  private chatName: string = 'Some chat name';
   private maxWidthValue: number = 0;
   constructor() { }
 
@@ -30,6 +31,10 @@ export class ChatInfoComponent implements OnInit {
   onAttendessHide(el: HTMLUListElement) {
     this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
     el.classList.remove('selected')
+  }
+
+  onSearchFieldOpen(el: HTMLDivElement) {
+    el.classList.toggle('visible');
   }
 
 }

@@ -21,14 +21,15 @@
         resize: none;
         font-size: 14px;
         line-height: 20px;
-        padding: 15px 50px 15px 20px;
-        border: none;
+        border: 1px solid transparent;
+        padding: 14px 20px;
         background-color: #ededfa;
         flex-grow: 1;
         align-self: flex-end;
         overflow: hidden;
-        &--padd20 {
-            padding: 15px 20px;
+        transition: border-color 0.2s ease;
+        &:focus {
+            border: 1px solid #3b3e99;
         }
     }
     // SEND FORM SMILES BUTTON
