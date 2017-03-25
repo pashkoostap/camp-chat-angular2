@@ -1,6 +1,6 @@
 <ul class="right-chat-messages">
     <li class="right-chat-message"
-        *ngFor="let message of messages | async"
+        *ngFor="let message of messages"
         [ngClass]="{'to-user': userId !== message.senderId,
                     'from-user': userId === message.senderId}"
         selectMessage>
