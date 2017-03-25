@@ -34,8 +34,10 @@
     &.visible {
         display: flex;
         max-width: 40%;
+        min-width: 40%;
         @media (max-width: 767px) {
             max-width: 100%;
+            min-width: 0;
         }
     }
     &.hidden {

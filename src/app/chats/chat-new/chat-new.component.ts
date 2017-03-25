@@ -37,12 +37,12 @@ export class ChatNewComponent implements OnInit, OnDestroy {
   }
 
   onAddUser(event, user: User, i: number) {
-    if (!event.target.classList.contains('selected')) {
+    event.target.classList.toggle('selected');
+    if (event.target.classList.contains('selected')) {
       this.newChat.attendees.push(i);
     } else {
       this.newChat.attendees.splice(this.newChat.attendees[i], 1);
     }
-    event.target.classList.toggle('selected');
     this.isUserChecked = this.newChat.attendees.length > 0;
   }
 

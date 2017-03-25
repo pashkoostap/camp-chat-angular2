@@ -13,7 +13,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
   @Input() chats: Chat[];
   private searchValue: string = '';
   private selectedId: number;
-  private subscription: Subscription;
   private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
@@ -36,7 +35,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
   select(chat) {
     this.selectedId = chat.id;
     this.router.navigate(['chat', chat.id])
-    this.searchValue = '';
   }
 
 }

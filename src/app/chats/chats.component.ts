@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { Chat, ChatService } from './shared';
+import { Chat } from './shared';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ct-chats',
@@ -9,14 +10,11 @@ import { Chat, ChatService } from './shared';
 })
 
 export class ChatsComponent implements OnInit {
-  chats: Promise<Chat[]>;
   isChatPanelOpen: boolean = false;
 
-  constructor(private chatService: ChatService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.chats = this.chatService.getAll(); 
-  }
+  ngOnInit() { }
 
   onChatPanelOpen(event: boolean) {
     this.isChatPanelOpen = event;
