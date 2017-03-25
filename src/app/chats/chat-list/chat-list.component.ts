@@ -10,21 +10,29 @@ import { Subscription } from 'rxjs';
 })
 
 export class ChatListComponent implements OnInit, OnDestroy {
-  @Input() chats: Promise<Chat[]>;
+  @Input() chats: Chat[];
   private searchValue: string = '';
   private selectedId: number;
   private subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private chatService: ChatService) { }
 
   ngOnInit() {
-    this.subscription = this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
+    // this.subscription = this.chatService.getSearchValue().subscribe(value => this.searchValue = value);
+    this.subscriptions.push(
+      this.chatService.getAll().subscribe(
+        chats => this.chats = chats, error => console.log(error)
+      ),
+      this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
+    )
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 
   select(chat) {
