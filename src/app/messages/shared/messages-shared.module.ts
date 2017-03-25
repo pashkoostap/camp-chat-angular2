@@ -4,12 +4,14 @@ import { MessageListComponent } from './message-list';
 import { MessageNewComponent } from './message-new';
 import { MessageService } from './message.service';
 import { SelectMessage } from './select-message.directive';
+import { FilterMessageByName } from './filter-messages.pipe';
 
 @NgModule({
   declarations: [
     MessageListComponent,
     MessageNewComponent,
-    SelectMessage
+    SelectMessage,
+    FilterMessageByName
   ],
   imports: [
     SharedModule

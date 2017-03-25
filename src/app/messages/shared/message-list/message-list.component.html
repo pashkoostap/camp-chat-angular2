@@ -1,6 +1,6 @@
 <ul class="right-chat-messages">
     <li class="right-chat-message"
-        *ngFor="let message of messages"
+        *ngFor="let message of messages | filterMessageByName: searchValue" 
         [ngClass]="{'to-user': userId !== message.senderId,
                     'from-user': userId === message.senderId}"
         selectMessage>

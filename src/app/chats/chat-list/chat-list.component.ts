@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Chat, ChatService } from '../shared';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class ChatListComponent implements OnInit, OnDestroy {
-  @Input() chats: Chat[];
+  chats: Chat[];
   private searchValue: string = '';
   private selectedId: number;
   private subscriptions: Subscription[] = [];

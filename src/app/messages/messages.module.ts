@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule }  from '../shared';
-import { MessagesSharedModule, SelectMessage } from './shared';
+import { MessagesSharedModule } from './shared';
 
 @NgModule({
   declarations: [],
   imports: [
     SharedModule,
-    MessagesSharedModule,
-    SelectMessage
+    MessagesSharedModule
   ],
   providers: []
 })

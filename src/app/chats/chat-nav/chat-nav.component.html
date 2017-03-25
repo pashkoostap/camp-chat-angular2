@@ -7,7 +7,8 @@
         <input 
             type="text" 
             class="chat-search-panel__input" 
-            name="search" (blur)="onBlur()" 
+            name="search" 
+            (blur)="onBlur()" 
             [(ngModel)]="searchValue" 
             (ngModelChange)="onSearchValueChanged($event)">
         <button type="submit" class="chat-search-panel__search-btn    osp-chat-nav-btn  chat-icon-search"></button>

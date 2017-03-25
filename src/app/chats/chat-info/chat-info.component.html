@@ -6,8 +6,14 @@
     <li class="chat-info-attendees__user  user__{{i}}" *ngFor="let user of attendees; let i = index"></li>
 </ul>
 <span class="chat-info__chat-name">{{chatName}}</span>
-<div class="chat-info-search" #searchWrap>
+<div class="chat-info-search  visible" #searchWrap>
     <button type="button" class="chat-info-search__btn  chat-btn  chat-icon-search" (click)="onSearchFieldOpen(searchWrap)"></button>
-    <input type="text" class="chat-info-search__input" placeholder="Search...">
+    <input type="text" 
+        class="chat-info-search__input" 
+        placeholder="Search..."
+        name="search" 
+        (blur)="onBlur()" 
+        [(ngModel)]="searchValue" 
+        (ngModelChange)="onSearchValueChanged($event)">
 </div>
 <button type="button" class="chat-info__leave  chat-btn  chat-icon-sign-out"></button>

@@ -11,10 +11,11 @@ import { Observable, Subscription } from 'rxjs';
 })
 
 export class MessageListComponent implements OnInit, OnDestroy {
-  chatId: number;
-  userId: number = 1;
-  messages: Message[];
-  subscriptions: Subscription[] = [];
+  private chatId: number;
+  private userId: number = 1;
+  private messages: Message[];
+  private subscriptions: Subscription[] = [];
+  private searchValue: string = '';
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -26,7 +27,8 @@ export class MessageListComponent implements OnInit, OnDestroy {
       this.subscriptions.push(
         this.messageService.getMessageByChatId(this.chatId).subscribe(
           messages => this.messages = messages, error => console.error(error)
-        )
+        ),
+        this.messageService.getSearchValue().subscribe(value => this.searchValue = value)
       )
     })
   }
