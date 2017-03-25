@@ -1,0 +1,32 @@
+:host {
+    display: flex;
+    padding: 20px;
+    flex-shrink: 0;
+    border-bottom: 1px solid #d7d7e2;
+}
+.chat-info-attendees {
+    display: flex;
+    &__user {
+        display: flex;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        background: red;
+        border-radius: 50%;
+        border: 5px solid #ffffff;
+        cursor: pointer;
+        transition: left 0.3s ease;
+    }
+    @for $i from 0 through 10 {
+        .user__#{$i} { 
+            left: #{-30*$i}px;
+        }
+    }
+    &.selected {
+        @for $i from 0 through 10 {
+        .user__#{$i} { 
+                left: 0px;
+            }
+        }
+    }
+}
