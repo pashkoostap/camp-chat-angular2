@@ -1,6 +1,6 @@
 <form action="/" class="right-chat-form" 
       #form="ngForm"
-      (ngSubmit)="onSumbit(form); form.reset()">
+      (ngSubmit)="onSumbit(form.value); form.reset()">
     <textarea name="message" 
               class="right-chat-form__textarea" 
               placeholder="Type something" 
@@ -8,13 +8,8 @@
               (keypress)="onKeyPress(textArea)"
               required
               ngModel></textarea>
-    <!--<button type="button" class="right-chat-form__smiles  chat-icon-smile"></button>-->
     <button 
         type="submit" 
         class="right-chat-form__submit  chat-icon-send-button" 
         [disabled]="form.invalid"></button>
-    <!--<label for="user-document" 
-           class="right-chat-form__document  chat-icon-doc">
-        <input type="file" id="user-document">
-    </label>-->
 </form>

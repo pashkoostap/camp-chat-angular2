@@ -5,14 +5,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class MessageService {
+    private messagesArr: Message[] = MESSAGES;
     private search$: BehaviorSubject<string> = new BehaviorSubject('');
     getAll():Observable<Message[]> {
-        return Observable.create(observer => observer.next(MESSAGES));
+        return Observable.create(observer => observer.next(this.messagesArr));
     }
 
     getMessageByChatId(id: number): Observable<Message[]> {
-        const messages = MESSAGES.filter(chat => chat.chatId === id);
+        const messages = this.messagesArr.filter(chat => chat.chatId === id);
         return Observable.create(observer => observer.next(messages));
+    }
+
+    addMessage(message: Message) {
+        this.messagesArr.push(message);
+        console.log(this.messagesArr);        
     }
 
     public setSearchValue(value: string):void {

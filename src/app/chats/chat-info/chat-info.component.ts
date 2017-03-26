@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from '../../messages/shared/';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ChatService, Chat } from '../shared';
 import { Subscription } from 'rxjs';
 
@@ -17,14 +17,13 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   private searchValue: string = '';
   private subscription: Subscription;
   constructor(private route: ActivatedRoute,
-    private router: Router,
     private messageService: MessageService,
-    private ChatService: ChatService) { }
+    private chatService: ChatService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.chatId = +params['id'];
-      this.subscription = this.ChatService.getChatParamsByChatId(this.chatId).subscribe(
+      this.subscription = this.chatService.getChatParamsByChatId(this.chatId).subscribe(
         (chat) => {
           this.attendees = chat.attendees;
           this.chatName = chat.name;
@@ -57,10 +56,10 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   }
 
   onBlur() {
-    setTimeout(() => {
-      this.searchValue = '';
-      this.messageService.setSearchValue('');
-    }, 300)
+    // setTimeout(() => {
+    //   this.searchValue = '';
+    //   this.messageService.setSearchValue('');
+    // }, 300)
   }
 
   onSearchValueChanged(value: string) {

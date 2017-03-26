@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MessageService } from "../message.service";
+import { Message } from "../message.model";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ct-message-new',
@@ -6,12 +10,37 @@ import { Component } from '@angular/core';
   templateUrl: './message-new.component.html'
 })
 
-export class MessageNewComponent {
-  scrollTimeOut;
-  constructor() { }
+export class MessageNewComponent implements OnInit, OnDestroy {
+  private userId: number = 2;
+  private newMessage: Message = {
+    id: 0,
+    text: '',
+    isRead: false,
+    senderId: this.userId,
+    sentAt: new Date(),
+    chatId: 0
+  }
+  private subscription: Subscription;
+  private scrollTimeOut;
+  constructor(private messageService: MessageService,
+    private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.newMessage.chatId = +params['id'];
+      this.subscription = this.messageService.getAll().subscribe((messages) => this.newMessage.id = messages.length + 1)
+    })
+  }
+
+  ngOnDestroy() {
+
+  }
 
   onSumbit(form) {
-    console.log(form)
+    console.log(form.message)
+    this.newMessage.text = form.message;
+    this.messageService.addMessage(this.newMessage)
+    console.log(this.newMessage)
   }
 
   onKeyPress(textArea: HTMLTextAreaElement) {
