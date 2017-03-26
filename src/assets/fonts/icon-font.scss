@@ -21,6 +21,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.chat-icon-down:before {
+  content: "\e90f";
+}
+.chat-icon-up:before {
+  content: "\e910";
+}
 .chat-icon-google-1:before {
   content: "\e90d";
 }
