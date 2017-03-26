@@ -1,19 +1,22 @@
-<ul class="chat-info-attendees" 
-    #elem
-    [style.width.px]="maxWidthValue"
-    (mouseover)="onAttendessShow(elem)"
-    (mouseout)="onAttendessHide(elem)">
-    <li class="chat-info-attendees__user  user__{{i}}" *ngFor="let user of attendees; let i = index"></li>
-</ul>
-<span class="chat-info__chat-name">{{chatName}}</span>
-<div class="chat-info-search  visible" #searchWrap>
-    <button type="button" class="chat-info-search__btn  chat-btn  chat-icon-search" (click)="onSearchFieldOpen(searchWrap)"></button>
-    <input type="text" 
-        class="chat-info-search__input" 
-        placeholder="Search..."
-        name="search" 
-        (blur)="onBlur()" 
-        [(ngModel)]="searchValue" 
-        (ngModelChange)="onSearchValueChanged($event)">
+<div class="chan-info-wrap  visible" #chatInfoWrap>
+    <button type="button" #btn class="chan-info-wrap__show-btn  chat-btn  clicked" (click)="onChatInfoWrapShow(chatInfoWrap, btn)">Hide chat info</button>
+    <ul class="chat-info-attendees" 
+        #elem
+        [style.width.px]="maxWidthValue"
+        (mouseover)="onAttendessShow(elem)"
+        (mouseout)="onAttendessHide(elem)">
+        <li class="chat-info-attendees__user  user__{{i}}" *ngFor="let user of attendees; let i = index"></li>
+    </ul>
+    <span class="chat-info__chat-name">{{chatName}}</span>
+    <div class="chat-info-search  visible" #searchWrap>
+        <button type="button" class="chat-info-search__btn  chat-btn  chat-icon-search" (click)="onSearchFieldOpen(searchWrap)"></button>
+        <input type="text" 
+            class="chat-info-search__input" 
+            placeholder="Search..."
+            name="search" 
+            (blur)="onBlur()" 
+            [(ngModel)]="searchValue" 
+            (ngModelChange)="onSearchValueChanged($event)">
+    </div>
+    <button type="button" class="chat-info__leave  chat-btn  chat-icon-sign-out"></button>
 </div>
-<button type="button" class="chat-info__leave  chat-btn  chat-icon-sign-out"></button>

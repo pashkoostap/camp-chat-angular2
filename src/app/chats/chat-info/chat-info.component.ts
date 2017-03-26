@@ -24,7 +24,6 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.chatId = +params['id'];
-      console.log(this.chatId);
       this.subscription = this.ChatService.getChatParamsByChatId(this.chatId).subscribe(
         (chat) => {
           this.attendees = chat.attendees;
@@ -66,6 +65,17 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
 
   onSearchValueChanged(value: string) {
     this.messageService.setSearchValue(value)
+  }
+
+  onChatInfoWrapShow(wrapEl: HTMLDivElement, btn: HTMLButtonElement) {
+    wrapEl.classList.toggle('visible');
+    btn.classList.toggle('clicked');
+    if (btn.classList.contains('clicked')) {
+      btn.innerText = 'Hide chat info';
+    } else {
+      btn.innerText = 'Show chat info';
+    }
+      console.log(wrapEl, btn);
   }
 
   ngOnDestroy() {

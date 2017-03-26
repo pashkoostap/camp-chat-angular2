@@ -1,8 +1,48 @@
-:host {
+.chan-info-wrap {
     display: flex;
     padding: 20px;
     flex-shrink: 0;
     border-bottom: 1px solid #d7d7e2;
+    position: relative;
+    margin-top: -65px;
+    transition: margin-top 0.3s ease;
+    margin-bottom: 25px;
+    &.visible {
+        margin-top: 0px;
+    }
+    @media (max-width: 991px) {
+        margin-top: -120px;
+        flex-wrap: wrap;
+    }
+    &__show-btn {
+        position: absolute;
+        display: block;
+        font-family: "Ubuntu";
+        bottom: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        line-height: 20px;
+        text-transform: uppercase;
+        border: 1px solid #d7d7e2;
+        background-color: #ffffff;
+        padding: 0px 20px;
+        height: 32px;
+        border-radius: 15px;
+        white-space: nowrap;
+        &::after {
+            font-family: "chat-icons";
+            content: "\e90f";
+            font-size: 12px;
+            line-height: 30px;
+            margin-left: 5px;
+        }
+        &.clicked {
+            &::after {
+                content: "\e910";
+            }
+        }
+    }
 }
 .chat-info-attendees {
     display: flex;
@@ -35,7 +75,10 @@
 }
 .chat-info {
     &__chat-name {
+        display: flex;
+        white-space: nowrap;
         font-size: 20px;
+        line-height: 25px;
         align-self: center;
     }
     &__leave {
@@ -49,6 +92,9 @@
         &:hover {
             opacity: 0.5;
         }
+        @media(max-width: 991px) {
+            margin-left: 0;
+        }
     }
 }
 .chat-info-search {
@@ -60,6 +106,14 @@
     flex-shrink: 0;
     &.visible {
         width: 240px;
+    }
+    @media (max-width: 991px) {
+        width: calc(100% - 40px);
+        margin-left: 0;
+        &.visible {
+            width: calc(100% - 40px);
+            margin-left: 0;
+        }
     }
     &__btn {
         display: flex;
@@ -92,6 +146,13 @@
         flex-shrink: 0;
         &:focus {
             border: 1px solid #3b3e99;
+        }
+        @media(max-width: 991px) {
+            margin: 10px;
+        }
+        @media(max-width: 767px) {
+            margin: 10px 0px;
+            width: calc(100% - 80px);
         }
     }
 }
