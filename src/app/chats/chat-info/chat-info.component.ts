@@ -1,19 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from '../../messages/shared/';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ChatService, Chat } from '../shared';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ct-chat-info',
   templateUrl: './chat-info.component.html',
   styleUrls: ['./chat-info.component.scss']
 })
-export class ChatInfoComponent implements OnInit {
-  private attendees: number[] = [1, 2, 3, 4];
-  private chatName: string = 'Some chat name';
+export class ChatInfoComponent implements OnInit, OnDestroy {
+  private chatId: number;
+  private attendees: number[] = [];
+  private chatName: string = '';
   private maxWidthValue: number = 0;
   private searchValue: string = '';
-  constructor(private messageService: MessageService) { }
+  private subscription: Subscription;
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private messageService: MessageService,
+    private ChatService: ChatService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.chatId = +params['id'];
+      console.log(this.chatId);
+      this.subscription = this.ChatService.getChatParamsByChatId(this.chatId).subscribe(
+        (chat) => {
+          this.attendees = chat.attendees;
+          this.chatName = chat.name;
+        }
+      )
+    })
     this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
   }
 
@@ -48,5 +66,9 @@ export class ChatInfoComponent implements OnInit {
 
   onSearchValueChanged(value: string) {
     this.messageService.setSearchValue(value)
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

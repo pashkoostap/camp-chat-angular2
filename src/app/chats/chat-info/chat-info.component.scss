@@ -59,7 +59,7 @@
     transition: width 0.3s ease;
     flex-shrink: 0;
     &.visible {
-        width: 300px;
+        width: 240px;
     }
     &__btn {
         display: flex;
@@ -87,7 +87,7 @@
         border: 1px solid transparent;
         padding: 9px 20px;
         background-color: #ededfa;
-        width: 260px;
+        width: 200px;
         transition: border-color 0.2s ease;
         flex-shrink: 0;
         &:focus {

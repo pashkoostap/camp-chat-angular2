@@ -11,6 +11,11 @@ export class ChatService {
         return Observable.create(observer => observer.next(CHATS))
     }
 
+    getChatParamsByChatId(id: number): Observable<Chat> {
+        const chat = CHATS.filter(chat => chat.id === id);
+        return Observable.create(observer => observer.next(CHATS.filter(chat => chat.id === id)[0]));
+    }
+
     public setSearchValue(value: string):void {
         this.search$.next(value);
     }
