@@ -18,9 +18,9 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.authService.getUserState().subscribe(state => this.userName = state.username)
-    // if (this.authService.isLoggedIn) {
+    if (this.authService.isLoggedIn) {
       this.userName = JSON.parse(localStorage.getItem('token')).username;
-    // }
+    }
   }
 
   ngOnDestroy() {

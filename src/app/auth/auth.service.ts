@@ -6,13 +6,18 @@ import { User } from './login';
 
 @Injectable()
 export class AuthService {
-    private _authenticated: boolean = false;
+    private _authenticated: boolean = this.isLoggedIn;
     private _state: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
     constructor(private http: Http) { }
+    // get isLoggedIn() {
+    //     return localStorage.getItem('token') == '' ? false : true;
+    // }
+
     get isLoggedIn() {
-        return localStorage.getItem('token') == '' ? false : true;
+        return localStorage.getItem('token') && localStorage.getItem('token').length > 0 ? true : false;
     }
+
 
     login(data) {
         return this.http.post(API_CONFIG.LOGIN, data).map(res => res.json());
@@ -21,6 +26,7 @@ export class AuthService {
     register() { }
 
     logout() {
+        this._authenticated = false;
         localStorage.setItem('token', '');
     }
 

@@ -30,6 +30,7 @@ export class ChatNewComponent implements OnInit, OnDestroy {
         users => this.users = users, error => console.log(error)
       )
     )
+    
   }
 
   ngOnDestroy() {
