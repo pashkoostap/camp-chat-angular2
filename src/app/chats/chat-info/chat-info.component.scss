@@ -11,8 +11,11 @@
         margin-top: 0px;
     }
     @media (max-width: 991px) {
-        // margin-top: -120px;
+        margin-top: -120px;
         flex-wrap: wrap;
+    }
+    @media (max-width: 767px) {
+        margin-top: -160px;
     }
     &__show-btn {
         position: absolute;
@@ -80,7 +83,8 @@
         line-height: 25px;
         align-self: center;
         @media (max-width: 767px) {
-            margin: 10px 0px;
+            margin: 10px 0px 5px;
+            width: 100%;
         }
     }
     &__leave {

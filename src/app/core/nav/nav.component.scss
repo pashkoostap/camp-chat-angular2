@@ -42,6 +42,7 @@
     cursor: pointer;
     @media (max-width: 767px) {
         justify-content: center;
+        margin-bottom: 10px;
     }
 }
 .log-out {
@@ -59,6 +60,9 @@
     &:hover {
         opacity: 0.5;
     }
+    @media (max-width: 767px) {
+        height: 40px;
+    }
 }
 .user-profile-link {
     display: flex;
@@ -70,10 +74,14 @@
         display: flex;
         width: 50px;
         height: 50px;
-        border-radius: 50px;
+        border-radius: 50%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         margin-left: 20px;
+        @media (max-width: 767px) {
+            height: 40px;
+            width: 40px;
+        }
     }
 }

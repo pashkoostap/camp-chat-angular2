@@ -31,7 +31,7 @@ ct-chats {
     width: 100%;
     max-height: calc(100vh - 70px);
     @media(max-width: 767px) {
-        max-height: calc(100vh - 120px);
+        max-height: calc(100vh - 100px);
     }
 }
 ct-auth {
