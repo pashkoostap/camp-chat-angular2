@@ -11,7 +11,7 @@
         margin-top: 0px;
     }
     @media (max-width: 991px) {
-        margin-top: -120px;
+        // margin-top: -120px;
         flex-wrap: wrap;
     }
     &__show-btn {
@@ -76,10 +76,12 @@
 .chat-info {
     &__chat-name {
         display: flex;
-        white-space: nowrap;
         font-size: 20px;
         line-height: 25px;
         align-self: center;
+        @media (max-width: 767px) {
+            margin: 10px 0px;
+        }
     }
     &__leave {
         display: flex;
