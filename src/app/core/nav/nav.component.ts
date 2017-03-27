@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth';
+import { UsersService } from '../../auth/users/'
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +10,14 @@ import { Router } from '@angular/router';
 })
 
 export class NavComponent implements OnInit {
+  private userName: string = 'dasd';
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private usersService: UsersService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.usersService.getUserState().subscribe(state => this.userName = state.username)
+   }
 
   onLogOut() {
     this.authService.logout();

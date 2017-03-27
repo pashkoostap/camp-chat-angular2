@@ -70,13 +70,10 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     wrapEl.classList.toggle('visible');
     btn.classList.toggle('clicked');
     if (btn.classList.contains('clicked')) {
-      // wrapEl.setAttribute('style', 'margin-top: 0px');
       btn.innerText = 'Hide chat info';
     } else {
-      // wrapEl.setAttribute('style', `margin-top: -${wrapEl.clientHeight - 25}px;`);
       btn.innerText = 'Show chat info';
     }
-      console.log(wrapEl, btn);
   }
 
   ngOnDestroy() {
