@@ -13,38 +13,25 @@ import { UsersService } from '../users';
 
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  user: User = {
-    email: '',
-    password: ''
-  }
   constructor(private auth: AuthService,
-              private router: Router,
-              private userService: UsersService) {}
+    private router: Router) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe())
   }
-  private onSumbit(form: User) {
-    // console.log(form)
-    this.auth.login({
-      pass: form.password,
-      username: form.email
-    }).subscribe(this.onLoginSuccess.bind(this), this.onError);
+
+  private onSumbit(formValue: User) {
+    this.subscriptions.push(this.auth.login(formValue).subscribe(this.onLoginSuccess.bind(this), this.onError));
   }
 
-  private onLoginSuccess(res: any):void {
-    console.log(res);
-    this.userService.setUserState(res);
-    localStorage.setItem('token', 'youlogged');
+  private onLoginSuccess(response: any): void {
+    this.auth.setUserState(response);
     this.router.navigate(['chat']);
   }
 
   private onError(err) {
-    console.log(err);
-    console.log('login error');
+    console.log('User not found');
   }
 }

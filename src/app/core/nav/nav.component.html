@@ -2,10 +2,13 @@
   <nav class="chat-links">
     <a routerLink="/" routerLinkActive="active">Home</a>
     <a routerLink="/chat" routerLinkActive="active">Chat</a>
-    <a routerLink="/auth/login" routerLinkActive="active">Login</a>
-    <a routerLink="/auth/register" routerLinkActive="active">Register</a>
+    <ng-container *ngIf="!authService.isLoggedIn">
+      <a routerLink="/auth/login" routerLinkActive="active">Login</a>
+      <a routerLink="/auth/register" routerLinkActive="active">Register</a>
+    </ng-container>
+
   </nav>
-  
+
   <div class="user-profile" *ngIf="authService.isLoggedIn">
     <a class="user-profile-link">
       <span class="user-profile-link__name">{{userName}}</span>

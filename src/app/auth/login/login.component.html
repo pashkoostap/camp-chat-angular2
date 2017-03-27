@@ -5,19 +5,19 @@
     #form="ngForm"
     (ngSubmit)="onSumbit(form.value)">
     <input 
-        type="email" 
-        name="email" 
+        type="text" 
+        name="username" 
         class="osp-chat-form__input" 
-        placeholder="Email"
+        placeholder="Username"
         required
         minlength="6"
-        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
         ngModel>
+        <!--pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"-->
     <span class="osp-chat-form__hint"  
-        *ngIf="!form.controls.email?.valid && form.controls.email?.touched">Please enter valid email</span>
+        *ngIf="!form.controls.email?.valid && form.controls.email?.touched">Please enter username</span>
     <input 
         type="password" 
-        name="password" 
+        name="pass" 
         class="osp-chat-form__input"
         placeholder="Password"
         required

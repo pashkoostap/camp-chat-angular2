@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth';
 import { UsersService } from '../../auth/users/'
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ct-nav',
@@ -10,14 +11,21 @@ import { Router } from '@angular/router';
 })
 
 export class NavComponent implements OnInit {
-  private userName: string = 'dasd';
+  private userName: string = '';
+  private subscription: Subscription;
   constructor(private authService: AuthService,
-              private router: Router,
-              private usersService: UsersService) { }
+    private router: Router) { }
 
   ngOnInit() {
-    this.usersService.getUserState().subscribe(state => this.userName = state.username)
-   }
+    this.subscription = this.authService.getUserState().subscribe(state => this.userName = state.username)
+    // if (this.authService.isLoggedIn) {
+      this.userName = JSON.parse(localStorage.getItem('token')).username;
+    // }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   onLogOut() {
     this.authService.logout();
