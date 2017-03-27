@@ -30,7 +30,7 @@ export class ChatNewComponent implements OnInit, OnDestroy {
         users => this.users = users, error => console.log(error)
       )
     )
-    
+
   }
 
   ngOnDestroy() {
@@ -51,9 +51,12 @@ export class ChatNewComponent implements OnInit, OnDestroy {
     this.isUsersWrapVisible = !this.isUsersWrapVisible;
   }
 
-  onSubmit(formValue) {
+  onSubmit(formValue, usersList: HTMLUListElement) {
     this.newChat.name = formValue.chatName;
-    console.log(formValue)
-    console.log(this.newChat)
+    Array.prototype.forEach.call(usersList.querySelectorAll('li'),
+      (el) => { return el.classList.remove('selected') }
+    );
+    console.log(formValue);
+    console.log(this.newChat);
   }
 }
