@@ -15,14 +15,25 @@
         required>
     <span class="new-chat-form__hint"  
         *ngIf="!form.controls.chatName?.valid && form.controls.chatName?.touched">Chat name must be at least 5 characters</span>
-    <input 
-        type="text" 
-        autocomplete="off"
-        name="filterValue" 
-        class="new-chat-form__input  filter" 
-        placeholder="Search user by name" 
-        [(ngModel)]="searchValue" 
-        (ngModelChange)="onSearchValueChanged($event)">
+    
+    <div class="new-chat-form-search">
+        <input 
+            type="text" 
+            autocomplete="off"
+            name="filterValue" 
+            class="new-chat-form__input  filter" 
+            placeholder="Search user by name" 
+            [(ngModel)]="searchValue" 
+            #filterInput
+            (ngModelChange)="onSearchValueChanged($event, usersList)">
+        <button type="button" 
+            class="new-chat-form-search__btn  chat-btn  chat-icon-close"
+            (click)="onSearchFieldClear(filterInput, usersList)"></button>
+        <span class="new-chat-form-search__hint" 
+            [class.visible]="isSearchFieldActive">
+            {{searchMatches == 1 ? searchMatches + ' user' : searchMatches == 0 ? 'Users not' : searchMatches + ' users'}} found</span>
+    </div>
+    
 
     <ul class="new-chat-users" #usersList>
         <li class="new-chat-user" 

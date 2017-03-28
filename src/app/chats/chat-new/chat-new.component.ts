@@ -15,6 +15,8 @@ export class ChatNewComponent implements OnInit, OnDestroy {
   isUserChecked: boolean = false;
   subscriptions: Subscription[] = [];
   searchValue: string = '';
+  searchMatches: number = 0;
+  isSearchFieldActive: boolean = false;
   newChat: Chat = {
     id: this.userId,
     name: '',
@@ -47,21 +49,37 @@ export class ChatNewComponent implements OnInit, OnDestroy {
     this.isUserChecked = this.newChat.attendees.length > 0;
   }
 
-  onSearchValueChanged(value: string) {
+  onSearchValueChanged(value: string = '', el: HTMLUListElement) {
     this.usersService.setSearchValue(value);
+    setTimeout(() => {
+      if (value.length > 0) {
+        this.isSearchFieldActive = true;
+      } else {
+        this.isSearchFieldActive = false;
+      }
+      this.searchMatches = el.querySelectorAll('li').length;
+    }, 100)
   }
 
-  onBlur() {
-    this.usersService.setSearchValue('');
+  onSearchFieldClear(input: HTMLInputElement, usersList: HTMLUListElement) {
+    this.cleareSearchResults(usersList);
+    input.value = '';
   }
 
   onSubmit(formValue, usersList: HTMLUListElement) {
     this.newChat.name = formValue.chatName;
-    Array.prototype.forEach.call(usersList.querySelectorAll('li'),
-      (el) => { return el.classList.remove('selected') }
-    );
-    usersList.scrollTop = 0;
+    this.cleareSearchResults(usersList);
     console.log(formValue);
     console.log(this.newChat);
+  }
+
+  cleareSearchResults(list: HTMLUListElement) {
+    this.searchValue = '';
+    this.usersService.setSearchValue('');
+    this.isSearchFieldActive = false;
+    Array.prototype.forEach.call(list.querySelectorAll('li'),
+      (el) => { return el.classList.remove('selected') }
+    );
+    list.scrollTop = 0;
   }
 }
