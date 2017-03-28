@@ -16,5 +16,4 @@ export class FilterMessageByName implements PipeTransform {
             return messages;
         }
     }
-
 }

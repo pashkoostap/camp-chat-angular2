@@ -10,12 +10,25 @@
         name="chatName" 
         class="new-chat-form__input" 
         placeholder="Enter chat name" 
+        minlength="6"
         ngModel
         required>
+    <span class="new-chat-form__hint"  
+        *ngIf="!form.controls.chatName?.valid && form.controls.chatName?.touched">Chat name must be at least 5 characters</span>
+    <input 
+        type="text" 
+        autocomplete="off"
+        name="filterValue" 
+        class="new-chat-form__input  filter" 
+        placeholder="Search user by name" 
+        [(ngModel)]="searchValue" 
+        (ngModelChange)="onSearchValueChanged($event)">
 
-    <button type="button" class="new-chat-form__btn" (click)="onOnenUsersWrap()">Invite users</button>
-    <ul class="new-chat-users" [ngClass]="{'visible': isUsersWrapVisible, 'hidden': !isUsersWrapVisible}" #usersList>
-        <li class="new-chat-user" *ngFor="let user of users; let i = index" (click)="onAddUser($event, user, i)">
+    <ul class="new-chat-users" #usersList>
+        <li class="new-chat-user" 
+            *ngFor="let user of users | filterUsersByName: searchValue; let i = index"
+            #selectedEl 
+            (click)="onAddUser(selectedEl, user, i)">
             <!--<div class="new-chat-user__photo" style="background-image: url({{user.photo}})"></div>-->
             <!--<img [src]="user?.photo" alt="" class="new-chat-user__photo">-->
             <img src="assets/img/avatar__1.jpg" alt="" class="new-chat-user__photo">

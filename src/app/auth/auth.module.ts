@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { SharedModule }  from '../shared';
+import { SharedModule } from '../shared';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
-import { AuthRoutingModule} from './auth-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
 import { AltLoginComponent } from './alt-login/alt-login.component';
 
 @NgModule({
@@ -20,4 +20,4 @@ import { AltLoginComponent } from './alt-login/alt-login.component';
   providers: []
 })
 
-export class AuthModule {}
+export class AuthModule { }

@@ -16,17 +16,19 @@ export class AltLoginComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
-    gapi.load('auth2', () => {
-      let auth2 = gapi.auth2.init({
-        client_id: '389791797128-nemtk3jqd1m4chgld3ihqsdvl4rho6rc.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin'
-      });
-      auth2.attachClickHandler(
-        document.getElementById('google-auth-btn'), {},
-        this.onSuccess.bind(this),
-        this.onFailure
-      );
-    });
+
+    // gapi.load('auth2', () => {
+    //   let auth2 = gapi.auth2.init({
+    //     client_id: '389791797128-nemtk3jqd1m4chgld3ihqsdvl4rho6rc.apps.googleusercontent.com',
+    //     cookiepolicy: 'single_host_origin'
+    //   });
+    //   auth2.attachClickHandler(
+    //     document.getElementById('google-auth-btn'), {},
+    //     this.onSuccess.bind(this),
+    //     this.onFailure
+    //   );
+    // });
+
   }
 
   onFailure() {
