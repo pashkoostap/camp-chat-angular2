@@ -1,6 +1,6 @@
 <div class="users-wrap">
   <ul class="chat-users">
-    <li class="chat-user" *ngFor="let user of users">
+    <li class="chat-user" *ngFor="let user of users" (click)="select({id: user.id})" [class.active]="selectedId == user.id">
       <!--<div class="chat-user__photo" style="background-image: url({{user.photo}})"></div>-->
       <img src="assets/img/avatar__1.jpg" alt="" class="chat-user__photo">
       <span class="chat-user__info">{{user.username}}</span>

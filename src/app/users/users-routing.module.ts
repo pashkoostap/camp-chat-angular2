@@ -9,7 +9,7 @@ const authRoutes: Routes = [
     component: UsersComponent,
     children: [
       {
-        path: 'detail',
+        path: ':id',
         component: UserDetailComponent
       }
     ]

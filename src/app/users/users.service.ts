@@ -14,6 +14,10 @@ export class UsersService {
     return this.http.get(API_CONFIG.USERS).map(res => res.json());
   }
 
+  getUserById(id: string): Observable<User> {
+    return this.http.get(API_CONFIG.USERS).map(res => res.json()).filter((res) => res.id === id)
+  }
+
   public setSearchValue(value: string): void {
     this.search$.next(value);
   }
