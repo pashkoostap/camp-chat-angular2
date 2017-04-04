@@ -7,18 +7,18 @@ import { API_CONFIG } from '../shared';
 
 @Injectable()
 export class UsersService {
-    private search$: BehaviorSubject<string> = new BehaviorSubject('');
-    constructor(private http: Http) { }
+  private search$: BehaviorSubject<string> = new BehaviorSubject('');
+  constructor(private http: Http) { }
 
-    getAllUsers(): Observable<User[]> {
-        return this.http.get(API_CONFIG.USERS).map(res => res.json());
-    }
+  getAllUsers(): Observable<User[]> {
+    return this.http.get(API_CONFIG.USERS).map(res => res.json());
+  }
 
-    public setSearchValue(value: string):void {
-        this.search$.next(value);
-    }
+  public setSearchValue(value: string): void {
+    this.search$.next(value);
+  }
 
-    public getSearchValue():BehaviorSubject<string> {
-        return this.search$;
-    }
+  public getSearchValue(): BehaviorSubject<string> {
+    return this.search$;
+  }
 }
