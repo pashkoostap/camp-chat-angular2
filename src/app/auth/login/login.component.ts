@@ -3,7 +3,7 @@ import { User } from './login.interface';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UsersService } from '../users';
+import { UsersService } from '../../users';
 
 @Component({
   selector: 'ct-login',

@@ -1,5 +1,10 @@
-<p>
-  users works!
-</p>
-
-<router-outlet></router-outlet>
+<div class="users-wrap">
+  <ul class="chat-users">
+    <li class="chat-user" *ngFor="let user of users">
+      <!--<div class="chat-user__photo" style="background-image: url({{user.photo}})"></div>-->
+      <img src="assets/img/avatar__1.jpg" alt="" class="chat-user__photo">
+      <span class="chat-user__info">{{user.username}}</span>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>
