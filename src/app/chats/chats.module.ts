@@ -9,9 +9,8 @@ import { ChatsRoutingModule } from './chats-routing.module';
 import { MessagesSharedModule } from '../messages';
 import { ChatService, FilterChatByNamePipe } from './shared/';
 import { ChatNavComponent } from './chat-nav/chat-nav.component';
-import { UsersService } from '../auth/users';
+import { UsersService, FilterUsersByName } from '../users';
 import { ChatInfoComponent } from './chat-info/chat-info.component';
-import { FilterUsersByName } from '../auth/users/';
 
 
 @NgModule({

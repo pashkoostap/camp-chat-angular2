@@ -10,9 +10,8 @@ import * as io from 'socket.io-client';
 export class AppComponent {
   title = 'app works!';
   socket;
-  constructor() {
-
-  }
+  constructor() { }
+  
   getRequest() {
     this.socket = io.connect('http://front-camp-chat.herokuapp.com/', {
       forceNew: true

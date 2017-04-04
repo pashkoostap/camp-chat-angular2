@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 // import { USERS } from './mock-users';
 import { User } from './user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { API_CONFIG } from '../../shared';
+import { API_CONFIG } from '../shared';
 
 @Injectable()
 export class UsersService {

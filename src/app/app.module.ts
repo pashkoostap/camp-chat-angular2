@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { AuthService, AuthGuard } from './auth/';
-import { UsersService } from './auth/users/';
+import { UsersService } from './users/';
 
 @NgModule({
   declarations: [
