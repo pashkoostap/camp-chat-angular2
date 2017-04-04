@@ -24,6 +24,11 @@ const appRoutes: Routes = [
     loadChildren: 'app/auth/auth.module#AuthModule'
   },
   {
+    path: 'users',
+    loadChildren: 'app/users/users.module#UsersModule',
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
