@@ -6,7 +6,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
-import { AuthService, AuthGuard, GoogleAuthService } from './auth/';
+import { AuthService, AuthGuard } from './auth/';
 import { UsersModule } from './users/';
 import { FacebookModule, FacebookService } from 'ng2-facebook-sdk';
 
@@ -25,7 +25,7 @@ import { FacebookModule, FacebookService } from 'ng2-facebook-sdk';
     UsersModule,
     FacebookModule
   ],
-  providers: [AuthGuard, AuthService, GoogleAuthService, FacebookService],
+  providers: [AuthGuard, AuthService, FacebookService],
   bootstrap: [AppComponent]
 })
 
