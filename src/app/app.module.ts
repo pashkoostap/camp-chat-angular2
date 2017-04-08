@@ -8,6 +8,8 @@ import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { AuthService, AuthGuard, GoogleAuthService } from './auth/';
 import { UsersModule } from './users/';
+import { FacebookModule, FacebookService } from 'ng2-facebook-sdk';
+
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { UsersModule } from './users/';
     HttpModule,
     CoreModule,
     AppRoutingModule,
-    UsersModule
+    UsersModule,
+    FacebookModule
   ],
-  providers: [AuthGuard, AuthService, GoogleAuthService],
+  providers: [AuthGuard, AuthService, GoogleAuthService, FacebookService],
   bootstrap: [AppComponent]
 })
 
