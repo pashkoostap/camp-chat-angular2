@@ -6,7 +6,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
-import { AuthService, AuthGuard } from './auth/';
+import { AuthService, AuthGuard, GoogleAuthService } from './auth/';
 import { UsersModule } from './users/';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { UsersModule } from './users/';
     AppRoutingModule,
     UsersModule
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, GoogleAuthService],
   bootstrap: [AppComponent]
 })
 

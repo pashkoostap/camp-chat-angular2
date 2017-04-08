@@ -4,7 +4,12 @@
     </div>
     <span class="alt-login__title">Login with:</span>
     <ul class="alt-login-links">
-        <button id="fb-auth-btn" class="alt-login-links__btn  facebook  chat-icon-facebook-1"></button>
-        <button id="google-auth-btn" class="alt-login-links__btn  google  chat-icon-google-1"></button>
+        <button 
+          id="fb-auth-btn" 
+          class="alt-login-links__btn  facebook  chat-icon-facebook-1"></button>
+        <button 
+          id="google-auth-btn" 
+          class="alt-login-links__btn  google  chat-icon-google-1"
+          (click)="onSignIn($event)"></button>
     </ul>
 </div>

@@ -23,6 +23,7 @@
         "assets/fonts/icon-font.scss"
       ],
       "scripts": [
+        "assets/js/platform.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
