@@ -6,7 +6,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
-import { AuthService, AuthGuard } from './auth/';
+import { AppAuthService, AuthGuard } from './auth/';
 import { UsersModule } from './users/';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 
@@ -37,7 +37,7 @@ const providers = {
     UsersModule,
     Angular2SocialLoginModule.initWithProviders(providers)
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AppAuthService],
   bootstrap: [AppComponent]
 })
 

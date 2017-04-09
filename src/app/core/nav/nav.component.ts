@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth';
+import { AppAuthService } from '../../auth';
 import { UsersService } from '../../users/';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class NavComponent implements OnInit {
   private userName: string = '';
   private subscription: Subscription;
-  constructor(private authService: AuthService,
+  constructor(private authService: AppAuthService,
     private router: Router) { }
 
   ngOnInit() {

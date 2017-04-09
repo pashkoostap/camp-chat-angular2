@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from './login';
 
 @Injectable()
-export class AuthService {
+export class AppAuthService {
     private _authenticated: boolean = this.isLoggedIn;
     private _state: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
