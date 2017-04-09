@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 declare let gapi: any;
 declare let FB: any;
+declare let IN: any;
 
 @Component({
   selector: 'app-alt-login',
@@ -32,7 +33,7 @@ export class AltLoginComponent implements OnInit {
     })
   }
 
-  onGoogleBtnClick(e) {
+  onGoogleLogin() {
     this.googleRequest.then((auth2) => {
       auth2.signIn().then((res) => {
         console.log(res.getBasicProfile())
@@ -57,5 +58,9 @@ export class AltLoginComponent implements OnInit {
         });
       }
     })
+  }
+
+  onLinkedInLogin() {
+    
   }
 }

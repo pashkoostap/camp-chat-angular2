@@ -4,13 +4,8 @@
     </div>
     <span class="alt-login__title">Login with:</span>
     <ul class="alt-login-links">
-        <button 
-          id="fb-auth-btn" 
-          class="alt-login-links__btn  facebook  chat-icon-facebook-1"
-          (click)="onFBLogin()"></button>
-        <button 
-          id="google-auth-btn" 
-          class="alt-login-links__btn  google  chat-icon-google-1"
-          (click)="onGoogleBtnClick($event)"></button>
+        <button class="alt-login-links__btn  facebook  chat-icon-facebook-1" (click)="onFBLogin()"></button>
+        <button class="alt-login-links__btn  google  chat-icon-google-1" (click)="onGoogleLogin()"></button>
+        <button class="alt-login-links__btn  google  chat-icon-linked" (click)="onLinkedInLogin()">Li</button>
     </ul>
 </div>
