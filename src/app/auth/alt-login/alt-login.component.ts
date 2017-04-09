@@ -20,11 +20,15 @@ export class AltLoginComponent implements OnInit {
 
   onSignIn(provider: string) {
     this.sub = this.authSocial.login(provider).subscribe(
-      (data) => { console.log(data) }
+      (data) => {
+        // console.log(data);
+        this.user = data;
+        console.log(this.user);
+        this.authService.setUserState({ username: data['name'], provider: provider });
+        this.router.navigate(['chat']);
+      }
     )
   }
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
+  ngOnDestroy() { }
 
 }

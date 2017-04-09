@@ -34,4 +34,8 @@ export class AppAuthService {
     getUserState():BehaviorSubject<any> {
         return this._state;
     }
+
+    getUserInfo() {
+      return JSON.parse(localStorage.getItem('token'));
+    }
 }
