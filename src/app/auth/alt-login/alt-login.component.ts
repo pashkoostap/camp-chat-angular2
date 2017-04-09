@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { FacebookService, LoginOptions, LoginResponse } from "ng2-facebook-sdk";
 declare let gapi: any;
+declare let FB: any;
 
 @Component({
   selector: 'app-alt-login',
@@ -14,24 +14,17 @@ export class AltLoginComponent implements OnInit {
   profile;
   googleRequest;
   constructor(private router: Router,
-    private authService: AuthService,
-    private fbService: FacebookService) { }
+    private authService: AuthService) { }
 
   ngOnInit() {
     gapi.load('auth2', () => {
-      gapi.auth2.init({
+      this.googleRequest = gapi.auth2.init({
         client_id: '389791797128-nemtk3jqd1m4chgld3ihqsdvl4rho6rc.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin'
-      }).then((auth2) => {
-        auth2.attachClickHandler(
-          document.getElementById('google-auth-btn'), {},
-          this.onGoogleLoginErrorSuccess.bind(this),
-          this.onGoogleLoginError
-        );
-      })
+      });
     });
 
-    this.fbService.init({
+    FB.init({
       appId: '220680781748062',
       xfbml: true,
       cookie: true,
@@ -39,29 +32,30 @@ export class AltLoginComponent implements OnInit {
     })
   }
 
-  onGoogleLoginErrorSuccess(user): void {
-      console.log(user.getBasicProfile());
-      this.authService.setUserState({username: user.getBasicProfile().ig})
-      this.router.navigate(['chat']);
+  onGoogleBtnClick(e) {
+    this.googleRequest.then((auth2) => {
+      auth2.signIn().then((res) => {
+        console.log(res.getBasicProfile())
+        this.authService.setUserState({ username: res.getBasicProfile().ig })
+        this.router.navigate(['chat']);
+      })
+    })
   }
 
-  onGoogleLoginError(err) { console.log(err) }
-
   onFBLogin() {
-    const options: LoginOptions = {
+    const options = {
       scope: 'public_profile,user_friends,email,pages_show_list',
       return_scopes: true,
       enable_profile_selector: true
     };
-    this.fbService.login()
-      .then((res: LoginResponse) => {
-        let promise = this.fbService.api(`/${res.authResponse.userID}`);
-        promise.then((res) => {
+    FB.login((res) => {
+      if (res.authResponse) {
+        FB.api(`/${res.authResponse.userID}`, (res) => {
           console.log(res)
           this.authService.setUserState({ username: res.name });
           this.router.navigate(['chat']);
-        })
-      })
-      .catch(e => console.error('Error logging in'));
+        });
+      }
+    })
   }
 }
