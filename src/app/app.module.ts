@@ -10,16 +10,17 @@ import { AppAuthService, AuthGuard } from './auth/';
 import { UsersModule } from './users/';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 
-const providers = {
+let providers = {
   "google": {
     "clientId": "389791797128-nemtk3jqd1m4chgld3ihqsdvl4rho6rc.apps.googleusercontent.com"
   },
   "linkedin": {
-    "clientId": "86j0gw4674pll9"
+    "clientId": "86j0gw4674pll9",
+    "secure": "5Q5oJqEVw3Nj2Tx7"
   },
   "facebook": {
     "clientId": "220680781748062",
-    "apiVersion": "v2.8" //like v2.4 
+    "apiVersion": "v2.8"
   }
 };
 

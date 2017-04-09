@@ -21,6 +21,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.chat-icon-linkedin:before {
+  content: "\e911";
+}
+.chat-icon-linkedin-1:before {
+  content: "\e912";
+}
 .chat-icon-down:before {
   content: "\e90f";
 }
