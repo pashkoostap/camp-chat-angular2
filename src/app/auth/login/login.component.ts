@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private onLoginSuccess(response: any): void {
-    console.log(response);
+    // console.log(response);
     this.auth.setUserState(response);
     this.socketChatService.initSocketAfterLogin(response.token);
-    console.log(this.socketChatService.getSocketState())
+    // console.log(this.socketChatService.getSocketState())
     this.router.navigate(['chat']);
   }
 

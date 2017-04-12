@@ -6,10 +6,14 @@ import { API_CONFIG } from './api.config';
 export class SocketChatService {
   socket: any;
   constructor() {
-    this.socket = io.connect(API_CONFIG.SOCKET);
+    // this.socket = io.connect(API_CONFIG.SOCKET);
   }
   initSocket() {
-    this.socket = io.connect(API_CONFIG.SOCKET);
+    const socket = io(API_CONFIG.SOCKET);
+    socket.on('connect', () => {
+      this.socket = socket;
+      console.log(this.socket)
+    })
   }
   initSocketAfterLogin(loginToken: string) {
     this.socket.on('connect', () => {
