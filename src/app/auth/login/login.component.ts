@@ -4,6 +4,7 @@ import { AppAuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UsersService } from '../../users';
+import { SocketChatService } from "../../shared";
 
 @Component({
   selector: 'ct-login',
@@ -14,7 +15,8 @@ import { UsersService } from '../../users';
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   constructor(private auth: AppAuthService,
-    private router: Router) { }
+    private router: Router,
+    private socketChatService: SocketChatService) { }
 
   ngOnInit() { }
 
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private onLoginSuccess(response: any): void {
     console.log(response);
     this.auth.setUserState(response);
+    this.socketChatService.initSocketAfterLogin(response.token);
+    console.log(this.socketChatService.getSocketState())
     this.router.navigate(['chat']);
   }
 

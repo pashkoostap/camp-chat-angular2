@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './not-found.component';
 import { AppAuthService, AuthGuard } from './auth/';
 import { UsersModule } from './users/';
 import { Angular2SocialLoginModule } from "angular2-social-login";
+import { SocketChatService } from "./shared/";
 
 let providers = {
   "google": {
@@ -38,7 +39,7 @@ let providers = {
     UsersModule,
     Angular2SocialLoginModule.initWithProviders(providers)
   ],
-  providers: [AuthGuard, AppAuthService],
+  providers: [AuthGuard, AppAuthService, SocketChatService],
   bootstrap: [AppComponent]
 })
 
