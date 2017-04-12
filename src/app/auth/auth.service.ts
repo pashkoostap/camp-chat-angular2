@@ -6,9 +6,6 @@ import { User } from './login';
 
 @Injectable()
 export class AppAuthService {
-    private _authenticated: boolean = this.isLoggedIn;
-    private _state: BehaviorSubject<any> = new BehaviorSubject<any>({});
-
     constructor(private http: Http) { }
     get isLoggedIn() {
         return localStorage.getItem('token') && localStorage.getItem('token').length > 0 ? true : false;
@@ -21,18 +18,11 @@ export class AppAuthService {
     register() { }
 
     logout() {
-        this._authenticated = false;
         localStorage.setItem('token', '');
     }
 
     setUserState(state: any):void {
-        this._authenticated = true;
-        this._state.next(state);
         localStorage.setItem('token', JSON.stringify(state));
-    }
-
-    getUserState():BehaviorSubject<any> {
-        return this._state;
     }
 
     getUserInfo() {
