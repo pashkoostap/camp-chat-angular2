@@ -13,18 +13,26 @@ let socket = io('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000/');
 export class AppComponent implements OnInit {
   title = 'app works!';
   socket;
+  socketObj;
   constructor(private socketChatService: SocketChatService) {
   }
   ngOnInit() {
-    socket.on('connect', () => {
-      console.log(socket);
-      socket.emit('authenticate', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhc2hrb09zdGFwIn0.qDBVTt_QG2BB8jnqKvJwUxQTTMQfQnny1_XfoEMGC7w" })
-    })
-    socket.on('message', msg => {
-      console.log(msg)
-    });
+    this.socket = this.socketChatService.initSocket();
+    // this.socket = this.socketChatService.initSocket();
+    // this.socket.on('connect', () => {
+    //   this.socket.emit('authenticate', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhc2hrb09zdGFwIn0.qDBVTt_QG2BB8jnqKvJwUxQTTMQfQnny1_XfoEMGC7w" })
+    //   console.log(this.socket);
+    //   this.socket.on('message', msg => {
+    //     console.log(msg)
+    //   });
+    // })
   }
   getRequest() {
-    socket.emit('message', 'Third message')
+    this.socketObj = this.socketChatService.getSocket().subscribe(socket => {
+      socket.emit('authenticate', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhc2hrb09zdGFwIn0.qDBVTt_QG2BB8jnqKvJwUxQTTMQfQnny1_XfoEMGC7w" });
+      console.log(socket);
+    });
+    console.log(this.socketObj);
+    // this.socket.emit('message', 'New text message')
   }
 }
