@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketChatService } from "./shared";
-import * as io from 'socket.io-client';
-// let socket = io('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000/');
+import { AppAuthService } from "./auth";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -9,22 +9,34 @@ import * as io from 'socket.io-client';
   styleUrls: ['./app.component.scss']
 })
 
-
 export class AppComponent implements OnInit {
   title = 'app works!';
   socket;
-  socketObj;
-  constructor(private socketChatService: SocketChatService) {
+  userInfo;
+  constructor(
+    private authService: AppAuthService,
+    private router: Router,
+    private socketChatService: SocketChatService) {
   }
   ngOnInit() {
-
+    this.initSocket();
+  }
+  initSocket() {
+    if (this.authService.isLoggedIn) {
+      this.userInfo = this.authService.getUserInfo();
+      this.socket = this.socketChatService.initSocket(this.userInfo.token, () => {
+        console.log(this.userInfo);
+        console.log('userIsLogged');
+        // this.router.navigate(['chat']);
+      });
+    }
   }
   getRequest() {
-    this.socketObj = this.socketChatService.getSocket().subscribe(
-      res => {
-        res.on('message', msg => console.log(msg));
-        res.emit('message', 'Message text');
-      }
-    )
+    // this.socketObj = this.socketChatService.getSocket().subscribe(
+    //   res => {
+    //     res.on('message', msg => console.log(msg));
+    //     res.emit('message', 'Message text');
+    //   }
+    // )
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { AppAuthService } from '../../auth';
 import { UsersService } from '../../users/';
 import { Router } from '@angular/router';
@@ -10,14 +10,15 @@ import { AuthService } from "angular2-social-login";
   styleUrls: ['./nav.component.scss']
 })
 
-export class NavComponent implements OnInit {
+export class NavComponent implements DoCheck {
   private userName: string = '';
   constructor(private authService: AppAuthService,
     private router: Router,
     private authSocial: AuthService) { }
 
-  ngOnInit() {
-    if (this.authService.isLoggedIn) {
+
+  ngDoCheck() {
+    if (this.authService.isLoggedIn && !this.userName) {
       this.userName = this.authService.getUserInfo().user.username;
     }
   }
