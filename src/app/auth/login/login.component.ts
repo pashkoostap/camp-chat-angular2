@@ -14,6 +14,8 @@ import { SocketChatService } from "../../shared";
 
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
+  socketObj;
+  socket;
   constructor(private auth: AppAuthService,
     private router: Router,
     private socketChatService: SocketChatService) { }
@@ -29,11 +31,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private onLoginSuccess(response: any): void {
-    // console.log(response);
+    console.log(response);
     this.auth.setUserState(response);
-    this.socketChatService.initSocketAfterLogin(response.token);
-    // console.log(this.socketChatService.getSocketState())
-    this.router.navigate(['chat']);
+    this.socket = this.socketChatService.initSocket(response.token, () => {
+      this.router.navigate(['chat']);
+    });
   }
 
   private onError(err) {

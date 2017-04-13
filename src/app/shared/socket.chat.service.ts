@@ -9,13 +9,13 @@ export class SocketChatService {
   constructor() {
     // this.socket = io.connect(API_CONFIG.SOCKET);
   }
-  initSocket() {
+  initSocket(token, callback) {
     this.socket = io(API_CONFIG.SOCKET);
-    this.socket.on('connect', () => { console.log(this.socket) })
-  }
-  initSocketAfterLogin(loginToken: string) {
-    this.socket.on('connect', () => {
-      this.socket.emit('authenticate', { token: loginToken })
+    this.socket.on('connect', () => { 
+      console.log(this.socket);
+      this.socket.emit('authenticate', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhc2hrb09zdGFwIn0.qDBVTt_QG2BB8jnqKvJwUxQTTMQfQnny1_XfoEMGC7w" });
+      console.log(this.socket);
+      callback();
     })
   }
   getSocket():Observable<any> {
