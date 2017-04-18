@@ -26,8 +26,6 @@ export class AppComponent implements OnInit {
       this.userInfo = this.authService.getUserInfo();
       this.socket = this.socketChatService.initSocket(this.userInfo.token, () => {
         console.log(this.userInfo);
-        console.log('userIsLogged');
-        // this.router.navigate(['chat']);
       });
     }
   }
