@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
@@ -8,7 +8,8 @@ import { AppAuthService } from "../../../auth";
 @Component({
   selector: 'ct-message-list',
   styleUrls: ['./message-list.component.scss'],
-  templateUrl: './message-list.component.html'
+  templateUrl: './message-list.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MessageListComponent implements OnInit, OnDestroy {

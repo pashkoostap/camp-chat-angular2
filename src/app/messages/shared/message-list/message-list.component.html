@@ -1,15 +1,15 @@
 <ul class="right-chat-messages">
-    <li class="right-chat-message"
-        *ngFor="let message of messages | filterMessageByName: searchValue" 
-        [ngClass]="{'to-user': loggedUser.username !== message.user.username,
-                    'from-user': loggedUser.username === message.user.username}"
-        selectMessage>
-        <div class="right-chat-message__user-photo" style="background-image: url(assets/img/avatar__1.jpg)"></div>
-        <div class="right-chat-notice">
-            <p class="right-chat-notice__content">
-                {{message.msg}}
-            </p>
-        </div>
-        <span class="right-chat-message__date">{{message.time | date:"MM/dd/yy HH:mm"}}</span>
-    </li>
+  <li class="right-chat-message" 
+  *ngFor="let message of messages | filterMessageByName: searchValue" 
+  [ngClass]="{'to-user': loggedUser.username !== message.user.username,
+            'from-user': loggedUser.username === message.user.username}" selectMessage>
+    <div 
+      class="right-chat-message__user-photo" 
+      style="background-image: url(assets/img/avatar__1.jpg)"></div>
+    <div class="right-chat-notice">
+      <span class="right-chat-message__username">{{message.user.username}}</span>
+      <p class="right-chat-notice__content">{{message.msg}}</p>
+      <span class="right-chat-message__date">{{message.time | date:"MM/dd/yy HH:mm"}}</span>
+    </div>
+  </li>
 </ul>

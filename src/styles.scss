@@ -37,6 +37,11 @@ ct-chats {
         max-height: calc(100vh - 100px);
     }
 }
+ct-message-list {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
 ct-auth {
     display: flex;
     flex-direction: column;
