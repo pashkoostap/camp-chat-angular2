@@ -4,6 +4,7 @@ import { Message } from '../message.model';
 import { MessageService } from '../message.service';
 import { Observable, Subscription } from 'rxjs';
 import { AppAuthService } from "../../../auth";
+import { SocketChatService } from "../../../shared";
 
 @Component({
   selector: 'ct-message-list',
@@ -22,7 +23,8 @@ export class MessageListComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private messageService: MessageService,
-    private authService: AppAuthService) { }
+    private authService: AppAuthService,
+    private socketService: SocketChatService) { }
 
   ngOnInit() {
     this.loggedUser = this.authService.getUserInfo().user;
@@ -32,7 +34,12 @@ export class MessageListComponent implements OnInit, OnDestroy {
         this.messageService._getMessages().subscribe(
           messages => this.messages = messages, error => console.error(error)
         ),
-        this.messageService.getSearchValue().subscribe(value => this.searchValue = value)
+        this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
+        this.socketService.getSocket().subscribe(socket => {
+          socket.on('message', msg => {
+            this.messageService._sendMessage(msg);
+          })
+        })
       )
     })
   }

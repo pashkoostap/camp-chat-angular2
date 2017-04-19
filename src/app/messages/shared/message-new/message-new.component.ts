@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MessageService } from "../message.service";
 import { Message } from "../message.model";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { AppAuthService } from "../../../auth";
+import { SocketChatService } from "../../../shared";
 
 @Component({
   selector: 'ct-message-new',
@@ -14,16 +14,13 @@ import { AppAuthService } from "../../../auth";
 export class MessageNewComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private scrollTimeOut;
-  constructor(private messageService: MessageService,
+  constructor(private socketService: SocketChatService,
     private route: ActivatedRoute,
     private authService: AppAuthService) { }
 
-  ngOnInit() {
-    this.subscription = this.messageService._getMessages().subscribe(arr => console.log(arr));
-  }
+  ngOnInit() { }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   onSumbit(form) {
@@ -32,7 +29,7 @@ export class MessageNewComponent implements OnInit, OnDestroy {
       user: this.authService.getUserInfo().user,
       time: new Date().getTime()
     }
-    this.messageService._sendMessage(message);
+    this.socketService.sendMessage(form.message);
   }
 
   onKeyPress(textArea: HTMLTextAreaElement) {
