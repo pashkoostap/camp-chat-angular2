@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 export class SocketChatService {
   socket: any;
   constructor() { }
-  initSocket(token, callback) {
+  initSocket(userToken, callback) {
     this.socket = io(API_CONFIG.SOCKET);
     this.socket.on('connect', () => {
-      this.socket.emit('authenticate', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhc2hrb09zdGFwIn0.qDBVTt_QG2BB8jnqKvJwUxQTTMQfQnny1_XfoEMGC7w" });
+      this.socket.emit('authenticate', { token: userToken });
       console.log(this.socket);
       callback();
     })

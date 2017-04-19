@@ -1,7 +1,7 @@
 import { Message } from './message.model';
 import * as moment from 'moment';
 
-export const MESSAGES: Message[] = [
+export const MESSAGES: any[] = [
   {
     id: 1,
     senderId: 1,
