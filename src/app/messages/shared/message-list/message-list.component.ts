@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, DoCheck, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
@@ -13,18 +13,20 @@ import { SocketChatService } from "../../../shared";
   encapsulation: ViewEncapsulation.None
 })
 
-export class MessageListComponent implements OnInit, OnDestroy {
+export class MessageListComponent implements OnInit, OnDestroy, DoCheck {
   private chatId: number;
   private loggedUser: Object = {};
   private messages: Message[] = [];
   private subscriptions: Subscription[] = [];
   private searchValue: string = '';
+  private msgList: HTMLUListElement;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private messageService: MessageService,
     private authService: AppAuthService,
-    private socketService: SocketChatService) { }
+    private socketService: SocketChatService,
+    public element: ElementRef) { }
 
   ngOnInit() {
     this.loggedUser = this.authService.getUserInfo().user;
@@ -42,9 +44,15 @@ export class MessageListComponent implements OnInit, OnDestroy {
         })
       )
     })
+    this.msgList = this.element.nativeElement.querySelector('.right-chat-messages');
   }
-
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe());
+  }
+  ngDoCheck() {
+    this.setScrollHeight();
+  }
+  setScrollHeight() {
+    this.msgList.scrollTop = this.msgList.scrollHeight - this.msgList.offsetHeight;
   }
 }
