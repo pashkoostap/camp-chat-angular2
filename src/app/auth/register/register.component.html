@@ -8,9 +8,9 @@
         type="text" 
         class="osp-chat-form__input" 
         placeholder="Username"
-        formControlName="name">
+        formControlName="username">
     <span class="osp-chat-form__hint" 
-          *ngIf="!user.get('name').valid && user.get('name').touched">Your name must be at least 6 latin characters and digits</span>
+          *ngIf="!user.get('username').valid && user.get('username').touched">Your name must be at least 6 latin characters and digits</span>
     <input 
         type="email" 
         class="osp-chat-form__input" 

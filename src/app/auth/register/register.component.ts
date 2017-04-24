@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AppAuthService } from "../auth.service";
 
 @Component({
   selector: 'ct-register',
@@ -11,11 +13,13 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 export class RegisterComponent implements OnInit {
   user: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private auth: AppAuthService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.user = this.formBuilder.group({
-      name: ['',
+      username: ['',
         [
           Validators.required,
           Validators.minLength(6),
@@ -63,7 +67,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(user: FormGroup) {
-    console.log(user);
+    let userData = {
+      username: user.controls['username'].value,
+      email: user.controls['email'].value,
+      password: user.controls['passwords']['controls']['password'].value
+    };
+    console.log(userData);
+    this.auth.register(userData, () => {
+      this.router.navigate(['auth/login']);
+    })
   }
 }
 

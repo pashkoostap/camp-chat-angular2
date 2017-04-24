@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { API_CONFIG } from '../shared/';
 import { Observable } from 'rxjs';
 import { User } from './login';
+declare let fetch: any;
 
 @Injectable()
 export class AppAuthService {
@@ -15,10 +16,10 @@ export class AppAuthService {
     return this.http.post(API_CONFIG.LOGIN, data).map(res => res.json());
   }
 
-  register(data, cb) {
-    return this.http.post(API_CONFIG.SIGNUP, data).map(res => {
+  register(data, callBack) {
+    return this.http.post(API_CONFIG.SIGNUP, data).subscribe(res => {
       console.info('registered a new user');
-      cb();
+      callBack();
     })
    }
 
