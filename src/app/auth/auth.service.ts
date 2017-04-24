@@ -15,7 +15,12 @@ export class AppAuthService {
     return this.http.post(API_CONFIG.LOGIN, data).map(res => res.json());
   }
 
-  register() { }
+  register(data, cb) {
+    return this.http.post(API_CONFIG.SIGNUP, data).map(res => {
+      console.info('registered a new user');
+      cb();
+    })
+   }
 
   logout() {
     localStorage.setItem('userInfo', '');

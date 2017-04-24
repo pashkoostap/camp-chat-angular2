@@ -18,8 +18,12 @@ export class MessageService {
   _getInitMessages() {
     return window.fetch(API_CONFIG.MESSAGES)
       .then(res => res.json())
-      .then(res => {
-        this.messages = res;
+      .then(messages => {
+        messages.forEach(message=>{
+          if (typeof message.msg === 'string') {
+            this.messages.push(message);
+          }
+        })
         this.messageSubject.next(this.messages)
       });
   }

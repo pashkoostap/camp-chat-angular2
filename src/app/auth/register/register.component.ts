@@ -62,11 +62,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-
-
-
   onSubmit(user: FormGroup) {
-    console.log(user)
+    console.log(user);
   }
 }
 
