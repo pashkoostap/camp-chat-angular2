@@ -8,7 +8,7 @@ import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { AppAuthService, AuthGuard } from './auth/';
 import { UsersModule } from './users/';
-import { Angular2SocialLoginModule } from "angular2-social-login";
+import { Angular2SocialLoginModule, AuthService } from "angular2-social-login";
 import { SocketChatService } from "./shared/";
 import { MessageService } from "./messages/shared/";
 
@@ -37,16 +37,20 @@ let providers = {
     HttpModule,
     CoreModule,
     AppRoutingModule,
-    UsersModule,
-    Angular2SocialLoginModule.initWithProviders(providers)
+    UsersModule
   ],
   providers: [
     AuthGuard,
     AppAuthService,
+    AuthService,
     SocketChatService,
     MessageService
   ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    Angular2SocialLoginModule.initWithProviders(providers);
+  }
+}
