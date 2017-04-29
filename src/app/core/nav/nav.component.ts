@@ -35,5 +35,6 @@ export class NavComponent implements DoCheck {
       this.authService.logout();
       this.router.navigate(['auth/login'])
     }
+    window.location.reload();
   }
 }
