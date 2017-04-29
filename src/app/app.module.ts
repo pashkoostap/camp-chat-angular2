@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +41,7 @@ let providers = {
     UsersModule
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
     AuthGuard,
     AppAuthService,
     AuthService,
