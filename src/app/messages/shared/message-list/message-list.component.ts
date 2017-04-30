@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, DoCheck, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, AfterViewChecked, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
@@ -13,7 +13,7 @@ import { SocketChatService } from "../../../shared";
   encapsulation: ViewEncapsulation.None
 })
 
-export class MessageListComponent implements OnInit, OnDestroy, DoCheck {
+export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked {
   private chatId: number;
   private loggedUser: Object = {};
   private messages: Message[] = [];
@@ -49,7 +49,7 @@ export class MessageListComponent implements OnInit, OnDestroy, DoCheck {
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
-  ngDoCheck() {
+  ngAfterViewChecked(){
     this.setScrollHeight();
   }
   setScrollHeight() {

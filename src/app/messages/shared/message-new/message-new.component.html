@@ -4,8 +4,7 @@
     <textarea name="message" 
               class="right-chat-form__textarea" 
               placeholder="Type something" 
-              #textArea
-              (keypress)="onKeyPress(textArea)"
+              (keyup)="onKeyPress($event, form)"
               required
               ngModel></textarea>
     <button 

@@ -2,7 +2,7 @@
   <li class="right-chat-message" 
   *ngFor="let message of messages | filterMessageByName: searchValue" 
   [ngClass]="{'to-user': loggedUser.username !== message.user.username,
-            'from-user': loggedUser.username === message.user.username}" selectMessage>
+            'from-user': loggedUser.username === message.user.username}">
     <div 
       class="right-chat-message__user-photo" 
       style="background-image: url(assets/img/avatar__1.jpg)"></div>

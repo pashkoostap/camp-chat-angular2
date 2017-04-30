@@ -26,16 +26,20 @@ export class MessageNewComponent {
     this.socketService.sendMessage(form.message);
   }
 
-  onKeyPress(textArea: HTMLTextAreaElement) {
+  onKeyPress(e, form) {
     clearTimeout(this.scrollTimeOut);
     this.scrollTimeOut = setTimeout(() => {
-      let maxHeight = 110,
-        minHeight = 50;
-      if (textArea.scrollHeight < 110) {
+      let textArea = e.target,
+          textAreaValue = textArea.value,
+          maxHeight = 110,
+          minHeight = 50;
+      if (textAreaValue == '') {
+        textArea.setAttribute('style', `height: ${minHeight}px;`)
+      } else if (textArea.scrollHeight < 110) {
         textArea.setAttribute('style', `height: ${textArea.scrollHeight}px;`)
       } else {
         textArea.setAttribute('style', `height: ${maxHeight}px;`)
       }
-    }, 0);
+    }, 100);
   }
 }
