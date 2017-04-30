@@ -53,6 +53,6 @@ let providers = {
 
 export class AppModule {
   constructor() {
-    Angular2SocialLoginModule.initWithProviders(providers);
   }
 }
+Angular2SocialLoginModule.loadProvidersScripts(providers);
