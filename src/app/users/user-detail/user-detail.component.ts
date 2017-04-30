@@ -28,7 +28,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         error => console.log(error)
       )
     })
-
   }
 
   ngOnDestroy() {

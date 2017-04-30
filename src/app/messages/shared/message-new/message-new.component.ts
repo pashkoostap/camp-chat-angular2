@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Message } from "../message.model";
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { AppAuthService } from "../../../auth";
@@ -11,17 +10,12 @@ import { SocketChatService } from "../../../shared";
   templateUrl: './message-new.component.html'
 })
 
-export class MessageNewComponent implements OnInit, OnDestroy {
+export class MessageNewComponent {
   private subscription: Subscription;
   private scrollTimeOut;
   constructor(private socketService: SocketChatService,
     private route: ActivatedRoute,
     private authService: AppAuthService) { }
-
-  ngOnInit() { }
-
-  ngOnDestroy() {
-  }
 
   onSumbit(form) {
     let message = {

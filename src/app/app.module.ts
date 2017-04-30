@@ -41,7 +41,7 @@ let providers = {
     UsersModule
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
     AuthGuard,
     AppAuthService,
     AuthService,

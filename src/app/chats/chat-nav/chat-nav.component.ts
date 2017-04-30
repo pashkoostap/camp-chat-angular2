@@ -12,7 +12,7 @@ export class ChatNavComponent {
   private isMenuOpen: boolean = false;
   private isChatPanelOpen: boolean = false;
   private searchValue: string = '';
-  
+
   constructor(private chatService: ChatService) { }
 
   onMenuOpen() {
@@ -41,5 +41,4 @@ export class ChatNavComponent {
   onSearchValueChanged(value: string) {
     this.chatService.setSearchValue(value)
   }
-
 }

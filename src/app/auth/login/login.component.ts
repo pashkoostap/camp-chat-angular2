@@ -3,7 +3,6 @@ import { User } from './login.interface';
 import { AppAuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UsersService } from '../../users';
 import { SocketChatService } from "../../shared";
 
 @Component({
@@ -14,7 +13,6 @@ import { SocketChatService } from "../../shared";
 
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  socketObj;
   socket;
   constructor(private auth: AppAuthService,
     private router: Router,

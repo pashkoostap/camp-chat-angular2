@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ct-chat-holder',
@@ -6,10 +6,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './chat-holder.component.html'
 })
 
-export class ChatHolderComponent implements OnInit {
-
-  constructor() {}
-
-  ngOnInit() {}
-
-}
+export class ChatHolderComponent { }

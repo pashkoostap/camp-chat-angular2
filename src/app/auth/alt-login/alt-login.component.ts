@@ -29,6 +29,4 @@ export class AltLoginComponent implements OnInit {
       }
     )
   }
-  ngOnDestroy() { }
-
 }

@@ -1,6 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
 import { AppAuthService } from '../../auth';
-import { UsersService } from '../../users/';
 import { Router } from '@angular/router';
 import { AuthService } from "angular2-social-login";
 
@@ -15,7 +14,6 @@ export class NavComponent implements DoCheck {
   constructor(private authService: AppAuthService,
     private router: Router,
     private authSocial: AuthService) { }
-
 
   ngDoCheck() {
     if (this.authService.isLoggedIn && !this.userName) {

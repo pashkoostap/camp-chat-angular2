@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User, UsersService } from '../../users/';
 import { Chat } from '../shared/';
 import { Subscription } from 'rxjs';

@@ -2,7 +2,6 @@ import { Injectable, Inject } from '@angular/core';
 import * as io from 'socket.io-client';
 import { API_CONFIG } from './api.config';
 import { Observable } from 'rxjs';
-// import { MessageService } from '../messages/shared/';
 
 @Injectable()
 export class SocketChatService {

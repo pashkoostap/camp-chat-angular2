@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppAuthService } from "../auth.service";
 
 @Component({
@@ -8,8 +8,6 @@ import { AppAuthService } from "../auth.service";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-
-
 
 export class RegisterComponent implements OnInit {
   user: FormGroup;
@@ -76,15 +74,5 @@ export class RegisterComponent implements OnInit {
     this.auth.register(userData, () => {
       this.router.navigate(['auth/login']);
     })
-  }
-}
-
-function matchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
-  return (group: FormGroup) => {
-    let passwordInput = group.controls[passwordKey];
-    let passwordConfirmationInput = group.controls[passwordConfirmationKey];
-    if (passwordInput.value !== passwordConfirmationInput.value) {
-      return passwordConfirmationInput.setErrors({ notEquivalent: true })
-    }
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { API_CONFIG } from '../../shared/api.config';
 import { Message } from './message.model';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 declare let window: any;
 
 @Injectable()

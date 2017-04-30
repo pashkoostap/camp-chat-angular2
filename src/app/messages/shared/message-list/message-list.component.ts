@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation, DoCheck, ElementRef } 
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AppAuthService } from "../../../auth";
 import { SocketChatService } from "../../../shared";
 

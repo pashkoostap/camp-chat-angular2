@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketChatService } from "./shared";
 import { AppAuthService } from "./auth";
-import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -10,12 +9,10 @@ import { Router } from "@angular/router";
 })
 
 export class AppComponent implements OnInit {
-  title = 'app works!';
-  socket;
+  socket;  
   userInfo;
   constructor(
     private authService: AppAuthService,
-    private router: Router,
     private socketChatService: SocketChatService) {
   }
   ngOnInit() {
@@ -28,13 +25,5 @@ export class AppComponent implements OnInit {
         console.log(this.userInfo);
       });
     }
-  }
-  getRequest() {
-    // this.socketObj = this.socketChatService.getSocket().subscribe(
-    //   res => {
-    //     res.on('message', msg => console.log(msg));
-    //     res.emit('message', 'Message text');
-    //   }
-    // )
   }
 }

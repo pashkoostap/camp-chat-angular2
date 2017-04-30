@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ct-auth',
@@ -7,13 +7,4 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 
-export class AuthComponent implements OnInit {
-
-  constructor() {
-
-  }
-
-  ngOnInit() {
-
-  }
-}
+export class AuthComponent {}

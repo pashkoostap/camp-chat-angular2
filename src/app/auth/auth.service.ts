@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { API_CONFIG } from '../shared/';
-import { Observable } from 'rxjs';
-import { User } from './login';
 declare let fetch: any;
 
 @Injectable()
