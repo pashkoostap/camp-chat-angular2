@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 
 export class ChatListComponent implements OnInit, OnDestroy {
   chats: Chat[];
-  private searchValue: string = '';
+  public searchValue: string = '';
   private selectedId: number;
   private subscriptions: Subscription[] = [];
 

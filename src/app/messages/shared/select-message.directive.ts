@@ -12,7 +12,7 @@ export class SelectMessage {
         this.elRef.nativeElement.classList.toggle(activeClass);
     }
 
-    @HostListener('click') private onClick(): void {
+    @HostListener('click') public onClick(): void {
         this.highlight('selected');
     }
 }

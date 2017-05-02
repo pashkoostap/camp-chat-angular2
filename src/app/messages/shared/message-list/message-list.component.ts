@@ -16,9 +16,9 @@ import { SocketChatService } from "../../../shared";
 export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked {
   private chatId: number;
   private loggedUser: Object = {};
-  private messages: Message[] = [];
+  public messages: Message[] = [];
   private subscriptions: Subscription[] = [];
-  private searchValue: string = '';
+  public searchValue: string = '';
   private msgList: HTMLUListElement;
 
   constructor(private route: ActivatedRoute,

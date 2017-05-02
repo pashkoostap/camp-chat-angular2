@@ -14,7 +14,7 @@
         ngModel>
         <!--pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"-->
     <span class="osp-chat-form__hint"  
-        *ngIf="!form.controls.email?.valid && form.controls.email?.touched">Please enter username</span>
+        *ngIf="!form.controls['email']?.valid && form.controls['email']?.touched">Please enter username</span>
     <input 
         type="password" 
         name="password" 
@@ -25,7 +25,7 @@
         pattern="[a-zA-Z0-9]*"
         ngModel>
     <span class="osp-chat-form__hint"  
-        *ngIf="!form.controls.password?.valid && form.controls.password?.touched">Your password must be at least 8 latin characters and digits</span>
+        *ngIf="!form.controls['password']?.valid && form.controls['password']?.touched">Your password must be at least 8 latin characters and digits</span>
 
     <a href="#" class="osp-chat-form__link  osp-chat-form__link--forgot-pass">Forgot password?</a>
 

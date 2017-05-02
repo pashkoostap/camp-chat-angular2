@@ -11,7 +11,7 @@ import { AuthService } from "angular2-social-login";
 
 export class NavComponent implements DoCheck {
   private userName: string = '';
-  constructor(private authService: AppAuthService,
+  constructor(public authService: AppAuthService,
     private router: Router,
     private authSocial: AuthService) { }
 

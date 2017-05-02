@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.map(subscription => subscription.unsubscribe())
   }
 
-  private onSumbit(formValue: User) {
+  onSumbit(formValue) {
     this.subscriptions.push(this.auth.login(formValue).subscribe(this.onLoginSuccess.bind(this), this.onError));
   }
 

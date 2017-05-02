@@ -11,10 +11,10 @@ import { Subscription } from 'rxjs';
 })
 export class ChatInfoComponent implements OnInit, OnDestroy {
   private chatId: number;
-  private attendees: number[] = [];
-  private chatName: string = '';
-  private maxWidthValue: number = 0;
-  private searchValue: string = '';
+  public attendees: number[] = [];
+  public chatName: string = '';
+  public maxWidthValue: number = 0;
+  public searchValue: string = '';
   private subscription: Subscription;
   constructor(private route: ActivatedRoute,
     private messageService: MessageService,
