@@ -45,6 +45,10 @@ ct-auth {
     flex-direction: column;
     flex-grow: 1;
 }
+app-root {
+  display: flex;
+  width: 100%;
+}
 app-root > h1{
     margin: auto;
 }
