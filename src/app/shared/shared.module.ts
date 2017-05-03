@@ -1,7 +1,8 @@
-import { NgModule }      from '@angular/core';
-import { CommonModule }  from '@angular/common';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterTextComponent } from './filter-text.component';
+import { SpinnerComponent } from './spinner.component';
 
 @NgModule({
   imports: [
@@ -12,10 +13,12 @@ import { FilterTextComponent } from './filter-text.component';
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SpinnerComponent
   ],
   declarations: [
-    FilterTextComponent
+    FilterTextComponent,
+    SpinnerComponent
   ],
   providers: []
 })

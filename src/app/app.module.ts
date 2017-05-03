@@ -10,7 +10,7 @@ import { PageNotFoundComponent } from './not-found.component';
 import { AppAuthService, AuthGuard } from './auth/';
 import { UsersModule } from './users/';
 import { Angular2SocialLoginModule, AuthService } from "angular2-social-login";
-import { SocketChatService, SpinnerComponent } from "./shared/";
+import { SocketChatService, SharedModule } from "./shared/";
 import { MessageService } from "./messages/shared/";
 
 let providers = {
@@ -31,8 +31,7 @@ let providers = {
   declarations: [
     AppComponent,
     HomeComponent,
-    PageNotFoundComponent,
-    SpinnerComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

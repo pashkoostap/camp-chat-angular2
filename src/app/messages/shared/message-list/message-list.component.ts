@@ -4,7 +4,7 @@ import { Message } from '../message.model';
 import { MessageService } from '../message.service';
 import { Subscription } from 'rxjs';
 import { AppAuthService } from "../../../auth";
-import { SocketChatService } from "../../../shared";
+import { SocketChatService, SpinnerComponent } from "../../../shared";
 
 @Component({
   selector: 'ct-message-list',
@@ -20,6 +20,7 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
   private subscriptions: Subscription[] = [];
   public searchValue: string = '';
   private msgList: HTMLUListElement;
+  public isSpinnerVisible: boolean = true;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -34,7 +35,10 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
       this.chatId = +params['id'];
       this.subscriptions.push(
         this.messageService._getMessages().subscribe(
-          messages => this.messages = messages, error => console.error(error)
+          messages => {
+            this.messages = messages;
+            this.isSpinnerVisible = false;
+          }, error => console.error(error)
         ),
         this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
         this.socketService.getSocket().subscribe(socket => {
@@ -49,7 +53,7 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
-  ngAfterViewChecked(){
+  ngAfterViewChecked() {
     this.setScrollHeight();
   }
   setScrollHeight() {

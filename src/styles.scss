@@ -93,6 +93,8 @@ ct-spinner,
     width: 100%;
     justify-content: center;
     align-items: center;
+    margin: auto;
+    flex-grow: 100000;
     &.dark {
         .spinner {
             border: 5px solid #d7d8f1;
@@ -106,6 +108,7 @@ ct-spinner,
     .text {
        font-size: 24px;
        font-weight: bold;
+        margin: 0px 10px;
     }
     .spinner {
         display: flex;
@@ -114,7 +117,7 @@ ct-spinner,
         background-color: transparent;
         border-radius: 50%;
         position: relative;
-        margin-left: 20px;
+        margin: 0px 10px;
         &::before {
             display: block;
             content: '';

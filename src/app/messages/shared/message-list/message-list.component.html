@@ -1,3 +1,4 @@
+<ct-spinner text="Messages are loading" class="dark" *ngIf="isSpinnerVisible"></ct-spinner>
 <ul class="right-chat-messages">
   <li class="right-chat-message" 
   *ngFor="let message of messages | filterMessageByName: searchValue" 
