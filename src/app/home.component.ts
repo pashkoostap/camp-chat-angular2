@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SpinnerComponent } from './shared/'
 
 @Component({
   selector: 'ct-home',

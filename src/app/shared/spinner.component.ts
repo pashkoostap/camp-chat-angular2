@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ct-spinner',
-  template: '<h2>Please wait <span></span></h2>',
+  template: '<h2>{{text}}<span></span></h2>',
   styles: [``]
 })
 
-export class SpinnerComponent { }
+export class SpinnerComponent {
+  @Input() text: string;
+ }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketChatService } from "./shared";
+import { SocketChatService, SpinnerComponent } from "./shared";
 import { AppAuthService } from "./auth";
 
 @Component({

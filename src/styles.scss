@@ -13,7 +13,7 @@ body {
 h1 {
     font-size: 30px;
     @media (max-width: 767px) {
-        font-size: 24px;
+        font-size: 22px;
     }
 }
 ul,
@@ -79,7 +79,19 @@ app-root > h1{
     padding: 0;
 }
 // SPINNER
-ct-spinner {
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+ct-spinner,
+.ct-spinner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
     &.dark {
         span {
             border: 5px solid #d7d8f1;
@@ -120,13 +132,5 @@ ct-spinner {
             animation-iteration-count: infinite;
             animation-timing-function: linear;
         }
-    }
-}
-@keyframes spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
     }
 }
