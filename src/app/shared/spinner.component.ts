@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ct-spinner',
-  template: '<h2>{{text}}<span></span></h2>',
+  template: '<span class="text">{{text}}</span><div class="spinner"></div>',
   styles: [``]
 })
 
