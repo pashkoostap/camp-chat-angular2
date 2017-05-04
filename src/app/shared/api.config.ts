@@ -9,5 +9,6 @@ export const API_CONFIG = {
   USERS: "https://pashkoostap-camp-chat-server.herokuapp.com/users/",
   SOCKET: "https://pashkoostap-camp-chat-server.herokuapp.com/",
   MESSAGES: "https://pashkoostap-camp-chat-server.herokuapp.com/messages/cool-chat/",
-  NEW_CHAT: "https://pashkoostap-camp-chat-server.herokuapp.com/chat"
+  NEW_CHAT: "https://pashkoostap-camp-chat-server.herokuapp.com/newchat",
+  GET_CHATS: "https://pashkoostap-camp-chat-server.herokuapp.com/getchats",
 }

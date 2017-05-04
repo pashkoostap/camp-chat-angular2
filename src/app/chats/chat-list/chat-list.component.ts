@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Chat, ChatService } from '../shared';
 import { Subscription } from 'rxjs';
+import { AppAuthService } from "../../auth";
 
 @Component({
   selector: 'ct-chat-list',
@@ -10,19 +11,20 @@ import { Subscription } from 'rxjs';
 })
 
 export class ChatListComponent implements OnInit, OnDestroy {
-  chats: Chat[];
+  public chats: any[];
   public searchValue: string = '';
   private selectedId: number;
   private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private chatService: ChatService) { }
+    private chatService: ChatService,
+    private auth: AppAuthService) { }
 
   ngOnInit() {
     this.subscriptions.push(
-      this.chatService.getAll().subscribe(
-        chats => this.chats = chats, error => console.log(error)
+      this.chatService.getChatsByUserId(this.auth.getUserInfo().user._id).subscribe(
+        chatsArr => this.chats = chatsArr.chats, error => console.log(error)
       ),
       this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
     )
@@ -34,6 +36,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
 
   select(chat) {
     this.selectedId = chat.id;
-    this.router.navigate(['chat', chat.id])
+    this.router.navigate(['chat', chat._id])
   }
 }

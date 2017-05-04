@@ -19,6 +19,10 @@ export class ChatService {
     return Observable.create(observer => observer.next(CHATS.filter(chat => chat.id === id)[0]));
   }
 
+  getChatsByUserId(id: string): Observable<any> {
+    return this.http.get(`${API_CONFIG.GET_CHATS}/${id}`).map(res => res.json());
+  }
+
   createNewChat(chat: Chat) {
     return this.http.post(API_CONFIG.NEW_CHAT, chat).subscribe(res => console.log(res.json()));
   }

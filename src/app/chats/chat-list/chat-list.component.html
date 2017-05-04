@@ -1,7 +1,7 @@
 <ul class="left-chat-users">
   <!--BEGIN USER INFO-->
   <li class="left-chat-user" 
-      (click)="select({id: chat.id})" 
+      (click)="select({_id: chat._id})" 
       *ngFor="let chat of chats | filterChatByName : searchValue" 
       [class.active]="selectedId == chat.id">
       <!--[routerLinkActive]="['active']"-->
@@ -10,7 +10,7 @@
       <span class="left-chat-user-photo__message-badge">1</span>
     </div>
     <div class="left-chat-user-info">
-      <span class="left-chat-user-info__name">{{ chat.name }}</span>
+      <span class="left-chat-user-info__name">{{ chat.chatname }}</span>
       <p class="left-chat-user-info__message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, eum sequi in. Laudantium, ipsum cupiditate possimus
         eligendi deleniti provident sit, iste consequatur similique adipisci ipsam maxime laboriosam eos itaque quae.</p>
     </div>

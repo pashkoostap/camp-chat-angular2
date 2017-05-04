@@ -10,7 +10,7 @@ export class FilterChatByNamePipe implements PipeTransform {
         if (chats) {
             return chats.filter(chat => {
                 // let pattern = 
-                return chat.name.match(new RegExp(filterValue, 'gi'));
+                return chat.chatname.match(new RegExp(filterValue, 'gi'));
             });
         } else {
             return chats;
