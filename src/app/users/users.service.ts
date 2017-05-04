@@ -19,6 +19,7 @@ export class UsersService {
 
   public setSearchValue(value: string): void {
     this.search$.next(value);
+    console.log(value)
   }
 
   public getSearchValue(): BehaviorSubject<string> {

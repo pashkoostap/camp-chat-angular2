@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { User, UsersService } from '../../users/';
-import { Chat } from '../shared/';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { User, UsersService } from '../../users/';
+import { Chat, ChatService } from '../shared/';
+import { AppAuthService } from "../../auth";
 
 @Component({
   selector: 'ct-chat-new',
@@ -17,22 +18,25 @@ export class ChatNewComponent implements OnInit, OnDestroy {
   searchValue: string = '';
   searchMatches: number = 0;
   isSearchFieldActive: boolean = false;
+  newChatElement: any;
   newChat: Chat = {
-    id: this.userId,
-    name: '',
-    attendees: [],
-    creator: this.userId,
-    createdAt: new Date()
+    chatname: '',
+    users: []
   };
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService,
+    private auth: AppAuthService,
+    public element: ElementRef,
+    private chatService: ChatService) { }
 
   ngOnInit() {
     this.subscriptions.push(
       this.usersService.getAllUsers().subscribe(
-        users => this.users = users, error => console.log(error)
+        users => this.users = users.filter(user => user.username !== this.auth.getUserInfo().user.username),
+        error => console.log(error)
       ),
       this.usersService.getSearchValue().subscribe(value => this.searchValue = value)
     )
+    this.newChatElement = this.element.nativeElement;
   }
 
   ngOnDestroy() {
@@ -41,18 +45,19 @@ export class ChatNewComponent implements OnInit, OnDestroy {
 
   onAddUser(selectedEl: HTMLLIElement, user: User, i: number) {
     selectedEl.classList.toggle('selected');
+    let userObj: any = { username: this.users[i].username };
     if (selectedEl.classList.contains('selected')) {
-      this.newChat.attendees.push(i);
+      this.newChat.users.push(userObj);
     } else {
-      this.newChat.attendees.splice(this.newChat.attendees[i], 1);
+      this.newChat.users.splice(userObj, 1);
     }
-    this.isUserChecked = this.newChat.attendees.length > 0;
+    this.isUserChecked = this.newChat.users.length > 0;
   }
 
   onSearchValueChanged(value: string = '', el: HTMLUListElement) {
     this.usersService.setSearchValue(value);
     setTimeout(() => {
-      if (value.length > 0) {
+      if (!value) {
         this.isSearchFieldActive = true;
       } else {
         this.isSearchFieldActive = false;
@@ -66,10 +71,12 @@ export class ChatNewComponent implements OnInit, OnDestroy {
     input.value = '';
   }
 
-  onSubmit(formValue, usersList: HTMLUListElement) {
-    this.newChat.name = formValue.chatName;
+  onSubmit(event, form, usersList: HTMLUListElement) {
+    event.preventDefault();
+    this.newChat.chatname = form.controls['chatname'].value;
     this.cleareSearchResults(usersList);
-    console.log(formValue);
+    this.newChatElement.querySelector('.new-chat-form__input').value = '';
+    this.chatService.createNewChat(this.newChat);
     console.log(this.newChat);
   }
 

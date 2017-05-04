@@ -3,11 +3,11 @@
     class="new-chat-form" 
     novalidate 
     #form="ngForm" 
-    (ngSubmit)="onSubmit(form.value, usersList); form.reset()">
+    (ngSubmit)="onSubmit($event, form, usersList)">
     <input 
         type="text" 
         autocomplete="off"
-        name="chatName" 
+        name="chatname" 
         class="new-chat-form__input" 
         placeholder="Enter chat name" 
         minlength="6"
@@ -29,9 +29,9 @@
         <button type="button" 
             class="new-chat-form-search__btn  chat-btn  chat-icon-close"
             (click)="onSearchFieldClear(filterInput, usersList)"></button>
-        <span class="new-chat-form-search__hint" 
+        <!--<span class="new-chat-form-search__hint" 
             [class.visible]="isSearchFieldActive">
-            {{searchMatches == 1 ? searchMatches + ' user' : searchMatches == 0 ? 'Users not' : searchMatches + ' users'}} found</span>
+            {{searchMatches == 1 ? searchMatches + ' user' : searchMatches == 0 ? 'Users not' : searchMatches + ' users'}} found</span>-->
     </div>
     
 

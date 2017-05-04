@@ -1,7 +1,8 @@
 export class Chat {
-    id: number;
-    name: string;
-    attendees: Array<number>;
-    creator: number; 
-    createdAt: Date;
+    _id?: string;
+    chatname: string;
+    users: Array<Object>;
+    id?: number;
+    attendees?: any;
+    name?: any;
 }
