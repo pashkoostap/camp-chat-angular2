@@ -13,7 +13,7 @@ import { User } from "app/users";
 export class ChatInfoComponent implements OnInit, OnDestroy {
   private chatId: string;
   private chat: Chat;
-  private chats: Chat[];
+  private chats: Chat[] = [];
   public users: any[] = [];
   public chatname: string = '';
   public maxWidthValue: number = 0;
@@ -26,13 +26,15 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.chatId = params['id'];
-      if (this.chats) {
-        this.updateChatInfo()
+      if (this.chats.length > 0) {
+        this.updateChatInfo();
       }
       this.subscription = this.chatService.getChats().subscribe(
         chats => {
-          this.chats = chats;
-          this.updateChatInfo()
+          if (chats.length > 0) {
+            this.chats = chats;
+            this.updateChatInfo();
+          }
         }
       )
     })

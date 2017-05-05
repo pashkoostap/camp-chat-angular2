@@ -15,7 +15,6 @@ export class ChatService {
   constructor(private http: Http, private auth: AppAuthService) {
     this.initChatsRequest = this.getChatsByUserId(this.auth.getUserInfo().user._id).subscribe(chats => {
       this.chats = chats;
-      console.log(chats)
       this.chatsSubject.next(this.chats);
     });
   }

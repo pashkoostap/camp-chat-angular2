@@ -26,7 +26,11 @@ export class ChatListComponent implements OnInit, OnDestroy {
       this.selectedId = params['id'];
       this.subscriptions.push(
         this.chatService.getChats().subscribe(
-          chats => this.chats = chats, error => console.log(error)
+          chats => {
+            if (chats) {
+              this.chats = chats
+            }
+          }, error => console.log(error)
         ),
         this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
       )

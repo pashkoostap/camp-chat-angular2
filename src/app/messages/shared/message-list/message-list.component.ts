@@ -36,12 +36,13 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
       this.chatId = params['id'];
       this.subscriptions.push(
         this.messageService.getMessagesByChatId(this.chatId).subscribe(messages => {
-          this.messages = messages;
           this.isSpinnerVisible = false;
-          // if (this.messages.length == 0) {
-          //   this.isNoMessagesForChat = true;
-          // }
-          console.log(this.messages.length == 0)
+          if (messages.length > 0) {
+            this.messages = messages;
+            this.isNoMessagesForChat = false;
+          } else {
+            this.isNoMessagesForChat = true;
+          }
         }, error => console.error(error)),
         this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
         this.socketService.getSocket().subscribe(socket => {

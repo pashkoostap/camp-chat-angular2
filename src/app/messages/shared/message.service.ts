@@ -11,29 +11,7 @@ export class MessageService {
   private messageSubject: Subject<any> = new Subject();
   private messages: Message[] = [];
   private initRequest: Message[] = [];
-  constructor(private http: Http) {
-    this.initRequest = this._getInitMessages();
-  }
-
-  _getInitMessages() {
-    return window.fetch(API_CONFIG.GET_MESSAGES_CHAT_NAME)
-      .then(res => res.json())
-      .then(messages => {
-        messages.forEach(message => {
-          if (typeof message.msg === 'string') {
-            this.messages.push(message);
-          }
-        })
-        this.messageSubject.next(this.messages)
-      });
-  }
-  _loadMessages() {
-    return this.http.get(API_CONFIG.GET_MESSAGES_CHAT_NAME).map(res => res.json());
-  }
-
-  _getMessages() {
-    return this.messageSubject;
-  }
+  constructor(private http: Http) { }
 
   getMessagesByChatId(id: string) {
     return this.http.get(`${API_CONFIG.GET_MESSAGES_CHAT_ID}/${id}`).map(messages => messages.json())
