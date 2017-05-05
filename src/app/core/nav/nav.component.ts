@@ -1,4 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AppAuthService } from '../../auth';
 import { Router } from '@angular/router';
 import { AuthService } from "angular2-social-login";
@@ -11,13 +12,16 @@ import { AuthService } from "angular2-social-login";
 
 export class NavComponent implements DoCheck {
   private userName: string = '';
+  private userPhoto: any;
   constructor(public authService: AppAuthService,
     private router: Router,
-    private authSocial: AuthService) { }
+    private authSocial: AuthService,
+    private satinizer: DomSanitizer) { }
 
   ngDoCheck() {
     if (this.authService.isLoggedIn && !this.userName) {
       this.userName = this.authService.getUserInfo().user.username;
+      this.userPhoto = this.satinizer.bypassSecurityTrustStyle(`url(${this.authService.getUserInfo().user.photo})`);
     }
   }
 

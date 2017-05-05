@@ -13,7 +13,7 @@
   <div class="user-profile" *ngIf="authService.isLoggedIn">
     <a class="user-profile-link">
       <span class="user-profile-link__name">{{userName}}</span>
-      <div class="user-profile-link__photo" style="background-image: url(assets/img/avatar__1.jpg)"></div>
+      <div class="user-profile-link__photo" [style.background-image]="userPhoto"></div>
     </a>
     <button class="log-out  chat-icon-sign-out" (click)="onLogOut()"></button>
   </div>
