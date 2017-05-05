@@ -13,6 +13,7 @@ import { User } from "app/users";
 export class ChatInfoComponent implements OnInit, OnDestroy {
   private chatId: string;
   private chat: Chat;
+  private chats: Chat[];
   public users: any[] = [];
   public chatname: string = '';
   public maxWidthValue: number = 0;
@@ -23,18 +24,18 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     private chatService: ChatService) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe(params => {
       this.chatId = params['id'];
+      if (this.chats) {
+        this.updateChatInfo()
+      }
       this.subscription = this.chatService.getChats().subscribe(
         chats => {
-          this.chat = chats.filter(chat => chat._id === this.chatId)[0];
-          this.chatname = this.chat.chatname;
-          this.users = this.chat.users;
-          this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
+          this.chats = chats;
+          this.updateChatInfo()
         }
       )
     })
-    // this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
   }
 
   setAttendessWrapWidth(elWidth: number, elOffset?: number) {
@@ -43,6 +44,13 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     } else {
       return this.users.length * elWidth - (this.users.length - 1) * elOffset;
     }
+  }
+
+  updateChatInfo() {
+    this.chat = this.chats.filter(chat => chat._id === this.chatId)[0];
+    this.chatname = this.chat.chatname;
+    this.users = this.chat.users;
+    this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
   }
 
   onAttendessShow(el: HTMLUListElement) {
@@ -81,6 +89,7 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('route destroy')
     this.subscription.unsubscribe();
   }
 }

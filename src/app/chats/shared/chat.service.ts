@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CHATS } from './mock-chats';
 import { Chat } from './chat.model';
-import { BehaviorSubject } from 'rxjs';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { Http } from "@angular/http";
 import { API_CONFIG } from '../../shared';
 import { AppAuthService } from "app/auth";

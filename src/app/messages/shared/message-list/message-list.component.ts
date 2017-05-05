@@ -32,7 +32,7 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
   ngOnInit() {
     this.loggedUser = this.authService.getUserInfo().user;
     this.route.params.subscribe((params: Params) => {
-      this.chatId = +params['id'];
+      this.chatId = params['id'];
       this.subscriptions.push(
         this.messageService._getMessages().subscribe(
           messages => {
