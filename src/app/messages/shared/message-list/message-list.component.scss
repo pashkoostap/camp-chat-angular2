@@ -127,3 +127,15 @@
         word-wrap: break-word;
     }
 }
+.chat-no-messages {
+    display: flex;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    max-width: 50%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    flex-grow: 100000;
+}

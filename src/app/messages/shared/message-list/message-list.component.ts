@@ -14,13 +14,14 @@ import { SocketChatService, SpinnerComponent } from "../../../shared";
 })
 
 export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked {
-  private chatId: number;
+  private chatId: string;
   private loggedUser: Object = {};
   public messages: Message[] = [];
   private subscriptions: Subscription[] = [];
   public searchValue: string = '';
   private msgList: HTMLUListElement;
   public isSpinnerVisible: boolean = true;
+  public isNoMessagesForChat: boolean = false;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -34,12 +35,14 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
     this.route.params.subscribe((params: Params) => {
       this.chatId = params['id'];
       this.subscriptions.push(
-        this.messageService._getMessages().subscribe(
-          messages => {
-            this.messages = messages;
-            this.isSpinnerVisible = false;
-          }, error => console.error(error)
-        ),
+        this.messageService.getMessagesByChatId(this.chatId).subscribe(messages => {
+          this.messages = messages;
+          this.isSpinnerVisible = false;
+          // if (this.messages.length == 0) {
+          //   this.isNoMessagesForChat = true;
+          // }
+          console.log(this.messages.length == 0)
+        }, error => console.error(error)),
         this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
         this.socketService.getSocket().subscribe(socket => {
           socket.on('message', msg => {

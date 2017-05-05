@@ -89,7 +89,6 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('route destroy')
     this.subscription.unsubscribe();
   }
 }
