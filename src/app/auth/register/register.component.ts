@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppAuthService } from "../auth.service";
+import { Http } from "@angular/http";
+import { API_CONFIG } from '../../shared/';
 
 @Component({
   selector: 'ct-register',
@@ -11,9 +13,14 @@ import { AppAuthService } from "../auth.service";
 
 export class RegisterComponent implements OnInit {
   user: FormGroup;
+  isPhotoLoading: boolean = false;
+  photoLoadingHint: string = 'Photo is uploading now';
+  labelFileInputValut: string = 'Upload photo';
+  photoURL: string;
   constructor(private auth: AppAuthService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private http: Http) { }
 
   ngOnInit() {
     this.user = this.formBuilder.group({
@@ -63,12 +70,34 @@ export class RegisterComponent implements OnInit {
       valid: false
     }
   }
+  onFileUpload(event, input) {
+    let file = input.files[0];
+    if (file.type.match('image/*')) {
+      this.isPhotoLoading = true;
+      this.photoLoadingHint = 'Photo is uploading now';
+      let reader = new FileReader();
+      this.labelFileInputValut = file.name;
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        this.http.post(API_CONFIG.UPLOAD_IMAGE, { image: reader.result }).subscribe(res => {
+          let resObj = res.json();
+          this.photoLoadingHint = 'Photo was successfully uploaded';
+          this.photoURL = resObj.url;
+        })
+      };
+    } else {
+      this.isPhotoLoading = true;
+      this.photoLoadingHint = 'Photo must be an image';
+    }
+
+  }
 
   onSubmit(user: FormGroup) {
     let userData = {
       username: user.controls['username'].value,
       email: user.controls['email'].value,
-      password: user.controls['passwords']['controls']['password'].value
+      password: user.controls['passwords']['controls']['password'].value,
+      photo: this.photoURL
     };
     console.log(userData);
     this.auth.register(userData, () => {

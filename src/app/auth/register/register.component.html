@@ -18,6 +18,14 @@
         formControlName="email">
     <span class="osp-chat-form__hint"  
           *ngIf="!user.get('email').valid && user.get('email').touched">Please enter valid email</span>
+    
+    <label class="osp-chat-form__input  osp-chat-form__input--label-file" (change)="onFileUpload($event, fileInput)">
+        {{labelFileInputValut}}
+        <input type="file" class="osp-chat-form__input  osp-chat-form__input--file" #fileInput>
+    </label>
+
+    <span class="osp-chat-form__hint" [class.hidden]="!isPhotoLoading">{{photoLoadingHint}}</span>
+
     <div class="osp-chat-form-group" formGroupName="passwords">
         <input 
             type="password" 
@@ -38,7 +46,7 @@
     <input type="submit" 
            class="osp-chat-form__submit  osp-chat-form__submit--sign-in"
            value="Sign-in"
-           [disabled]="user.invalid">
+           [disabled]="user.invalid && isPhotoUploaded">
 </form>
 <!--END SIGN-IN FORM-->
 <app-alt-login></app-alt-login>
