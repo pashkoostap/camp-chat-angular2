@@ -76,6 +76,7 @@ export class ChatNewComponent implements OnInit, OnDestroy {
     this.newChat.chatname = form.controls['chatname'].value;
     this.cleareSearchResults(usersList);
     this.newChatElement.querySelector('.new-chat-form__input').value = '';
+    this.newChat.users.push({ username: this.auth.getUserInfo().user.username });
     this.chatService.createNewChat(this.newChat);
     console.log(this.newChat);
   }

@@ -3,6 +3,7 @@ import { MessageService } from '../../messages/shared/';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService, Chat } from '../shared';
 import { Subscription } from 'rxjs';
+import { User } from "app/users";
 
 @Component({
   selector: 'ct-chat-info',
@@ -11,8 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class ChatInfoComponent implements OnInit, OnDestroy {
   private chatId: number;
-  public attendees: number[] = [];
-  public chatName: string = '';
+  public users: User[] = [];
+  public chatname: string = '';
   public maxWidthValue: number = 0;
   public searchValue: string = '';
   private subscription: Subscription;
@@ -25,8 +26,8 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
       this.chatId = +params['id'];
       this.subscription = this.chatService.getChatParamsByChatId(this.chatId).subscribe(
         (chat) => {
-          this.attendees = chat.attendees;
-          this.chatName = chat.name;
+          // this.users = chat.users;
+          // this.chatname = chat.chatname;
         }
       )
     })
@@ -35,9 +36,9 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
 
   setAttendessWrapWidth(elWidth: number, elOffset?: number) {
     if (!elOffset) {
-      return this.attendees.length * elWidth;
+      return this.users.length * elWidth;
     } else {
-      return this.attendees.length * elWidth - (this.attendees.length - 1) * elOffset;
+      return this.users.length * elWidth - (this.users.length - 1) * elOffset;
     }
   }
 
