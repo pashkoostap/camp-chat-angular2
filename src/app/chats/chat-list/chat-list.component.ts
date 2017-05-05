@@ -23,8 +23,8 @@ export class ChatListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.chatService.getChatsByUserId(this.auth.getUserInfo().user._id).subscribe(
-        chatsArr => this.chats = chatsArr.chats, error => console.log(error)
+      this.chatService.getChats().subscribe(
+        chats => this.chats = chats, error => console.log(error)
       ),
       this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
     )

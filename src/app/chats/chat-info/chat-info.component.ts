@@ -11,8 +11,9 @@ import { User } from "app/users";
   styleUrls: ['./chat-info.component.scss']
 })
 export class ChatInfoComponent implements OnInit, OnDestroy {
-  private chatId: number;
-  public users: User[] = [];
+  private chatId: string;
+  private chat: Chat;
+  public users: any[] = [];
   public chatname: string = '';
   public maxWidthValue: number = 0;
   public searchValue: string = '';
@@ -23,15 +24,17 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.chatId = +params['id'];
-      this.subscription = this.chatService.getChatParamsByChatId(this.chatId).subscribe(
-        (chat) => {
-          // this.users = chat.users;
-          // this.chatname = chat.chatname;
+      this.chatId = params['id'];
+      this.subscription = this.chatService.getChats().subscribe(
+        chats => {
+          this.chat = chats.filter(chat => chat._id === this.chatId)[0];
+          this.chatname = this.chat.chatname;
+          this.users = this.chat.users;
+          this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
         }
       )
     })
-    this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
+    // this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
   }
 
   setAttendessWrapWidth(elWidth: number, elOffset?: number) {

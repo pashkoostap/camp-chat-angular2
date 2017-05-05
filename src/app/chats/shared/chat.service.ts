@@ -2,21 +2,26 @@ import { Injectable } from '@angular/core';
 import { CHATS } from './mock-chats';
 import { Chat } from './chat.model';
 import { BehaviorSubject } from 'rxjs';
-import { Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { Http } from "@angular/http";
 import { API_CONFIG } from '../../shared';
+import { AppAuthService } from "app/auth";
 
 @Injectable()
 export class ChatService {
-  constructor(private http: Http) { }
   private search$: BehaviorSubject<string> = new BehaviorSubject('');
-  getAll(): Observable<Chat[]> {
-    return Observable.create(observer => observer.next(CHATS))
+  private chats: Chat[];
+  private chatsSubject: Subject<Chat[]> = new Subject();
+  private chatSubject: Subject<Chat> = new Subject();
+  private initChatsRequest: any;
+  constructor(private http: Http, private auth: AppAuthService) {
+    this.initChatsRequest = this.getChatsByUserId(this.auth.getUserInfo().user._id).subscribe(res => {
+      this.chats = res.chats;
+      this.chatsSubject.next(this.chats);
+    });
   }
-
-  getChatParamsByChatId(id: number): Observable<Chat> {
-    const chat = CHATS.filter(chat => chat.id === id);
-    return Observable.create(observer => observer.next(CHATS.filter(chat => chat.id === id)[0]));
+  getChats(): Subject<Chat[]> {
+    return this.chatsSubject;
   }
 
   getChatsByUserId(id: string): Observable<any> {
