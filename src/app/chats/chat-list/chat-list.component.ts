@@ -13,7 +13,7 @@ import { AppAuthService } from "../../auth";
 export class ChatListComponent implements OnInit, OnDestroy {
   public chats: any[];
   public searchValue: string = '';
-  private selectedId: number;
+  private selectedId: string;
   private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
@@ -22,12 +22,16 @@ export class ChatListComponent implements OnInit, OnDestroy {
     private auth: AppAuthService) { }
 
   ngOnInit() {
-    this.subscriptions.push(
-      this.chatService.getChats().subscribe(
-        chats => this.chats = chats, error => console.log(error)
-      ),
-      this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
-    )
+    this.route.params.subscribe((params) => {
+      this.selectedId = params['id'];
+      this.subscriptions.push(
+        this.chatService.getChats().subscribe(
+          chats => this.chats = chats, error => console.log(error)
+        ),
+        this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
+      )
+    })
+
   }
 
   ngOnDestroy() {
@@ -35,7 +39,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
   }
 
   select(chat) {
-    this.selectedId = chat.id;
+    this.selectedId = chat._id;
     this.router.navigate(['chat', chat._id])
   }
 }

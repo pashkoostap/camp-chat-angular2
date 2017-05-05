@@ -3,7 +3,7 @@
   <li class="left-chat-user" 
       (click)="select({_id: chat._id})" 
       *ngFor="let chat of chats | filterChatByName : searchValue" 
-      [class.active]="selectedId == chat.id">
+      [class.active]="selectedId == chat._id">
       <!--[routerLinkActive]="['active']"-->
     <div class="left-chat-user-photo">
       <div class="left-chat-user-photo__img" style="background-image: url(assets/img/avatar__1.jpg)"></div>
