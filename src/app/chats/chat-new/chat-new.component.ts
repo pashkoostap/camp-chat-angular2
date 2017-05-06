@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
 import { Subscription } from 'rxjs';
 import { User, UsersService } from '../../users/';
 import { Chat, ChatService } from '../shared/';
@@ -26,12 +27,16 @@ export class ChatNewComponent implements OnInit, OnDestroy {
   constructor(private usersService: UsersService,
     private auth: AppAuthService,
     public element: ElementRef,
-    private chatService: ChatService) { }
+    private chatService: ChatService,
+    private satinizer: DomSanitizer) { }
 
   ngOnInit() {
     this.subscriptions.push(
       this.usersService.getAllUsers().subscribe(
-        users => this.users = users.filter(user => user.username !== this.auth.getUserInfo().user.username),
+        users => this.users = users.filter(user => {
+          user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+          return user.username !== this.auth.getUserInfo().user.username;
+        }),
         error => console.log(error)
       ),
       this.usersService.getSearchValue().subscribe(value => this.searchValue = value)

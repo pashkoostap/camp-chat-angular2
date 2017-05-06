@@ -3,5 +3,5 @@ export class User {
     username: string;
     surname?: string;
     email?: string; 
-    photo?: string;
+    photo?: any;
 }

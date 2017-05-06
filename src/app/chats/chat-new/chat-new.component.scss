@@ -119,12 +119,15 @@
     }
     &__photo {
         display: flex;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         overflow: hidden;
         margin-right: 20px;
         flex-shrink: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
     &.selected {
         background-color: #dfdff2;

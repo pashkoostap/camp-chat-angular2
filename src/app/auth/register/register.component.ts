@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   isPhotoLoading: boolean = false;
   photoLoadingHint: string = 'Photo is uploading now';
   labelFileInputValut: string = 'Upload photo';
-  photoURL: string;
+  photoURL: string = '';
   constructor(private auth: AppAuthService,
     private formBuilder: FormBuilder,
     private router: Router,
