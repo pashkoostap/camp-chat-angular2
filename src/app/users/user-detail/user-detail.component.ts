@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { UsersService } from "../users.service";
 import { User } from "../user.model";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-user-detail',
@@ -11,19 +12,26 @@ import { User } from "../user.model";
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  chatId: string;
+  selectedUserID: string;
   user: User;
+  userPhoto: any;
   constructor(private usersService: UsersService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private satinizer: DomSanitizer) { }
 
   ngOnInit() {
 
     this.route.params.subscribe((params) => {
-      this.chatId = params['id'];
+      this.selectedUserID = params['id'];
       this.subscription = this.usersService.getAllUsers().subscribe(
         users => {
-          this.user = users.filter(el => el.id === this.chatId)[0];
-          console.log(this.user)
+          this.user = users.filter(user => {
+            if (user._id === this.selectedUserID) {
+              this.userPhoto = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+              return user;
+            }
+          })[0];
+          console.log(this.user);
         },
         error => console.log(error)
       )

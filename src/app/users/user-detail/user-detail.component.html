@@ -1,5 +1,12 @@
-<h1>User detail info</h1>
-<ul>
-  <li>User name: {{user?.username}}</li>
-  <li>User id: {{user?.id}}</li>
-</ul>
+<h1 class="user-detail-title">User detail info</h1>
+
+
+<div class="user-detail">
+  <div [style.background-image]="userPhoto" class="user-detail__photo"></div>
+
+  <ul class="user-list">
+    <li class="user-list__text"><span>User name:</span>{{user?.username}}</li>
+    <!--<li class="user-list__text"><span>User id:</span>{{user?._id}}</li>-->
+    <li class="user-list__text"><span>User email:</span><a href="mailto:{{user?.email}}">{{user?.email}}</a></li>
+  </ul>
+</div>

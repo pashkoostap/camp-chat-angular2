@@ -56,6 +56,10 @@
     border-radius: 50%;
     overflow: hidden;
     margin-right: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ededfa;
   }
   &__info {
     max-width: calc(100% - 70px);
