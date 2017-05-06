@@ -5,7 +5,10 @@
         [style.width.px]="maxWidthValue"
         (mouseover)="onAttendessShow(elem)"
         (mouseout)="onAttendessHide(elem)">
-        <li class="chat-info-attendees__user  user__{{i}}" *ngFor="let user of users; let i = index"></li>
+        <li class="chat-info-attendees__user  user__{{i}}" 
+          *ngFor="let user of users; let i = index"
+          [style.background-image]="user?.photo"
+          (click)="navigateToUserProfile(user)"></li>
     </ul>
     <span class="chat-info__chat-name">{{chatname}}</span>
     <div class="chat-info-search  visible" #searchWrap>

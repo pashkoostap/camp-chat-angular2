@@ -59,6 +59,9 @@
         background: #d7d7e2;
         border-radius: 50%;
         border: 5px solid #ffffff;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         cursor: pointer;
         flex-shrink: 0;
         transition: left 0.3s ease;

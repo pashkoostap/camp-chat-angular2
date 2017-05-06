@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AppAuthService } from '../../auth';
 import { Router } from '@angular/router';
 import { AuthService } from "angular2-social-login";
+import { User } from "../../users";
 
 @Component({
   selector: 'ct-nav',
@@ -11,17 +12,20 @@ import { AuthService } from "angular2-social-login";
 })
 
 export class NavComponent implements DoCheck {
-  private userName: string = '';
-  private userPhoto: any;
+  private user: User = {
+    username: '',
+    _id: '',
+    photo: ''
+  }
   constructor(public authService: AppAuthService,
     private router: Router,
     private authSocial: AuthService,
     private satinizer: DomSanitizer) { }
 
   ngDoCheck() {
-    if (this.authService.isLoggedIn && !this.userName) {
-      this.userName = this.authService.getUserInfo().user.username;
-      this.userPhoto = this.satinizer.bypassSecurityTrustStyle(`url(${this.authService.getUserInfo().user.photo})`);
+    if (this.authService.isLoggedIn && !this.user.username) {
+      this.user = this.authService.getUserInfo().user;
+      this.user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${this.user.photo})`);
     }
   }
 
@@ -38,5 +42,11 @@ export class NavComponent implements DoCheck {
       this.router.navigate(['auth/login'])
     }
     window.location.reload();
+  }
+
+  navigateToUserProfile() {
+    if (this.user._id.length > 0) {
+      this.router.navigate(['users', this.user._id])
+    }
   }
 }

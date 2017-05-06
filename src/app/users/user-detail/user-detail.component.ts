@@ -31,7 +31,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
               return user;
             }
           })[0];
-          console.log(this.user);
         },
         error => console.log(error)
       )
@@ -41,5 +40,4 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

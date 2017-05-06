@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from '../../messages/shared/';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChatService, Chat } from '../shared';
 import { Subscription } from 'rxjs';
 import { User } from "app/users";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'ct-chat-info',
@@ -12,7 +13,6 @@ import { User } from "app/users";
 })
 export class ChatInfoComponent implements OnInit, OnDestroy {
   private chatId: string;
-  private chat: Chat;
   private chats: Chat[] = [];
   public users: any[] = [];
   public chatname: string = '';
@@ -20,21 +20,22 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   public searchValue: string = '';
   private subscription: Subscription;
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private messageService: MessageService,
-    private chatService: ChatService) { }
+    private chatService: ChatService,
+    private satinizer: DomSanitizer) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.chatId = params['id'];
-      if (this.chats.length > 0) {
-        this.updateChatInfo();
-      }
-      this.subscription = this.chatService.getChats().subscribe(
-        chats => {
-          if (chats.length > 0) {
-            this.chats = chats;
-            this.updateChatInfo();
-          }
+      this.subscription = this.chatService.getChatByID(this.chatId).subscribe(
+        chat => {
+          this.chatname = chat.chatname;
+          this.users = chat.users;
+          this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
+          this.users.forEach(user => {
+            user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+          })
         }
       )
     })
@@ -46,13 +47,6 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     } else {
       return this.users.length * elWidth - (this.users.length - 1) * elOffset;
     }
-  }
-
-  updateChatInfo() {
-    this.chat = this.chats.filter(chat => chat._id === this.chatId)[0];
-    this.chatname = this.chat.chatname;
-    this.users = this.chat.users;
-    this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
   }
 
   onAttendessShow(el: HTMLUListElement) {
@@ -88,6 +82,10 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     } else {
       btn.innerText = 'Show chat info';
     }
+  }
+
+  navigateToUserProfile(user) {
+    this.router.navigate(['users', user._id]);
   }
 
   ngOnDestroy() {

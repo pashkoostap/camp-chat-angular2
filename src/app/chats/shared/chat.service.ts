@@ -22,6 +22,10 @@ export class ChatService {
     return this.chatsSubject;
   }
 
+  getChatByID(id: string): Observable<any> {
+    return this.http.get(`${API_CONFIG.GET_CHAT_BY_ID}/${id}`).map(res => res.json());
+  }
+
   getChatsByUserId(id: string): Observable<any> {
     return this.http.get(`${API_CONFIG.GET_CHATS}/${id}`).map(res => res.json());
   }

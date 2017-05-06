@@ -11,9 +11,9 @@
   </nav>
 
   <div class="user-profile" *ngIf="authService.isLoggedIn">
-    <a class="user-profile-link">
-      <span class="user-profile-link__name">{{userName}}</span>
-      <div class="user-profile-link__photo" [style.background-image]="userPhoto"></div>
+    <a class="user-profile-link" (click)="navigateToUserProfile($event)">
+      <span class="user-profile-link__name">{{user?.username}}</span>
+      <div class="user-profile-link__photo" [style.background-image]="user?.photo"></div>
     </a>
     <button class="log-out  chat-icon-sign-out" (click)="onLogOut()"></button>
   </div>
