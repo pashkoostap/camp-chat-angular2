@@ -11,10 +11,28 @@ export class MessageService {
   private search$: BehaviorSubject<string> = new BehaviorSubject('');
   private messageSubject: Subject<any> = new Subject();
   private messages: Message[] = [];
-  private initRequest: Message[] = [];
+  private initMessagesRequest: any;
+  private _routeSubject: Subject<any> = new Subject();
   constructor(private http: Http,
     private chatService: ChatService) {
-    this.getMessagesForChats();
+    this.initMessagesRequest = this.chatService.getChats().subscribe(chats =>
+      this.http.post(`${API_CONFIG.GET_MESSAGES_CHATS}`, { chats }).subscribe(res => {
+        this.messages = res.json();
+        this.messageSubject.next(this.messages);
+      }))
+  }
+
+  getMessages() {
+    return this.messageSubject;
+  }
+
+  _routeChange(id: string) {
+    this.messages = [...this.messages];
+    this.messageSubject.next(this.messages)
+  }
+
+  _getRouteChange() {
+    return this._routeSubject;
   }
 
   getMessagesByChatId(id: string) {

@@ -11,7 +11,6 @@ import { AppAuthService, AuthGuard } from './auth/';
 import { UsersModule } from './users/';
 import { Angular2SocialLoginModule, AuthService } from "angular2-social-login";
 import { SocketChatService, SharedModule } from "./shared/";
-import { MessageService } from "./messages/shared/";
 
 let providers = {
   "google": {
@@ -45,8 +44,7 @@ let providers = {
     AuthGuard,
     AppAuthService,
     AuthService,
-    SocketChatService,
-    MessageService
+    SocketChatService
   ],
   bootstrap: [AppComponent]
 })

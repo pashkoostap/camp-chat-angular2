@@ -32,28 +32,30 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
 
   ngOnInit() {
     this.loggedUser = this.authService.getUserInfo().user;
-    this.route.params.subscribe((params: Params) => {
-      this.subscriptions.map(subscription => subscription.unsubscribe());
-      this.subscriptions = new Array();
+    this.route.params.subscribe((params) => {
+      if (this.chatId !== params['id']) {
+        this.messageService._routeChange(params['id']);
+      }
       this.chatId = params['id'];
-      this.subscriptions.push(
-        this.messageService.getMessagesByChatId(this.chatId).subscribe(messages => {
-          this.isSpinnerVisible = false;
-          if (messages.length > 0) {
-            this.messages = messages;
-            this.isNoMessagesForChat = false;
-          } else {
-            this.isNoMessagesForChat = true;
-          }
-        }, error => console.error(error)),
-        this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
-        this.socketService.getSocket().subscribe(socket => {
-          socket.on('message', msg => {
-            this.messageService._sendMessage(msg);
-          })
-        })
-      )
     })
+    this.subscriptions.push(
+      this.messageService.getMessages().subscribe(messages => {
+        this.isSpinnerVisible = false;
+        if (messages.length > 0) {
+          this.messages = messages.filter(message => message.chatID === this.chatId);
+          this.isNoMessagesForChat = false;
+        } else {
+          this.isNoMessagesForChat = true;
+        }
+      }, error => console.error(error)),
+      this.messageService._getRouteChange().subscribe(res => console.log(res)),
+      this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
+      this.socketService.getSocket().subscribe(socket => {
+        socket.on('message', msg => {
+          this.messageService._sendMessage(msg);
+        })
+      })
+    )
     this.msgList = this.element.nativeElement.querySelector('.right-chat-messages');
   }
   ngOnDestroy() {

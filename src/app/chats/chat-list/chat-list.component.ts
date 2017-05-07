@@ -39,6 +39,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log(this.subscriptions)
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 
