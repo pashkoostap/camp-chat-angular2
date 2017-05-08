@@ -41,8 +41,8 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
     this.subscriptions.push(
       this.messageService.getMessages().subscribe(messages => {
         this.isSpinnerVisible = false;
-        if (messages.length > 0) {
-          this.messages = messages.filter(message => message.chatID === this.chatId);
+        this.messages = messages.filter(message => message.chatID === this.chatId);
+        if (this.messages.length > 0) {
           this.isNoMessagesForChat = false;
         } else {
           this.isNoMessagesForChat = true;

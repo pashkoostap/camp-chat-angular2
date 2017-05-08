@@ -13,26 +13,33 @@ import { SocketChatService } from "../../../shared";
 export class MessageNewComponent {
   private subscription: Subscription;
   private scrollTimeOut;
+  private chatID: string = '';
   constructor(private socketService: SocketChatService,
     private route: ActivatedRoute,
     private authService: AppAuthService) { }
 
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.chatID = params['id'];
+    })
+  } 
+  
   onSumbit(form) {
     let message = {
-      msg: form.message,
-      user: this.authService.getUserInfo().user,
-      time: new Date().getTime()
+      chatname: this.chatID,
+      chatID: this.chatID,
+      text: form.message
     }
-    this.socketService.sendMessage(form.message);
+    this.socketService.sendMessage(message);
   }
 
   onKeyPress(e, form) {
     clearTimeout(this.scrollTimeOut);
     this.scrollTimeOut = setTimeout(() => {
       let textArea = e.target,
-          textAreaValue = textArea.value,
-          maxHeight = 110,
-          minHeight = 50;
+        textAreaValue = textArea.value,
+        maxHeight = 110,
+        minHeight = 50;
       if (textAreaValue == '') {
         textArea.setAttribute('style', `height: ${minHeight}px;`)
       } else if (textArea.scrollHeight < 110) {

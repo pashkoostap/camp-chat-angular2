@@ -15,12 +15,18 @@ export class SocketChatService {
       this.socket.on('message', msg => console.log(msg));
       this.socket.on('join', msg => console.log('join', msg));
       this.socket.on('leave', msg => console.log('leave', msg));
+      this.socket.on('join-room', msg => console.log('join-room', msg));
     })
+  }
 
+  sendMessage(msgObj: any) {
+    this.socket.emit('message', msgObj);
   }
-  sendMessage(msg: string) {
-    this.socket.emit('message', msg);
+
+  joinRoom(roomID: string) {
+    this.socket.emit('join-room', roomID);
   }
+
   getSocket(): Observable<any> {
     return Observable.create(observer => observer.next(this.socket));
   }

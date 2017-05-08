@@ -19,6 +19,8 @@ export class MessageService {
       this.http.post(`${API_CONFIG.GET_MESSAGES_CHATS}`, { chats }).subscribe(res => {
         this.messages = res.json();
         this.messageSubject.next(this.messages);
+      }, err => {
+        this.messageSubject.next(this.messages);
       }))
   }
 

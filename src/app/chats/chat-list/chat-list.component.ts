@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Chat, ChatService } from '../shared';
 import { Subscription } from 'rxjs';
 import { AppAuthService } from "../../auth";
+import { SocketChatService } from "../../shared";
 
 @Component({
   selector: 'ct-chat-list',
@@ -19,7 +20,8 @@ export class ChatListComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private chatService: ChatService,
-    private auth: AppAuthService) { }
+    private auth: AppAuthService,
+    private socketService: SocketChatService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -28,7 +30,10 @@ export class ChatListComponent implements OnInit, OnDestroy {
         this.chatService.getChats().subscribe(
           chats => {
             if (chats) {
-              this.chats = chats
+              this.chats = chats;
+              chats.forEach(chat => {
+                this.socketService.joinRoom(chat._id);
+              })
             }
           }, error => console.log(error)
         ),
