@@ -37,8 +37,11 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
     this.route.params.subscribe((params) => {
       this.chatId = params['id'];
       this.subscriptions.map(subscription => subscription.unsubscribe());
+      this.subscriptions = new Array();
+      console.log(this.subscriptions);
       this.subscriptions.push(
-        this.messageService.getMessagesByChatId(this.chatId).subscribe(messages => {
+        this.messageService.getInitMessages(this.chatId),
+        this.messageService.getMessages().subscribe(messages => {
           this.isSpinnerVisible = false;
           this.messages = messages;
           if (this.messages.length > 0) {
@@ -47,16 +50,16 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
             this.isNoMessagesForChat = true;
           }
         }),
-        this.messageService._getRouteChange().subscribe(res => console.log(res)),
         this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
-        this.socketService.getSocket().subscribe(socket => {
-          socket.on('message', msg => {
-            this.messageService._sendMessage(msg);
-          })
-        })
       )
     })
-
+    this.socketService.getSocket().subscribe(socket => {
+      socket.on('message', msg => {
+        if (msg.chatID == this.chatId) {
+          this.messageService.sendMessage(msg);
+        }
+      })
+    })
     this.msgList = this.element.nativeElement.querySelector('.right-chat-messages');
   }
   ngOnDestroy() {
