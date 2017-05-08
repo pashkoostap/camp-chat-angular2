@@ -33,9 +33,9 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
           this.chatname = chat.chatname;
           this.users = chat.users;
           this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
-          this.users.forEach(user => {
-            user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
-          })
+          // this.users.forEach(user => {
+          //   user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+          // })
         }
       )
     })

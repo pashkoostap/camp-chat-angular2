@@ -40,11 +40,9 @@ export class ChatListComponent implements OnInit, OnDestroy {
         this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
       )
     })
-
   }
 
   ngOnDestroy() {
-    console.log(this.subscriptions)
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 
