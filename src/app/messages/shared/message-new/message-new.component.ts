@@ -26,7 +26,6 @@ export class MessageNewComponent {
   
   onSumbit(form) {
     let message = {
-      chatname: this.chatID,
       chatID: this.chatID,
       text: form.message
     }

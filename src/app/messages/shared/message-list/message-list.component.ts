@@ -38,7 +38,6 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
       this.chatId = params['id'];
       this.subscriptions.map(subscription => subscription.unsubscribe());
       this.subscriptions = new Array();
-      console.log(this.subscriptions);
       this.subscriptions.push(
         this.messageService.getInitMessages(this.chatId),
         this.messageService.getMessages().subscribe(messages => {

@@ -42,8 +42,15 @@ export class ChatListComponent implements OnInit, OnDestroy {
     })
   }
 
+  leaveChats() {
+    this.chats.forEach(chat => {
+      this.socketService.leaveRoom(chat._id);
+    })
+  }
+
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe());
+    this.leaveChats();
   }
 
   select(chat) {

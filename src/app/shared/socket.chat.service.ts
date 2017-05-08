@@ -15,6 +15,7 @@ export class SocketChatService {
       this.socket.on('join', msg => console.log('join', msg));
       this.socket.on('leave', msg => console.log('leave', msg));
       this.socket.on('join-room', msg => console.log('join-room', msg));
+      this.socket.on('leave-room', msg => console.log('leave-room', msg));
     })
   }
 
@@ -24,6 +25,10 @@ export class SocketChatService {
 
   joinRoom(roomID: string) {
     this.socket.emit('join-room', roomID);
+  }
+
+  leaveRoom(roomID: string) {
+    this.socket.emit('leave-room', roomID);
   }
 
   getSocket(): Observable<any> {
