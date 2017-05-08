@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit {
         this.http.post(API_CONFIG.UPLOAD_IMAGE, { image: reader.result }).subscribe(res => {
           let resObj = res.json();
           this.photoLoadingHint = 'Photo was successfully uploaded';
-          this.photoURL = resObj.url;
+          this.photoURL = resObj.secure_url;
         })
       };
     } else {
