@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, AfterViewChecked, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { DomSanitizer } from "@angular/platform-browser";
+import { Subscription } from 'rxjs';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
-import { Subscription } from 'rxjs';
 import { AppAuthService } from "../../../auth";
 import { SocketChatService, SpinnerComponent } from "../../../shared";
 
@@ -28,7 +29,8 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
     private messageService: MessageService,
     private authService: AppAuthService,
     private socketService: SocketChatService,
-    public element: ElementRef) { }
+    public element: ElementRef,
+    private satinizer: DomSanitizer) { }
 
   ngOnInit() {
     this.loggedUser = this.authService.getUserInfo().user;
@@ -41,7 +43,12 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
     this.subscriptions.push(
       this.messageService.getMessages().subscribe(messages => {
         this.isSpinnerVisible = false;
-        this.messages = messages.filter(message => message.chatID === this.chatId);
+        this.messages = messages.filter(message => {
+          if (message.chatID === this.chatId) {
+            message.user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${message.user.photo})`);
+            return true;
+          }
+        });
         if (this.messages.length > 0) {
           this.isNoMessagesForChat = false;
         } else {

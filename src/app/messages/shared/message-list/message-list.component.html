@@ -7,7 +7,7 @@
             'from-user': loggedUser.username === message.user.username}">
     <div 
       class="right-chat-message__user-photo" 
-      style="background-image: url(assets/img/avatar__1.jpg)"></div>
+      [style.background-image]="message.user.photo"></div>
     <div class="right-chat-notice">
       <span class="right-chat-message__username">{{message.user.username}}</span>
       <p class="right-chat-notice__content">{{message.msg}}</p>
