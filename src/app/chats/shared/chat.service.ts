@@ -49,6 +49,17 @@ export class ChatService {
     })
   }
 
+  leaveChat(chatID: string, userID: string, callback) {
+    this.http.post(API_CONFIG.LEAVE_CHAT, { chatID, userID }).subscribe(res => {
+      let chats = this.chats.filter(chat => chat._id !== chatID);
+      this.chats = [...chats];
+      this.chatsSubject.next(this.chats);
+      callback();
+    }, err => {
+      console.log(err);
+    })
+  }
+
   public setSearchValue(value: string): void {
     this.search$.next(value);
   }

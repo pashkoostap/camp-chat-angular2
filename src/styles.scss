@@ -39,6 +39,9 @@ ct-chats {
       min-height: calc(700px - 70px);
     }
 }
+ct-chat-list {
+  display: flex;
+}
 ct-message-list {
     display: flex;
     flex-direction: column;

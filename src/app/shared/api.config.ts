@@ -14,5 +14,6 @@ export const API_CONFIG = {
   GET_CHATS: "https://pashkoostap-camp-chat-server.herokuapp.com/getchats",
   GET_CHAT_BY_ID: "https://pashkoostap-camp-chat-server.herokuapp.com/getchat",
   UPLOAD_IMAGE: "https://pashkoostap-camp-chat-server.herokuapp.com/image",
-  GET_MESSAGES_CHATS: "https://pashkoostap-camp-chat-server.herokuapp.com/messages"
+  GET_MESSAGES_CHATS: "https://pashkoostap-camp-chat-server.herokuapp.com/messages",
+  LEAVE_CHAT: "https://pashkoostap-camp-chat-server.herokuapp.com/leavechat"
 }

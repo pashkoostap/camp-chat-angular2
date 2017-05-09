@@ -5,6 +5,7 @@ import { ChatService, Chat } from '../shared';
 import { Subscription } from 'rxjs';
 import { User } from "app/users";
 import { DomSanitizer } from "@angular/platform-browser";
+import { AppAuthService } from "../../auth";
 
 @Component({
   selector: 'ct-chat-info',
@@ -13,6 +14,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class ChatInfoComponent implements OnInit, OnDestroy {
   private chatId: string;
+  private commonChatID: string = '590d98137a6eae00114ad275';
   private chats: Chat[] = [];
   public users: any[] = [];
   public chatname: string = '';
@@ -23,11 +25,13 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     private router: Router,
     private messageService: MessageService,
     private chatService: ChatService,
+    private authService: AppAuthService,
     private satinizer: DomSanitizer) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.chatId = params['id'];
+      this.checkChat();
       this.subscription = this.chatService.getChatByID(this.chatId).subscribe(
         chat => {
           this.chatname = chat.chatname;
@@ -39,6 +43,10 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
         }
       )
     })
+  }
+
+  checkChat() {
+    return this.chatId === this.commonChatID;
   }
 
   setAttendessWrapWidth(elWidth: number, elOffset?: number) {
@@ -86,6 +94,14 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
 
   navigateToUserProfile(user) {
     this.router.navigate(['users', user._id]);
+  }
+
+  onLeave() {
+    this.chatService.leaveChat(this.chatId,
+      this.authService.getUserInfo().user._id,
+      () => {
+        this.router.navigate(['chat']);
+      });
   }
 
   ngOnDestroy() {
