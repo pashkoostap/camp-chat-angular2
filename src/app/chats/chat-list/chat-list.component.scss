@@ -15,6 +15,7 @@
     flex-direction: row;
     flex-shrink: 0;
     cursor: pointer;
+    align-items: center;
     &:hover {
         background-color: #1f2162;
         .left-chat-user-photo__message-badge {
@@ -46,6 +47,7 @@
         background-color: #37398d;
         justify-content: center;
         border-radius: 10px;
+        margin-right: 0;
     }
 }
 // USER INFO
@@ -116,5 +118,8 @@
         right: -2px;
         top: -2px;
         transition: border-color 0.2s ease;
+        &.hidden {
+          display: none;
+        }
     }
 }

@@ -11,8 +11,8 @@ export class MessageService {
   private search$: BehaviorSubject<string> = new BehaviorSubject('');
   private messagesSubject: Subject<any> = new Subject();
   private messages: Message[] = [];
-  private initMessagesRequest: any;
-  private _routeSubject: Subject<any> = new Subject();
+  private newMessages: Message[] = [];
+  private newMessagesSubject: Subject<any> = new Subject();
   constructor(private http: Http,
     private chatService: ChatService) { }
 
@@ -31,9 +31,23 @@ export class MessageService {
     return this.http.get(`${API_CONFIG.GET_MESSAGES_CHAT_ID}/${id}`).map(messages => messages.json())
   }
 
-  sendMessage(message: Message) {
-    this.messages = [...this.messages, message];
-    this.messagesSubject.next(this.messages);
+  sendMessage(message: Message, chatID: string) {
+    if (message.chatID === chatID) {
+      this.messages = [...this.messages, message];
+      this.messagesSubject.next(this.messages);
+    } else {
+      this.newMessages.push(message);
+      this.newMessagesSubject.next(this.newMessages);
+    }
+  }
+
+  updateNewMessages(chatID: string) {
+    this.newMessages = this.newMessages.filter(message => message.chatID !== chatID);
+    this.newMessagesSubject.next(this.newMessages);
+  }
+
+  getNewMessages() {
+    return this.newMessagesSubject;
   }
 
   public setSearchValue(value: string): void {

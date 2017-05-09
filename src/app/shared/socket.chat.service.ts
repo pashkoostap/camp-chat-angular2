@@ -11,11 +11,11 @@ export class SocketChatService {
     this.socket.on('connect', () => {
       this.socket.emit('authenticate', { token: userToken });
       callback();
-      this.socket.on('message', msg => console.log(msg));
-      this.socket.on('join', msg => console.log('join', msg));
-      this.socket.on('leave', msg => console.log('leave', msg));
-      this.socket.on('join-room', msg => console.log('join-room', msg));
-      this.socket.on('leave-room', msg => console.log('leave-room', msg));
+      // this.socket.on('message', msg => console.log(msg));
+      // this.socket.on('join', msg => console.log('join', msg));
+      // this.socket.on('leave', msg => console.log('leave', msg));
+      // this.socket.on('join-room', msg => console.log('join-room', msg));
+      // this.socket.on('leave-room', msg => console.log('leave-room', msg));
     })
   }
 

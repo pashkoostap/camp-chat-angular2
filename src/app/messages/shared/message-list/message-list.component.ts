@@ -18,6 +18,7 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
   private chatId: string;
   private loggedUser: Object = {};
   public messages: Message[] = [];
+  private subscription: Subscription;
   private subscriptions: Subscription[] = [];
   public searchValue: string = '';
   private msgList: HTMLUListElement;
@@ -55,16 +56,15 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
         this.messageService.getSearchValue().subscribe(value => this.searchValue = value),
       )
     })
-    this.socketService.getSocket().subscribe(socket => {
+    this.subscription = this.socketService.getSocket().subscribe(socket => {
       socket.on('message', msg => {
-        if (msg.chatID == this.chatId) {
-          this.messageService.sendMessage(msg);
-        }
+        this.messageService.sendMessage(msg, this.chatId);
       })
     })
     this.msgList = this.element.nativeElement.querySelector('.right-chat-messages');
   }
   ngOnDestroy() {
+    this.subscriptions = [...this.subscriptions, this.subscription];
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
   ngAfterViewChecked() {
@@ -74,21 +74,3 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
     this.msgList.scrollTop = this.msgList.scrollHeight - this.msgList.offsetHeight;
   }
 }
-
-// if (this.chatId !== params['id']) {
-//         this.messageService._routeChange(params['id']);
-//       }
-// this.messageService.getMessages().subscribe(messages => {
-//   this.isSpinnerVisible = false;
-//   this.messages = messages.filter(message => {
-//     if (message.chatID === this.chatId) {
-//       // message.user.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${message.user.photo})`);
-//       return true;
-//     }
-//   });
-//   if (this.messages.length > 0) {
-//     this.isNoMessagesForChat = false;
-//   } else {
-//     this.isNoMessagesForChat = true;
-//   }
-// }, error => console.error(error)),

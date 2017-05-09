@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Chat, ChatService } from '../shared';
 import { Subscription } from 'rxjs';
+import { Chat, ChatService } from '../shared';
 import { AppAuthService } from "../../auth";
 import { SocketChatService } from "../../shared";
+import { MessageService } from "../../messages";
 
 @Component({
   selector: 'ct-chat-list',
@@ -21,23 +22,38 @@ export class ChatListComponent implements OnInit, OnDestroy {
     private router: Router,
     private chatService: ChatService,
     private auth: AppAuthService,
-    private socketService: SocketChatService) { }
+    private socketService: SocketChatService,
+    private messagesService: MessageService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.selectedId = params['id'];
       this.subscriptions.push(
-        this.chatService.getChats().subscribe(
-          chats => {
-            if (chats) {
-              this.chats = chats;
-              chats.forEach(chat => {
-                this.socketService.joinRoom(chat._id);
-              })
-            }
-          }, error => console.log(error)
+        this.chatService.getChats().subscribe(chats => {
+          if (chats) {
+            this.chats = chats;
+            this.chats.forEach(chat => {
+              chat.lastMessage = null;
+              chat.newMessages = null;
+              this.socketService.joinRoom(chat._id);
+            })
+          }
+        }, error => console.log(error)
         ),
-        this.chatService.getSearchValue().subscribe(value => this.searchValue = value)
+        this.chatService.getSearchValue().subscribe(value => this.searchValue = value),
+        this.messagesService.getNewMessages().subscribe(newMessages => {
+          this.chats.forEach(chat => {
+            chat.newMessages = 0;
+            newMessages.forEach((message, i) => {
+              if (chat._id === message.chatID) {
+                chat.newMessages += 1;
+                if (i == newMessages.length - 1) {
+                  chat.lastMessage = message;
+                }
+              }
+            })
+          })
+        })
       )
     })
   }
@@ -55,6 +71,11 @@ export class ChatListComponent implements OnInit, OnDestroy {
 
   select(chat) {
     this.selectedId = chat._id;
+    if (chat.lastMessage && chat.newMessages) {
+      chat.lastMessage = null;
+      chat.newMessages = null;
+      this.messagesService.updateNewMessages(this.selectedId);
+    }
     this.router.navigate(['chat', chat._id])
   }
 }
