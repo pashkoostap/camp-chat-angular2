@@ -40,7 +40,7 @@
             *ngFor="let user of users | filterUsersByName: searchValue; let i = index"
             #selectedEl 
             (click)="onAddUser(selectedEl, user, i)">
-            <div class="new-chat-user__photo" [style.background-image]="user.photo"></div>
+            <!--<div class="new-chat-user__photo" [style.background-image]="user.photo"></div>-->
             <span class="new-chat-user__info">{{user.username}}</span>
         </li>
     </ul>

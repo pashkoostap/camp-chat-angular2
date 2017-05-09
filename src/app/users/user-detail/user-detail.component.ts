@@ -27,7 +27,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         users => {
           this.user = users.filter(user => {
             if (user._id === this.selectedUserID) {
-              this.userPhoto = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+              // this.userPhoto = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
               return user;
             }
           })[0];
