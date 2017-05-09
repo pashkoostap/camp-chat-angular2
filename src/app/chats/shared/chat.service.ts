@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Chat } from './chat.model';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { Http } from "@angular/http";
-import { API_CONFIG } from '../../shared';
+import { API_CONFIG, SocketChatService } from '../../shared';
 import { AppAuthService } from "app/auth";
 
 @Injectable()
@@ -12,7 +12,9 @@ export class ChatService {
   private chatsSubject: Subject<Chat[]> = new Subject();
   private chatSubject: Subject<Chat> = new Subject();
   private initChatsRequest: any;
-  constructor(private http: Http, private auth: AppAuthService) {
+  constructor(private http: Http,
+    private auth: AppAuthService,
+    private socketService: SocketChatService) {
     this.initChatsRequest = this.getChatsByUserId(this.auth.getUserInfo().user._id).subscribe(chats => {
       this.chats = chats;
       this.chatsSubject.next(this.chats);
@@ -33,9 +35,18 @@ export class ChatService {
   createNewChat(chat: Chat, callback: any) {
     return this.http.post(API_CONFIG.NEW_CHAT, chat).subscribe(res => {
       let chat = res.json().chat;
-      this.chatsSubject.next([...this.chats, chat]);
+      this.socketService.newChat(chat);
       callback(chat, null)
     }, err => callback(null, err));
+  }
+
+  newChat(chat: any) {
+    chat.users.forEach(user => {
+      if (user._id === this.auth.getUserInfo().user._id) {
+        this.chats = [...this.chats, chat];
+        this.chatsSubject.next(this.chats);
+      }
+    })
   }
 
   public setSearchValue(value: string): void {

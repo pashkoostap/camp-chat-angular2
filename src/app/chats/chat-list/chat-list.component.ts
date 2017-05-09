@@ -18,6 +18,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
   public searchValue: string = '';
   private selectedId: string;
   private subscriptions: Subscription[] = [];
+  private socketSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -55,6 +56,11 @@ export class ChatListComponent implements OnInit, OnDestroy {
                 }
               }
             })
+          })
+        }),
+        this.socketService.getSocket().subscribe(socket => {
+          socket.on('new-chat', chat => {
+            this.chatService.newChat(chat);
           })
         })
       )

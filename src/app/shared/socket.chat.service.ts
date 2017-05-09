@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import * as io from 'socket.io-client';
 import { API_CONFIG } from './api.config';
 import { Observable } from 'rxjs';
+import { Chat } from "../chats/shared";
 
 @Injectable()
 export class SocketChatService {
@@ -16,6 +17,7 @@ export class SocketChatService {
       // this.socket.on('leave', msg => console.log('leave', msg));
       // this.socket.on('join-room', msg => console.log('join-room', msg));
       // this.socket.on('leave-room', msg => console.log('leave-room', msg));
+      // this.socket.on('new-chat', chat => console.log('new-chat', chat));
     })
   }
 
@@ -29,6 +31,10 @@ export class SocketChatService {
 
   leaveRoom(roomID: string) {
     this.socket.emit('leave-room', roomID);
+  }
+
+  newChat(chat: Chat) {
+    this.socket.emit('new-chat', chat);
   }
 
   getSocket(): Observable<any> {
