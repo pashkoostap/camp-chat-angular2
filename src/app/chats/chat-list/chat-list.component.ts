@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { DomSanitizer } from "@angular/platform-browser";
 import { Subscription } from 'rxjs';
 import { Chat, ChatService } from '../shared';
 import { AppAuthService } from "../../auth";
@@ -23,7 +24,8 @@ export class ChatListComponent implements OnInit, OnDestroy {
     private chatService: ChatService,
     private auth: AppAuthService,
     private socketService: SocketChatService,
-    private messagesService: MessageService) { }
+    private messagesService: MessageService,
+    private satinizer: DomSanitizer) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -35,6 +37,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
             this.chats.forEach(chat => {
               chat.lastMessage = null;
               chat.newMessages = null;
+              // chat.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${chat.photo})`);
               this.socketService.joinRoom(chat._id);
             })
           }
