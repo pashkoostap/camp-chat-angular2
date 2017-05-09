@@ -1,5 +1,5 @@
-<ct-spinner text="Messages are loading" class="dark" *ngIf="isSpinnerVisible"></ct-spinner>
-<span class="chat-no-messages" *ngIf="isNoMessagesForChat">There is no messages for this chat. Your message will be first.</span>
+<ct-spinner text="" class="dark" *ngIf="isSpinnerVisible"></ct-spinner>
+<span class="chat-no-messages" *ngIf="isNoMessagesForChat">There is no messages for this chat.</span>
 <ul class="right-chat-messages">
   <li class="right-chat-message" 
   *ngFor="let message of messages | filterMessageByName: searchValue" 

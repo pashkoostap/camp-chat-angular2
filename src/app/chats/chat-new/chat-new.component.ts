@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { User, UsersService } from '../../users/';
 import { Chat, ChatService } from '../shared/';
 import { AppAuthService } from "../../auth";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'ct-chat-new',
@@ -12,20 +13,21 @@ import { AppAuthService } from "../../auth";
 })
 
 export class ChatNewComponent implements OnInit, OnDestroy {
-  users: User[];
-  userId: number = 1;
-  isUserChecked: boolean = false;
-  subscriptions: Subscription[] = [];
-  searchValue: string = '';
-  searchMatches: number = 0;
-  isSearchFieldActive: boolean = false;
-  newChatElement: any;
-  newChat: Chat = {
+  private users: User[];
+  private isUserChecked: boolean = false;
+  private subscriptions: Subscription[] = [];
+  private searchValue: string = '';
+  private searchMatches: number = 0;
+  private isSearchFieldActive: boolean = false;
+  private newChatElement: any;
+  private isErrorMessage: string = '';
+  private newChat: Chat = {
     chatname: '',
     users: []
   };
   constructor(private usersService: UsersService,
     private auth: AppAuthService,
+    private router: Router,
     public element: ElementRef,
     private chatService: ChatService,
     private satinizer: DomSanitizer) { }
@@ -82,7 +84,14 @@ export class ChatNewComponent implements OnInit, OnDestroy {
     this.cleareSearchResults(usersList);
     this.newChatElement.querySelector('.new-chat-form__input').value = '';
     this.newChat.users.push({ username: this.auth.getUserInfo().user.username });
-    this.chatService.createNewChat(this.newChat);
+    this.chatService.createNewChat(this.newChat, (chat, err) => {
+      if (err) {
+        console.log(err.json());
+        this.isErrorMessage = err.json().message;
+      } else {
+        this.router.navigate(['chat', chat._id])
+      }
+    });
     this.newChat.users.splice(0);
   }
 

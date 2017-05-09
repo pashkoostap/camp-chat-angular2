@@ -30,11 +30,12 @@ export class ChatService {
     return this.http.get(`${API_CONFIG.GET_CHATS}/${id}`).map(res => res.json());
   }
 
-  createNewChat(chat: Chat) {
+  createNewChat(chat: Chat, callback: any) {
     return this.http.post(API_CONFIG.NEW_CHAT, chat).subscribe(res => {
       let chat = res.json().chat;
       this.chatsSubject.next([...this.chats, chat]);
-    });
+      callback(chat, null)
+    }, err => callback(null, err));
   }
 
   public setSearchValue(value: string): void {

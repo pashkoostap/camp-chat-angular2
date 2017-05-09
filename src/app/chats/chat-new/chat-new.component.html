@@ -13,8 +13,8 @@
         minlength="6"
         ngModel
         required>
-    <span class="new-chat-form__hint"  
-        *ngIf="!form.controls['chatName']?.valid && form.controls['chatName']?.touched">Chat name must be at least 5 characters</span>
+    <span class="new-chat-form__hint" *ngIf="!form.controls['chatname']?.valid && form.controls['chatname']?.touched">Chat name must be at least 5 characters</span>
+    <span class="new-chat-form__hint" *ngIf="isErrorMessage"><b>{{form.controls['chatname'].value}}</b> - {{isErrorMessage}}</span>
     
     <div class="new-chat-form-search">
         <input 
