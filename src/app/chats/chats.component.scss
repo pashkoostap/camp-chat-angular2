@@ -32,21 +32,26 @@
     flex-direction: column;
     background-color: #3b3e99;
     flex-shrink: 0;
+    transition: all 0.3s linear;
     @media (max-width: 767px) {
         max-width: 50px;
     }
     &.visible {
         display: flex;
         max-width: 40%;
-        min-width: 40%;
+        width: 100%;
+        @media (min-width: 768px) {
+          // min-width: 40%;
+        }
         @media (max-width: 767px) {
-            max-width: 100%;
+            max-width: 70%;
             min-width: 0;
         }
     }
     &.hidden {
         .chat-search-panel {
-            display: none;
+            width: 0;
+            transition: width 0s linear 0s;
         }
         .osp-chat-menu {
             right: -60px;

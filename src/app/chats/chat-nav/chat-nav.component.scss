@@ -7,6 +7,9 @@
     justify-content: space-between;
     flex-shrink: 0;
     position: relative;
+    @media (max-width: 767px) {
+      padding: 24px 10px;
+    }
     // OPEN LEFT PANEL BUTTON
     &__open {
         &::before {
@@ -37,18 +40,25 @@
     display: flex;
     position: relative;
     flex-shrink: 0;
+    width: 165px;
+    transition: width 0.3s linear;
+    overflow: hidden;
+    @media (max-width: 767px) {
+        width: 135px;
+    }
     // SEARCH PANEL INPUT
     &__input {
         background-color: #ededfa;
         outline: none;
         border: none;
-        width: 165px;
         border-radius: 16px;
         font-family: "Ubuntu";
         line-height: 20px;
         height: 32px;
         font-size: 14px;
         padding: 6px 40px 6px 15px;
+        width: 100%;
+        max-width: 100%;
     }
     // SEARCH BUTTON
     &__search-btn {
