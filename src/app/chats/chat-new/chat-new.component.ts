@@ -15,18 +15,18 @@ import { API_CONFIG } from '../../shared/';
 })
 
 export class ChatNewComponent implements OnInit, OnDestroy {
-  private users: User[];
-  private isUserChecked: boolean = false;
+  public users: User[];
+  public isUserChecked: boolean = false;
   private subscriptions: Subscription[] = [];
-  private searchValue: string = '';
+  public searchValue: string = '';
   private searchMatches: number = 0;
   private isSearchFieldActive: boolean = false;
   private newChatElement: any;
-  private isErrorMessage: string = '';
-  private hideError: boolean = false;
-  private isPhotoLoading: boolean = false;
-  private photoLoadingHint: string = 'Photo is uploading now';
-  private labelFileInputValut: string = 'Upload photo';
+  public isErrorMessage: string = '';
+  public hideError: boolean = false;
+  public isPhotoLoading: boolean = false;
+  public photoLoadingHint: string = 'Photo is uploading now';
+  public labelFileInputValut: string = 'Upload photo';
   private photoURL: string = '';
   private newChat: Chat = {
     chatname: '',
