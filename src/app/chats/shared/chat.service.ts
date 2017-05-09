@@ -31,7 +31,10 @@ export class ChatService {
   }
 
   createNewChat(chat: Chat) {
-    return this.http.post(API_CONFIG.NEW_CHAT, chat).subscribe(res => console.log(res.json()));
+    return this.http.post(API_CONFIG.NEW_CHAT, chat).subscribe(res => {
+      let chat = res.json().chat;
+      this.chatsSubject.next([...this.chats, chat]);
+    });
   }
 
   public setSearchValue(value: string): void {
