@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
+import { Router } from "@angular/router";
+import { Http } from "@angular/http";
 import { Subscription } from 'rxjs';
 import { User, UsersService } from '../../users/';
 import { Chat, ChatService } from '../shared/';
 import { AppAuthService } from "../../auth";
-import { Router } from "@angular/router";
+import { API_CONFIG } from '../../shared/';
 
 @Component({
   selector: 'ct-chat-new',
@@ -21,16 +23,23 @@ export class ChatNewComponent implements OnInit, OnDestroy {
   private isSearchFieldActive: boolean = false;
   private newChatElement: any;
   private isErrorMessage: string = '';
+  private hideError: boolean = false;
+  private isPhotoLoading: boolean = false;
+  private photoLoadingHint: string = 'Photo is uploading now';
+  private labelFileInputValut: string = 'Upload photo';
+  private photoURL: string = '';
   private newChat: Chat = {
     chatname: '',
-    users: []
+    users: [],
+    photo: ''
   };
   constructor(private usersService: UsersService,
     private auth: AppAuthService,
     private router: Router,
     public element: ElementRef,
     private chatService: ChatService,
-    private satinizer: DomSanitizer) { }
+    private satinizer: DomSanitizer,
+    private http: Http) { }
 
   ngOnInit() {
     this.subscriptions.push(
@@ -78,9 +87,31 @@ export class ChatNewComponent implements OnInit, OnDestroy {
     input.value = '';
   }
 
+  onFileUpload(event, input) {
+    let file = input.files[0];
+    if (file.type.match('image/*')) {
+      this.isPhotoLoading = true;
+      this.photoLoadingHint = 'Photo is uploading now';
+      let reader = new FileReader();
+      this.labelFileInputValut = file.name;
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        this.http.post(API_CONFIG.UPLOAD_IMAGE, { image: reader.result }).subscribe(res => {
+          let resObj = res.json();
+          this.photoLoadingHint = 'Photo was successfully uploaded';
+          this.photoURL = resObj.secure_url;
+        })
+      };
+    } else {
+      this.isPhotoLoading = true;
+      this.photoLoadingHint = 'Photo must be an image';
+    }
+  }
+
   onSubmit(event, form, usersList: HTMLUListElement) {
     event.preventDefault();
     this.newChat.chatname = form.controls['chatname'].value;
+    this.newChat.photo = this.photoURL;
     this.cleareSearchResults(usersList);
     this.newChatElement.querySelector('.new-chat-form__input').value = '';
     this.newChat.users.push({ username: this.auth.getUserInfo().user.username });
@@ -88,6 +119,7 @@ export class ChatNewComponent implements OnInit, OnDestroy {
       if (err) {
         console.log(err.json());
         this.isErrorMessage = err.json().message;
+        this.hideError = false;
       } else {
         this.router.navigate(['chat', chat._id])
       }

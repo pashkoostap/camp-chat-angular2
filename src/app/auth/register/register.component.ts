@@ -89,7 +89,6 @@ export class RegisterComponent implements OnInit {
       this.isPhotoLoading = true;
       this.photoLoadingHint = 'Photo must be an image';
     }
-
   }
 
   onSubmit(user: FormGroup) {

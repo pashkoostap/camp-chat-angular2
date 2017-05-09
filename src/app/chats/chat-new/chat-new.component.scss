@@ -29,6 +29,31 @@
         font-family: "Ubuntu";
         border: 1px solid #ededfa;
         transition: all 0.2s ease;
+        &::-webkit-input-placeholder { /* Chrome */
+            color: #000000;
+        }
+        &:-ms-input-placeholder { /* IE 10+ */
+            color: #000000;
+        }
+        &::-moz-placeholder { /* Firefox 19+ */
+            color: #000000;
+            opacity: 1;
+        }
+        &:-moz-placeholder { /* Firefox 4 - 18 */
+            color: #000000;
+            opacity: 1;
+        }
+        &--label-file {
+            cursor: pointer;
+            &:hover,
+            &:active,
+            &:focus {
+                border: 1px solid #3b3e99;
+            }
+        }
+        &--file {
+            display: none;
+        }
         &:focus {
             border: 1px solid #3b3e99;
         }
@@ -86,7 +111,10 @@
         line-height: 20px;
         padding: 0px 20px;
         position: relative;
-        top: -10px
+        top: -10px;
+        &.hidden {
+          display: none;
+        }
     }
 }
 .new-chat-users {
