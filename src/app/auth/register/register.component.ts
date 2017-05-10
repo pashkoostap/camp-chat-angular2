@@ -12,10 +12,10 @@ import { API_CONFIG } from '../../shared/';
 })
 
 export class RegisterComponent implements OnInit {
-  private user: FormGroup;
-  private isPhotoLoading: boolean = false;
-  private photoLoadingHint: string = 'Photo is uploading now';
-  private labelFileInputValut: string = 'Upload photo';
+  public user: FormGroup;
+  public isPhotoLoading: boolean = false;
+  public photoLoadingHint: string = 'Photo is uploading now';
+  public labelFileInputValut: string = 'Upload photo';
   private photoURL: string = '';
   private registerErrorHint: string = '';
   constructor(private auth: AppAuthService,
