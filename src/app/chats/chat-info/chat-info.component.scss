@@ -98,6 +98,10 @@
         font-size: 20px;
         transition: opacity 0.2s ease;
         flex-shrink: 0;
+        &[disabled] {
+            opacity: 0.5;
+            pointer-events: none;
+        }
         &:hover {
             opacity: 0.5;
         }

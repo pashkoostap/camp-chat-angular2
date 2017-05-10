@@ -21,6 +21,7 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   public maxWidthValue: number = 0;
   public searchValue: string = '';
   private subscription: Subscription;
+  private isChatUsersVisible: boolean = false;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private messageService: MessageService,
@@ -90,6 +91,10 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     } else {
       btn.innerText = 'Show chat info';
     }
+  }
+
+  isChatUsersVisibleEvent(event) {
+    this.isChatUsersVisible = event;
   }
 
   navigateToUserProfile(user) {

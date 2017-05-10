@@ -1,13 +1,16 @@
+<app-chat-users [users]="users" *ngIf="isChatUsersVisible" (isChatUsersVisibleEvent)="isChatUsersVisibleEvent($event)"></app-chat-users>
+
 <div class="chan-info-wrap  visible" #chatInfoWrap>
     <button type="button" #btn class="chan-info-wrap__show-btn  chat-btn  clicked" (click)="onChatInfoWrapShow(chatInfoWrap, btn)">Hide chat info</button>
     <ul class="chat-info-attendees" 
         #elem
-        [style.width.px]="maxWidthValue"
-        (mouseover)="onAttendessShow(elem)"
-        (mouseout)="onAttendessHide(elem)">
+        (click)="isChatUsersVisible = true"
+        [style.width.px]="maxWidthValue">
+        <!--(mouseover)="onAttendessShow(elem)"-->
+        <!--(mouseout)="onAttendessHide(elem)">-->
         <li class="chat-info-attendees__user  user__{{i}}" 
-          *ngFor="let user of users; let i = index"
-          (click)="navigateToUserProfile(user)"></li>
+          *ngFor="let user of users; let i = index"></li>
+          <!--(click)="navigateToUserProfile(user)"-->
           <!--[style.background-image]="user?.photo"-->
     </ul>
     <span class="chat-info__chat-name">{{chatname}}</span>

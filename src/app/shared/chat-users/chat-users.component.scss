@@ -1,0 +1,93 @@
+:host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.app-chat-users {
+      display: flex;
+      background-color: #ededfa;
+      max-width: 1170px;
+      width: 60%;
+      margin: auto;
+      padding: 50px 20px;
+      border-radius: 10px;
+      position: relative;
+      @media (max-width: 1199px) {
+          margin: 50px auto;
+          max-width: 970px;
+          width: 80%;
+      }
+      @media (max-width: 992px) {
+          max-width: 750px;
+      }
+      @media (max-width: 767px) {
+          margin: 30px auto;
+          max-width: 80%;
+      }
+      &__close {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          background: none;
+          border: none;
+          outline: none;
+          top: 0;
+          right: 0;
+          cursor: pointer;
+          padding: 0;
+          color: #000000;
+          transition: opacity 0.2s ease;
+          &:hover {
+              opacity: 0.5;
+          }
+      }
+      
+}
+.app-chat-users-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    &__item {
+        display: flex;
+        cursor: pointer;
+        margin-bottom: 30px;
+        flex-direction: column;
+        overflow: hidden;
+        align-items: center;
+        @media (min-width: 1200px) {
+            width: 20%;
+        }
+        @media (max-width: 1199px) {
+            width: 25%;
+        }
+        @media (max-width: 767px) {
+            width: 100%;
+        }
+    }
+    &__photo {
+        display: flex;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    &__name {
+        display: flex;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}

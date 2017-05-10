@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterTextComponent } from './filter-text.component';
 import { SpinnerComponent } from './spinner.component';
+import { ChatUsersComponent } from './chat-users/chat-users.component';
 
 @NgModule({
   imports: [
@@ -14,11 +15,13 @@ import { SpinnerComponent } from './spinner.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SpinnerComponent
+    SpinnerComponent,
+    ChatUsersComponent
   ],
   declarations: [
     FilterTextComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ChatUsersComponent
   ],
   providers: []
 })
