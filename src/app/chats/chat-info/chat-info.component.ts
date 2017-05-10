@@ -21,7 +21,7 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   public maxWidthValue: number = 0;
   public searchValue: string = '';
   private subscription: Subscription;
-  private isChatUsersVisible: boolean = false;
+  public isChatUsersVisible: boolean = false;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private messageService: MessageService,
