@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   public photoLoadingHint: string = 'Photo is uploading now';
   public labelFileInputValut: string = 'Upload photo';
   private photoURL: string = '';
-  private registerErrorHint: string = '';
+  public registerErrorHint: string = '';
   constructor(private auth: AppAuthService,
     private formBuilder: FormBuilder,
     private router: Router,
