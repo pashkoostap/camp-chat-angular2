@@ -16,10 +16,12 @@ export class AppAuthService {
 
   register(data, callBack) {
     return this.http.post(API_CONFIG.SIGNUP, data).subscribe(res => {
-      console.info('registered a new user');
-      callBack();
+      let user = res.json();
+      callBack(user, null);
+    }, err => {
+      callBack(null, err.json());
     })
-   }
+  }
 
   logout() {
     localStorage.setItem('userInfo', '');

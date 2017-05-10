@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { User } from './login.interface';
 import { AppAuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -11,32 +11,30 @@ import { SocketChatService } from "../../shared";
   styleUrls: ['./login.component.scss'],
 })
 
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
+  public loginErrorHint: string = '';
   private subscriptions: Subscription[] = [];
-  socket;
+  private socket: any;
   constructor(private auth: AppAuthService,
     private router: Router,
     private socketChatService: SocketChatService) { }
-
-  ngOnInit() { }
 
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe())
   }
 
   onSumbit(formValue) {
-    this.subscriptions.push(this.auth.login(formValue).subscribe(this.onLoginSuccess.bind(this), this.onError));
+    this.subscriptions.push(this.auth.login(formValue).subscribe(this.onLoginSuccess.bind(this), this.onError.bind(this)));
   }
 
   private onLoginSuccess(response: any): void {
     this.socket = this.socketChatService.initSocket(response.token, () => {
-      console.log(response);
       this.auth.setUserState(response);
       this.router.navigate(['chat']);
     });
   }
 
   private onError(err) {
-    console.log('User not found');
+    this.loginErrorHint = err.json().message;
   }
 }

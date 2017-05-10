@@ -12,11 +12,12 @@ import { API_CONFIG } from '../../shared/';
 })
 
 export class RegisterComponent implements OnInit {
-  user: FormGroup;
-  isPhotoLoading: boolean = false;
-  photoLoadingHint: string = 'Photo is uploading now';
-  labelFileInputValut: string = 'Upload photo';
-  photoURL: string = '';
+  private user: FormGroup;
+  private isPhotoLoading: boolean = false;
+  private photoLoadingHint: string = 'Photo is uploading now';
+  private labelFileInputValut: string = 'Upload photo';
+  private photoURL: string = '';
+  private registerErrorHint: string = '';
   constructor(private auth: AppAuthService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -98,9 +99,12 @@ export class RegisterComponent implements OnInit {
       password: user.controls['passwords']['controls']['password'].value,
       photo: this.photoURL
     };
-    console.log(userData);
-    this.auth.register(userData, () => {
-      this.router.navigate(['auth/login']);
+    this.auth.register(userData, (user, err) => {
+      if (user) {
+        this.router.navigate(['auth/login']);
+      } else {
+        this.registerErrorHint = err.message;
+      }
     })
   }
 }
