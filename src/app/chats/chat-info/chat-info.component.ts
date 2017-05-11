@@ -14,7 +14,7 @@ import { AppAuthService } from "../../auth";
 })
 export class ChatInfoComponent implements OnInit, OnDestroy {
   private chatId: string;
-  private commonChatID: string = '590d98137a6eae00114ad275';
+  private commonChatID: string = '5914713599ba3b2814a07812';
   private chats: Chat[] = [];
   public users: any[] = [];
   public chatname: string = '';
