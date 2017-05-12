@@ -29,6 +29,7 @@
         align-self: flex-end;
         overflow: hidden;
         transition: border-color 0.2s ease;
+        box-shadow: none;
         &:focus {
             border: 1px solid #3b3e99;
         }

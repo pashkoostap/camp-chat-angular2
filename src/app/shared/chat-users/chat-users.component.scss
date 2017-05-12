@@ -9,6 +9,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 50px 0px;
+    @media (max-width: 767px) {
+        padding: 30px 0px;
+    }
 }
 .app-chat-users {
       display: flex;
@@ -19,8 +23,9 @@
       padding: 50px 20px;
       border-radius: 10px;
       position: relative;
+      max-height: 100%;
       @media (max-width: 1199px) {
-          margin: 50px auto;
+          // margin: 50px auto;
           max-width: 970px;
           width: 80%;
       }
@@ -28,8 +33,10 @@
           max-width: 750px;
       }
       @media (max-width: 767px) {
-          margin: 30px auto;
-          max-width: 80%;
+          margin: auto 30px;
+          max-width: calc(100% - 60px);
+          width: 100%;
+          padding: 20px;
       }
       &__close {
           position: absolute;
