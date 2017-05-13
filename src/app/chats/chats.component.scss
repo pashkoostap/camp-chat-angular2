@@ -51,7 +51,7 @@
     &.hidden {
         .chat-search-panel {
             width: 0;
-            transition: width 0s linear 0s;
+            transition: width 0.15s linear 0s;
         }
         .osp-chat-menu {
             right: -60px;

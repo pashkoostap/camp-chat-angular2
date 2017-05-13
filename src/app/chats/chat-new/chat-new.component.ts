@@ -121,7 +121,7 @@ export class ChatNewComponent implements OnInit, OnDestroy {
         this.isErrorMessage = err.json().message;
         this.hideError = false;
       } else {
-        this.router.navigate(['chat', chat._id])
+        this.router.navigate(['chat'])
       }
     });
     this.newChat.users.splice(0);
