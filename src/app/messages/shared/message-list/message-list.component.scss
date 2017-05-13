@@ -26,6 +26,9 @@
     &:first-child {
         margin-top: auto;
     }
+    @media (max-width: 767px) {
+        padding: 0;
+    }
     // USER PHOTO
     &__user-photo {
         display: flex;
@@ -38,6 +41,9 @@
         border-radius: 50%;
         overflow: hidden;
         margin: auto;
+        @media (max-width: 767px) {
+            display: none;
+        }
     }
     // MESSAGE DATE
     &__date {
@@ -115,7 +121,8 @@
         max-width: 280px;
     }
     @media (max-width: 767px) {
-        width: calc(100% - 65px);
+        // width: calc(100% - 65px);
+        max-width: 100%;
         overflow: hidden;
     }
     &__content {
@@ -123,8 +130,25 @@
         border-radius: 10px;
         margin: 0;
         display: flex;
-        flex-grow: 0;
+        flex-direction: column;
         word-break: break-word;
+        .chat-link {
+            color: #3b3e99;
+            margin: 0px 3px;
+            transition: opacity 0.2s ease;
+            &:hover {
+              opacity: 0.5;
+            }
+        }
+        .chat-image-link {
+            display: block;
+            max-width: 100%;
+            margin: 10px 0px;
+            img {
+                display: block;
+                max-width: 100%;
+            }
+        }
     }
 }
 .chat-no-messages {
@@ -139,4 +163,7 @@
     text-align: center;
     margin: auto;
     flex-grow: 100000;
+    &.hidden {
+        display: none;
+    }
 }

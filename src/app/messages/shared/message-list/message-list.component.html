@@ -5,12 +5,16 @@
   *ngFor="let message of messages | filterMessageByName: searchValue" 
   [ngClass]="{'to-user': loggedUser.username !== message.user.username,
             'from-user': loggedUser.username === message.user.username}">
+    <div 
+      class="right-chat-message__user-photo" 
+      style="background-image: url(assets/img/avatar__4.jpg)"></div>
     <!--<div 
       class="right-chat-message__user-photo" 
-      [style.background-image]="message.user.photo"></div>-->
+      [style.background-image]="message.user.photoURL"></div>-->
     <div class="right-chat-notice">
       <span class="right-chat-message__username">{{message.user.username}}</span>
-      <p class="right-chat-notice__content">{{message.msg}}</p>
+      <!--<p class="right-chat-notice__content">{{message.msg}}</p>-->
+      <p class="right-chat-notice__content" [innerHTML]="message.msgText"></p>
       <span class="right-chat-message__date">{{message.time | date:"MM/dd/yy HH:mm"}}</span>
     </div>
   </li>
