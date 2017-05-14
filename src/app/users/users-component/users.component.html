@@ -1,6 +1,8 @@
 <div class="users-wrap">
-  <ul class="chat-users">
+  <ul class="chat-users  hidden">
+    <button class="chat-users__open  osp-chat-nav-btn  "></button>
     <li class="chat-user" *ngFor="let user of users" (click)="select({id: user._id})" [class.active]="selectedId == user._id">
+      <div class="chat-user__photo" style="background-image: url(assets/img/avatar__1.jpg"></div>
       <!--<div class="chat-user__photo" [style.background-image]="user.photo"></div>-->
       <span class="chat-user__info">{{user.username}}</span>
     </li>

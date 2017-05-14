@@ -7,6 +7,10 @@
     @media(max-width: 767px) {
         max-height: calc(100vh - 100px);
     }
+    @media(min-width: 768px) and (max-height: 700px) {
+      max-height: calc(700px - 70px);
+      min-height: calc(700px - 70px);
+    }
 }
 .users-wrap {
     max-width: 1170px;
@@ -34,12 +38,50 @@
     }
 }
 .chat-users {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  overflow: auto;
-  background-color: #3b3e99;
-  padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: auto;
+    background-color: #3b3e99;
+    max-width: 110px;
+    width: 100%;
+    transition: all 0.3s linear;
+    &__open {
+        padding: 0;
+        width: 50px;
+        height: 50px;
+        margin-top: 15px;
+        &::before {
+            content: "\e905";
+        }
+        &.active {
+            &::before {
+                content: "\e901";
+            }
+        }
+    }
+    @media (max-width: 767px) {
+        max-width: 50px;
+    }
+    &.visible {
+        display: flex;
+        max-width: 40%;
+        width: 100%;
+        @media (min-width: 768px) {
+          // min-width: 40%;
+        }
+        @media (max-width: 767px) {
+            max-width: 70%;
+            min-width: 0;
+        }
+    }
+    &.hidden {
+        @media (max-width: 767px) {
+            .chat-user {
+                display: none;
+            }
+        }
+    }
 }
 .chat-user {
   display: flex;
@@ -47,6 +89,9 @@
   padding: 30px 20px;
   background-color: #3b3e99;
   cursor: pointer;
+  @media (max-width: 767px) {
+    padding: 20px;
+  }
   &:hover {
     background-color: #1f2162;
   }

@@ -17,6 +17,9 @@
     flex-shrink: 0;
     cursor: pointer;
     align-items: center;
+    @media (max-width: 767px) {
+        padding: 20px;
+    }
     &:hover {
         background-color: #1f2162;
         .left-chat-user-photo__message-badge {
