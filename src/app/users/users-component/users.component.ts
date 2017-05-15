@@ -11,9 +11,10 @@ import { DomSanitizer } from "@angular/platform-browser";
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  users: User[];
-  subscription: Subscription;
-  selectedId: string;
+  private users: User[];
+  private subscription: Subscription;
+  private selectedId: string;
+  private isPanelOpen: boolean = false;
   constructor(private usersService: UsersService,
     private router: Router,
     private satinizer: DomSanitizer) { }
@@ -31,6 +32,10 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  togglePanel() {
+    this.isPanelOpen = !this.isPanelOpen;
   }
 
   select(user) {
