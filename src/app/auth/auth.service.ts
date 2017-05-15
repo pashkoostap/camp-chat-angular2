@@ -14,6 +14,15 @@ export class AppAuthService {
     return this.http.post(API_CONFIG.LOGIN, data).map(res => res.json());
   }
 
+  loginWithProviders(data, callBack) {
+    return this.http.post(API_CONFIG.LOGIN_PROVIDERS, data).subscribe(res => {
+      let user = res.json();
+      callBack(user, null);
+    }), err => {
+      callBack(null, err.json());
+    }
+  }
+
   register(data, callBack) {
     return this.http.post(API_CONFIG.SIGNUP, data).subscribe(res => {
       let user = res.json();

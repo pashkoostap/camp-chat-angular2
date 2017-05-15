@@ -80,4 +80,8 @@
     flex-direction: column;
     width: 100%;
     max-width: calc(100% - 50px);
+    @media (max-width: 767px) {
+        min-width: 270px;
+        flex-shrink: 0;
+    }
 }

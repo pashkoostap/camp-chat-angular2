@@ -6,6 +6,7 @@ export const API_CONFIG = {
   // MESSAGES: "http://eleksfrontendcamp-mockapitron.rhcloud.com/messages"
   LOGIN: "https://pashkoostap-camp-chat-server.herokuapp.com/login/",
   SIGNUP: "https://pashkoostap-camp-chat-server.herokuapp.com/signup/",
+  LOGIN_PROVIDERS: "https://pashkoostap-camp-chat-server.herokuapp.com/login-providers/",
   USERS: "https://pashkoostap-camp-chat-server.herokuapp.com/users/",
   SOCKET: "https://pashkoostap-camp-chat-server.herokuapp.com/",
   GET_MESSAGES_CHAT_NAME: "https://pashkoostap-camp-chat-server.herokuapp.com/messages",

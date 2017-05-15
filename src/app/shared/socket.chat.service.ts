@@ -11,7 +11,11 @@ export class SocketChatService {
     this.socket = io(API_CONFIG.SOCKET);
     this.socket.on('connect', () => {
       this.socket.emit('authenticate', { token: userToken });
-      callback();
+      this.socket.on('authenticated', msg => {
+        console.log('authenticated')
+        callback();
+      })
+      
       // this.socket.on('message', msg => console.log(msg));
       // this.socket.on('join', msg => console.log('join', msg));
       // this.socket.on('leave', msg => console.log('leave', msg));
