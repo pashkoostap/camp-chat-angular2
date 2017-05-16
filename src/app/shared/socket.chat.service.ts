@@ -24,6 +24,9 @@ export class SocketChatService {
       // this.socket.on('leave-room', msg => console.log('leave-room', msg));
       // this.socket.on('new-chat', chat => console.log('new-chat', chat));
     })
+    this.socket.on('disconnect', ()=>{
+      console.log('disconnect')
+    })
   }
 
   sendMessage(msgObj: any) {
@@ -40,6 +43,10 @@ export class SocketChatService {
 
   newChat(chat: Chat) {
     this.socket.emit('new-chat', chat);
+  }
+
+  disconnect() {
+    this.socket.disconnect();
   }
 
   getSocket(): Observable<any> {

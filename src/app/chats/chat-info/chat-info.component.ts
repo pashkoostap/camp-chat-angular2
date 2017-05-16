@@ -49,7 +49,6 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
           }
         ),        
         this.usersService.getConnectedUsers().subscribe(connectedUsers => {
-          console.log(connectedUsers)
           this.connectedUsers = connectedUsers;
         })
       )
@@ -125,7 +124,6 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('destroy')
     this.subscriptions.map(sub => sub.unsubscribe());
   }
 }

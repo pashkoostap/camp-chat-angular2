@@ -8,6 +8,7 @@ export const API_CONFIG = {
   SIGNUP: "https://pashkoostap-camp-chat-server.herokuapp.com/signup/",
   LOGIN_PROVIDERS: "https://pashkoostap-camp-chat-server.herokuapp.com/login-providers/",
   USERS: "https://pashkoostap-camp-chat-server.herokuapp.com/users/",
+  CONNECTED_USERS: "https://pashkoostap-camp-chat-server.herokuapp.com/connected-users",
   SOCKET: "https://pashkoostap-camp-chat-server.herokuapp.com/",
   GET_MESSAGES_CHAT_NAME: "https://pashkoostap-camp-chat-server.herokuapp.com/messages",
   GET_MESSAGES_CHAT_ID: "https://pashkoostap-camp-chat-server.herokuapp.com/getmessages",

@@ -4,6 +4,7 @@ import { AppAuthService } from '../../auth';
 import { Router } from '@angular/router';
 import { AuthService } from "angular2-social-login";
 import { User } from "../../users";
+import { SocketChatService } from "../../shared";
 
 @Component({
   selector: 'ct-nav',
@@ -20,7 +21,8 @@ export class NavComponent implements DoCheck {
   constructor(public authService: AppAuthService,
     private router: Router,
     private authSocial: AuthService,
-    private satinizer: DomSanitizer) { }
+    private satinizer: DomSanitizer,
+    private socketService: SocketChatService) { }
 
   ngDoCheck() {
     if (this.authService.isLoggedIn && !this.user.username) {
@@ -41,7 +43,7 @@ export class NavComponent implements DoCheck {
       this.authService.logout();
       this.router.navigate(['auth/login'])
     }
-    window.location.reload();
+    this.socketService.disconnect();
   }
 
   navigateToUserProfile() {

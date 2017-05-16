@@ -9,17 +9,17 @@ declare let window: any;
 export class UsersService {
   private search$: BehaviorSubject<string> = new BehaviorSubject('');
   public connectedUsersSubject: Subject<any[]> = new Subject();
-  private connectedUsers: any[];
+  private connectedUsers: any[] = [];
+  private initRequest: any;
   constructor(private http: Http) {
-    this.connectedUsers = this.getInitConnectedUsers();
+    this.connectedUsers = [];
+    this.initRequest = this.getInitConnectedUsers();
   }
 
   getInitConnectedUsers() {
-    if (window.connectedUsers) {
-      return window.connectedUsers
-    } else {
-      return []
-    }
+    return this.http.get(API_CONFIG.CONNECTED_USERS).subscribe(res => {
+      this.connectedUsers = res.json();
+    })
   }
 
   getAllUsers(): Observable<User[]> {
@@ -41,7 +41,7 @@ export class UsersService {
 
   userConnected(users) {
     this.connectedUsers = [...users];
-    window.connectedUsers = this.connectedUsers;
+    localStorage.setItem('connectedUsers', JSON.stringify(this.connectedUsers));
     this.connectedUsersSubject.next(this.connectedUsers);
   }
 

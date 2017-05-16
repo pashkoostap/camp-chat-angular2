@@ -100,7 +100,27 @@
         margin-top: 10px;
     }
     &__status {
-      
-      
+        width: auto;
+        padding-right: 15px;
+        position: relative;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        &.online {
+            &::after {
+                background-color: green;
+            }
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: red;
+        }      
     }
 }
