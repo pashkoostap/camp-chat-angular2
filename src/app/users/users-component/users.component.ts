@@ -11,10 +11,10 @@ import { DomSanitizer } from "@angular/platform-browser";
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  private users: User[];
+  public users: User[];
   private subscription: Subscription;
   private selectedId: string;
-  private isPanelOpen: boolean = false;
+  public isPanelOpen: boolean = false;
   constructor(private usersService: UsersService,
     private router: Router,
     private satinizer: DomSanitizer) { }
