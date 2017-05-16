@@ -3,10 +3,12 @@ import * as io from 'socket.io-client';
 import { API_CONFIG } from './api.config';
 import { Observable } from 'rxjs';
 import { Chat } from "../chats/shared";
+import { UsersService } from "../users";
 
 @Injectable()
 export class SocketChatService {
   socket: any;
+  constructor(private usersService: UsersService) {}
   initSocket(userToken, callback) {
     this.socket = io(API_CONFIG.SOCKET);
     this.socket.on('connect', () => {

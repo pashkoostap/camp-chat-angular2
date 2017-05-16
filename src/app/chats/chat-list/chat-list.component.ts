@@ -6,6 +6,7 @@ import { Chat, ChatService } from '../shared';
 import { AppAuthService } from "../../auth";
 import { SocketChatService } from "../../shared";
 import { MessageService } from "../../messages";
+import { UsersService } from "../../users";
 
 @Component({
   selector: 'ct-chat-list',
@@ -26,6 +27,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
     private auth: AppAuthService,
     private socketService: SocketChatService,
     private messagesService: MessageService,
+    private usersService: UsersService,
     private satinizer: DomSanitizer) { }
 
   ngOnInit() {
@@ -62,6 +64,12 @@ export class ChatListComponent implements OnInit, OnDestroy {
           socket.on('new-chat', chat => {
             this.chatService.newChat(chat);
           })
+          socket.on('join', res => {
+            this.usersService.userConnected(res.connectedUsers);
+          });
+          socket.on('leave', res => {
+            this.usersService.userConnected(res.connectedUsers);
+          });
         })
       )
     })
