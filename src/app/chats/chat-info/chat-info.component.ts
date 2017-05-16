@@ -54,21 +54,6 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
         })
       )
     })
-    // this.subscriptions.push(
-    //     this.chatService.getChatByID(this.chatId).subscribe(
-    //       chat => {
-    //         this.chatname = chat.chatname;
-    //         this.users = chat.users;
-    //         this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
-    //         // this.users.forEach(user => {
-    //         //   user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
-    //         // })
-    //       }
-    //     ),
-    //     this.usersService.getConnectedUsers().subscribe(connectedUsers => {
-    //       this.connectedUsers = connectedUsers;
-    //     })
-    //   )
   }
 
   checkChat() {
@@ -116,6 +101,11 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     } else {
       btn.innerText = 'Show chat info';
     }
+  }
+  
+  openChatUsers() {
+    this.usersService.changedRoute();
+    this.isChatUsersVisible = true;
   }
 
   isChatUsersVisibleEvent(event) {

@@ -10,8 +10,16 @@ export class UsersService {
   private search$: BehaviorSubject<string> = new BehaviorSubject('');
   public connectedUsersSubject: Subject<any[]> = new Subject();
   private connectedUsers: any[];
-  constructor(private http: Http) { 
-    this.connectedUsers = window.connectedUsers ? window.connectedUsers : [];
+  constructor(private http: Http) {
+    this.connectedUsers = this.getInitConnectedUsers();
+  }
+
+  getInitConnectedUsers() {
+    if (window.connectedUsers) {
+      return window.connectedUsers
+    } else {
+      return []
+    }
   }
 
   getAllUsers(): Observable<User[]> {
@@ -27,9 +35,8 @@ export class UsersService {
   }
 
   changedRoute() {
-    console.log(this.connectedUsers)
-    // this.connectedUsers = [...this.connectedUsers];
-    // this.connectedUsersSubject.next(this.connectedUsers);
+    this.connectedUsers = [...this.connectedUsers];
+    this.connectedUsersSubject.next(this.connectedUsers);
   }
 
   userConnected(users) {

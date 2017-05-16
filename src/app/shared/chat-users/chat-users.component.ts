@@ -13,7 +13,7 @@ export class ChatUsersComponent implements DoCheck{
   @Input() connectedUsers: User[];
   @Output() isChatUsersVisibleEvent: EventEmitter<boolean> = new EventEmitter();
   ngDoCheck() {
-    // console.log(this.connectedUsers)
+    console.log(this.connectedUsers)
   }
   isUserConnected(user) {
     return this.connectedUsers.filter(connectedUser => connectedUser.username == user.username).length > 0;
