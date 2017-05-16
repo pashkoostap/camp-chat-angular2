@@ -41,6 +41,7 @@
         border-radius: 50%;
         overflow: hidden;
         margin: auto;
+        margin-bottom: 24px;
         @media (max-width: 767px) {
             display: none;
         }
@@ -69,6 +70,9 @@
           &__content {
               background-color: #989ad7;
               color: #ffffff;
+              .chat-link {
+                  color: #ffffff;
+              }
           }
         }
         .right-chat-message {

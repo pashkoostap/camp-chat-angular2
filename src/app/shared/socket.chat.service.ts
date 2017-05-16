@@ -12,7 +12,6 @@ export class SocketChatService {
     this.socket.on('connect', () => {
       this.socket.emit('authenticate', { token: userToken });
       this.socket.on('authenticated', msg => {
-        console.log('authenticated')
         callback();
       })
       

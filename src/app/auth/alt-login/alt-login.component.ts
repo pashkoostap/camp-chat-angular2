@@ -33,7 +33,7 @@ export class AltLoginComponent {
             console.log(user)
             this.socket = this.socketChatService.initSocket(user.token, () => {
               this.authService.setUserState(user);
-              this.router.navigate(['chat']);
+              this.router.navigate(['home']);
             });
           } else {
             console.log(err)
