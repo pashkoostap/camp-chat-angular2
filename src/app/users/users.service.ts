@@ -12,7 +12,6 @@ export class UsersService {
   private connectedUsers: any[] = [];
   private initRequest: any;
   constructor(private http: Http) {
-    this.connectedUsers = [];
     this.initRequest = this.getInitConnectedUsers();
   }
 
@@ -41,7 +40,6 @@ export class UsersService {
 
   userConnected(users) {
     this.connectedUsers = [...users];
-    localStorage.setItem('connectedUsers', JSON.stringify(this.connectedUsers));
     this.connectedUsersSubject.next(this.connectedUsers);
   }
 

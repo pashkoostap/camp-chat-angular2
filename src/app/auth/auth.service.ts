@@ -34,8 +34,6 @@ export class AppAuthService {
 
   logout() {
     localStorage.setItem('userInfo', '');
-    localStorage.setItem('connectedUsers', '');
-    window.connectedUsers = undefined;
   }
 
   setUserState(state: any): void {
