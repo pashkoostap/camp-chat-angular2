@@ -17,10 +17,12 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   private commonChatID: string = '5914713599ba3b2814a07812';
   private chats: Chat[] = [];
   public users: any[] = [];
+  public connectedUsers: any[] = [];
   public chatname: string = '';
   public maxWidthValue: number = 0;
   public searchValue: string = '';
   private subscriptions: Subscription[] = [];
+  private subscription: Subscription;
   public isChatUsersVisible: boolean = false;
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -34,6 +36,7 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.chatId = params['id'];
       this.checkChat();
+      this.usersService.changedRoute();
       this.subscriptions.push(
         this.chatService.getChatByID(this.chatId).subscribe(
           chat => {
@@ -44,12 +47,28 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
             //   user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
             // })
           }
-        ),
+        ),        
         this.usersService.getConnectedUsers().subscribe(connectedUsers => {
           console.log(connectedUsers)
+          this.connectedUsers = connectedUsers;
         })
       )
     })
+    // this.subscriptions.push(
+    //     this.chatService.getChatByID(this.chatId).subscribe(
+    //       chat => {
+    //         this.chatname = chat.chatname;
+    //         this.users = chat.users;
+    //         this.maxWidthValue = this.setAttendessWrapWidth(50, 30);
+    //         // this.users.forEach(user => {
+    //         //   user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+    //         // })
+    //       }
+    //     ),
+    //     this.usersService.getConnectedUsers().subscribe(connectedUsers => {
+    //       this.connectedUsers = connectedUsers;
+    //     })
+    //   )
   }
 
   checkChat() {
@@ -116,6 +135,7 @@ export class ChatInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('destroy')
     this.subscriptions.map(sub => sub.unsubscribe());
   }
 }

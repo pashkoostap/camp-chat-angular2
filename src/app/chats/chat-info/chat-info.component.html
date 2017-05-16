@@ -1,4 +1,8 @@
-<app-chat-users [users]="users" *ngIf="isChatUsersVisible" (isChatUsersVisibleEvent)="isChatUsersVisibleEvent($event)"></app-chat-users>
+<app-chat-users 
+  [users]="users" 
+  [connectedUsers]="connectedUsers"
+  *ngIf="isChatUsersVisible" 
+  (isChatUsersVisibleEvent)="isChatUsersVisibleEvent($event)"></app-chat-users>
 
 <div class="chan-info-wrap  visible" #chatInfoWrap>
     <button type="button" #btn class="chan-info-wrap__show-btn  chat-btn  clicked" (click)="onChatInfoWrapShow(chatInfoWrap, btn)">Hide chat info</button>

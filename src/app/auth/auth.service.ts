@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { API_CONFIG } from '../shared/';
-declare let fetch: any;
+declare let window: any;
 
 @Injectable()
 export class AppAuthService {
@@ -34,6 +34,7 @@ export class AppAuthService {
 
   logout() {
     localStorage.setItem('userInfo', '');
+    window.connectedUsers = undefined;
   }
 
   setUserState(state: any): void {

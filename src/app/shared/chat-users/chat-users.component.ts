@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { User } from "../../users";
 import { Router } from "@angular/router";
 
@@ -7,10 +7,17 @@ import { Router } from "@angular/router";
   templateUrl: './chat-users.component.html',
   styleUrls: ['./chat-users.component.scss']
 })
-export class ChatUsersComponent {
+export class ChatUsersComponent implements DoCheck{
   constructor(private router: Router) { }
   @Input() users: User[];
+  @Input() connectedUsers: User[];
   @Output() isChatUsersVisibleEvent: EventEmitter<boolean> = new EventEmitter();
+  ngDoCheck() {
+    // console.log(this.connectedUsers)
+  }
+  isUserConnected(user) {
+    return this.connectedUsers.filter(connectedUser => connectedUser.username == user.username).length > 0;
+  }
   closeChatUsers() {
     this.isChatUsersVisibleEvent.emit(false);
   }
