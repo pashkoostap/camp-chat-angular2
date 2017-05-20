@@ -40,7 +40,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
             this.chats.forEach(chat => {
               chat.lastMessage = null;
               chat.newMessages = null;
-              // chat.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${chat.photo})`);
+              chat.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${chat.photo})`);
               this.socketService.joinRoom(chat._id);
             })
           }

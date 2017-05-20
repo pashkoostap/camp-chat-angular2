@@ -51,7 +51,7 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
           this.messages = messages;
           this.messages.forEach((message: any, i) => {
             message.msgText = this.detectContent(message.msg);
-            // message.user.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${message.user.photo})`);
+            message.user.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${message.user.photo})`);
           });
           if (this.messages.length > 0) {
             this.isNoMessagesForChat = false;

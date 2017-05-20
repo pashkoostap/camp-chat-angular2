@@ -14,7 +14,7 @@
         ngModel
         (ngModelChange)="hideError = true"
         required>
-    <span class="new-chat-form__hint" *ngIf="!form.controls['chatname']?.valid && form.controls['chatname']?.touched">Chat name must be at least 5 characters</span>
+    <span class="new-chat-form__hint" *ngIf="!form.controls['chatname']?.valid && form.controls['chatname']?.touched">Chat name must be at least 6 characters</span>
     <span class="new-chat-form__hint" *ngIf="isErrorMessage && !hideError"><b>{{form.controls['chatname'].value}}</b> - {{isErrorMessage}}</span>
     
     <label class="new-chat-form__input  new-chat-form__input--label-file" (change)="onFileUpload($event, fileInput)">
@@ -48,7 +48,7 @@
             *ngFor="let user of users | filterUsersByName: searchValue; let i = index"
             #selectedEl 
             (click)="onAddUser(selectedEl, user, i)">
-            <!--<div class="new-chat-user__photo" [style.background-image]="user.photo"></div>-->
+            <div class="new-chat-user__photo" [style.background-image]="user.photo"></div>
             <span class="new-chat-user__info">{{user.username}}</span>
         </li>
     </ul>

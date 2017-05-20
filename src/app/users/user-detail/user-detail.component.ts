@@ -20,14 +20,13 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private satinizer: DomSanitizer) { }
 
   ngOnInit() {
-
     this.route.params.subscribe((params) => {
       this.selectedUserID = params['id'];
       this.subscription = this.usersService.getAllUsers().subscribe(
         users => {
           this.user = users.filter(user => {
             if (user._id === this.selectedUserID) {
-              // this.userPhoto = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+              this.userPhoto = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
               return user;
             }
           })[0];

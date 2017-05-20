@@ -2,8 +2,8 @@
   <button class="app-chat-users__close  chat-icon-close" (click)="closeChatUsers()"></button>
   <ul class="app-chat-users-list">
     <li class="app-chat-users-list__item" *ngFor="let user of users; let i = index" (click)="navigateToUserProfile(user)">
-      <div class="app-chat-users-list__photo" style="background-image: url('assets/img/avatar__1.jpg')"></div>
-      <!--<div class="app-chat-users-list__photo" [style.background-image]="user.photo"></div>-->
+      <!--<div class="app-chat-users-list__photo" style="background-image: url('assets/img/avatar__1.jpg')"></div>-->
+      <div class="app-chat-users-list__photo" [style.background-image]="user.photo"></div>
       <span class="app-chat-users-list__status" 
         [class.online]="isUserConnected(user)" 
         [class.offline]="isUserConnected(user)">{{isUserConnected(user) ? 'online' : 'offline'}}</span>

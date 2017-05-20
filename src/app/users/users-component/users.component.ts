@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       users => {
         this.users = users;
         this.users.forEach(user => {
-          // user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
+          user.photo = this.satinizer.bypassSecurityTrustStyle(`url(${user.photo})`);
         })
       }, error => console.log(error)
     )

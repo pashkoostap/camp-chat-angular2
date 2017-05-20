@@ -13,7 +13,8 @@
         <!--(mouseover)="onAttendessShow(elem)"-->
         <!--(mouseout)="onAttendessHide(elem)">-->
         <li class="chat-info-attendees__user  user__{{i}}" 
-          *ngFor="let user of users; let i = index"></li>
+          *ngFor="let user of users; let i = index"
+          [style.background-image]="user?.photo"></li>
           <!--(click)="navigateToUserProfile(user)"-->
           <!--[style.background-image]="user?.photo"-->
     </ul>
