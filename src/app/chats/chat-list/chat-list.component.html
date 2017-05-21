@@ -1,17 +1,12 @@
 <ul class="left-chat-users">
-  <!--BEGIN USER INFO-->
-  <li class="left-chat-user" (click)="select(chat)" *ngFor="let chat of chats | filterChatByName : searchValue"
-    [class.active]="selectedId == chat._id">
-    <!--[routerLinkActive]="['active']"-->
+  <li class="left-chat-user" [routerLink]="chat._id" routerLinkActive="active" *ngFor="let chat of chats | filterChatByName : searchValue">
     <div class="left-chat-user-photo">
       <div class="left-chat-user-photo__img" [style.background-image]="chat?.photoURL"></div>
-      <!--<div class="left-chat-user-photo__img" style="background-image: url(assets/img/avatar__1.jpg)"></div>-->
       <span class="left-chat-user-photo__message-badge" *ngIf="chat.newMessages">{{chat?.newMessages}}</span>
     </div>
     <div class="left-chat-user-info">
       <span class="left-chat-user-info__name">{{chat?.chatname}}</span>
       <p class="left-chat-user-info__message" *ngIf="chat.lastMessage?.msg">{{chat.lastMessage?.msg}}</p>
     </div>
-    <!--<span class="left-chat-user__status" *ngIf="chat.lastMessage?.time">{{chat.lastMessage?.time | date}}</span>-->
   </li>
 </ul>

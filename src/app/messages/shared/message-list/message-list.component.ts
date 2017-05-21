@@ -64,12 +64,15 @@ export class MessageListComponent implements OnInit, OnDestroy, AfterViewChecked
     })
     this.subscription = this.socketService.getSocket().subscribe(socket => {
       socket.on('message', msg => {
+        console.log(this.chatId);
         this.messageService.sendMessage(msg, this.chatId);
       })
     })
     this.msgList = this.element.nativeElement.querySelector('.right-chat-messages');
   }
   ngOnDestroy() {
+    console.log('destroy');
+    this.chatId = undefined;
     this.subscriptions = [...this.subscriptions, this.subscription];
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }

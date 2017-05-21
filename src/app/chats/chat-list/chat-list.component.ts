@@ -17,7 +17,6 @@ import { UsersService } from "../../users";
 export class ChatListComponent implements OnInit, OnDestroy {
   public chats: any[];
   public searchValue: string = '';
-  private selectedId: string;
   private subscriptions: Subscription[] = [];
   private socketSubscription: Subscription;
 
@@ -32,7 +31,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.selectedId = params['id'];
       this.subscriptions.push(
         this.chatService.getChats().subscribe(chats => {
           if (chats) {
@@ -69,10 +67,5 @@ export class ChatListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe());
     this.leaveChats();
-  }
-
-  select(chat) {
-    this.selectedId = chat._id;
-    this.router.navigate(['chat', chat._id])
   }
 }

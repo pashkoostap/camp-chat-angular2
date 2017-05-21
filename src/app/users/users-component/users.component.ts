@@ -13,7 +13,6 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class UsersComponent implements OnInit, OnDestroy {
   public users: User[];
   private subscription: Subscription;
-  private selectedId: string;
   public isPanelOpen: boolean = false;
   constructor(private usersService: UsersService,
     private router: Router,
@@ -36,10 +35,5 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   togglePanel() {
     this.isPanelOpen = !this.isPanelOpen;
-  }
-
-  select(user) {
-    this.selectedId = user.id;
-    this.router.navigate(['users', user.id])
   }
 }
