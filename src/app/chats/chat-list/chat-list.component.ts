@@ -36,14 +36,17 @@ export class ChatListComponent implements OnInit, OnDestroy {
         if (chats) {
           this.chats = chats;
           this.chats.forEach(chat => {
-            this.initChats.forEach(initChat => {
-              if (initChat._id == chat._id) {
-                chat.newMessages = initChat.newMessages;
-                chat.lastMessage = initChat.lastMessage;
-              } else if (!chat.newMessages) {
-                chat.newMessages = 0;
-              }
-            })
+            if (this.initChats.length > 0) {
+              this.initChats.forEach(initChat => {
+                if (initChat._id == chat._id) {
+                  chat.newMessages = initChat.newMessages;
+                  chat.lastMessage = initChat.lastMessage;
+                }
+              })
+            } else if (!chat.newMessages) {
+              chat.newMessages = 0;
+            }
+
             chat.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${chat.photo})`);
             this.socketService.joinRoom(chat._id);
           })
@@ -104,6 +107,5 @@ export class ChatListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.map(subscription => subscription.unsubscribe());
     this.leaveChats();
-    this.setNewMessages();
   }
 }

@@ -44,6 +44,7 @@ export class NavComponent implements DoCheck {
       this.router.navigate(['auth/login'])
     }
     this.socketService.disconnect();
+    localStorage.setItem('newMessages', '');
   }
 
   navigateToUserProfile() {
