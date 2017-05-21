@@ -30,7 +30,7 @@ export class LoginComponent implements OnDestroy {
   private onLoginSuccess(response: any): void {
     this.socket = this.socketChatService.initSocket(response.token, () => {
       this.auth.setUserState(response);
-      this.router.navigate(['chat']);
+      this.router.navigate(['home']);
     });
   }
 
