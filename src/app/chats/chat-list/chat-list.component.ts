@@ -38,8 +38,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
           if (chats) {
             this.chats = chats;
             this.chats.forEach(chat => {
-              chat.lastMessage = null;
-              chat.newMessages = null;
               chat.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${chat.photo})`);
               this.socketService.joinRoom(chat._id);
             })
@@ -47,19 +45,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
         }, error => console.log(error)
         ),
         this.chatService.getSearchValue().subscribe(value => this.searchValue = value),
-        this.messagesService.getNewMessages().subscribe(newMessages => {
-          this.chats.forEach(chat => {
-            chat.newMessages = 0;
-            newMessages.forEach((message, i) => {
-              if (chat._id === message.chatID) {
-                chat.newMessages += 1;
-                if (i == newMessages.length - 1) {
-                  chat.lastMessage = message;
-                }
-              }
-            })
-          })
-        }),
         this.socketService.getSocket().subscribe(socket => {
           socket.on('new-chat', chat => {
             this.chatService.newChat(chat);
@@ -88,11 +73,6 @@ export class ChatListComponent implements OnInit, OnDestroy {
 
   select(chat) {
     this.selectedId = chat._id;
-    if (chat.lastMessage && chat.newMessages) {
-      chat.lastMessage = null;
-      chat.newMessages = null;
-      this.messagesService.updateNewMessages(this.selectedId);
-    }
     this.router.navigate(['chat', chat._id])
   }
 }
