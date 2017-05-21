@@ -102,6 +102,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
     chat.newMessages = 0;
     chat.lastMessage = null;
     this.activeChat = chat._id;
+    this.setNewMessages();
   }
 
   ngOnDestroy() {
