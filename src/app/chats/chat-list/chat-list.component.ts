@@ -20,9 +20,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   private socketSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute,
-    private router: Router,
-    private chatService: ChatService,
+  constructor(private chatService: ChatService,
     private auth: AppAuthService,
     private socketService: SocketChatService,
     private messagesService: MessageService,
@@ -30,32 +28,30 @@ export class ChatListComponent implements OnInit, OnDestroy {
     private satinizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.subscriptions.push(
-        this.chatService.getChats().subscribe(chats => {
-          if (chats) {
-            this.chats = chats;
-            this.chats.forEach(chat => {
-              chat.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${chat.photo})`);
-              this.socketService.joinRoom(chat._id);
-            })
-          }
-        }, error => console.log(error)
-        ),
-        this.chatService.getSearchValue().subscribe(value => this.searchValue = value),
-        this.socketService.getSocket().subscribe(socket => {
-          socket.on('new-chat', chat => {
-            this.chatService.newChat(chat);
+    this.subscriptions.push(
+      this.chatService.getChats().subscribe(chats => {
+        if (chats) {
+          this.chats = chats;
+          this.chats.forEach(chat => {
+            chat.photoURL = this.satinizer.bypassSecurityTrustStyle(`url(${chat.photo})`);
+            this.socketService.joinRoom(chat._id);
           })
-          socket.on('join', res => {
-            this.usersService.userConnected(res.connectedUsers);
-          });
-          socket.on('leave', res => {
-            this.usersService.userConnected(res.connectedUsers);
-          });
+        }
+      }, error => console.log(error)
+      ),
+      this.chatService.getSearchValue().subscribe(value => this.searchValue = value),
+      this.socketService.getSocket().subscribe(socket => {
+        socket.on('new-chat', chat => {
+          this.chatService.newChat(chat);
         })
-      )
-    })
+        socket.on('join', res => {
+          this.usersService.userConnected(res.connectedUsers);
+        });
+        socket.on('leave', res => {
+          this.usersService.userConnected(res.connectedUsers);
+        });
+      })
+    )
   }
 
   leaveChats() {
