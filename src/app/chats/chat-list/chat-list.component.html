@@ -1,5 +1,9 @@
 <ul class="left-chat-users">
-  <li class="left-chat-user" [routerLink]="chat._id" routerLinkActive="active" *ngFor="let chat of chats | filterChatByName : searchValue">
+  <li class="left-chat-user" 
+    [routerLink]="chat._id" 
+    routerLinkActive="active" 
+    *ngFor="let chat of chats | filterChatByName : searchValue"
+    (click)="onChatSelect(chat)">
     <div class="left-chat-user-photo">
       <div class="left-chat-user-photo__img" [style.background-image]="chat?.photoURL"></div>
       <span class="left-chat-user-photo__message-badge" *ngIf="chat.newMessages">{{chat?.newMessages}}</span>
