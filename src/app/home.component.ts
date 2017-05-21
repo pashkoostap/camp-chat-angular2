@@ -3,7 +3,12 @@ import { Http } from "@angular/http";
 
 @Component({
   selector: 'ct-home',
-  template: `<h1>Welcome to Chat Application</h1>`,
+  template: `
+  <div class='intro-wrap'>
+    <div class='intro-wrap__photo'></div>
+    <img src="assets/img/intro-video.gif" class='intro-wrap__video' alt="" />
+  </div>
+        `,
   styles: [`
     :host {
         display: flex;

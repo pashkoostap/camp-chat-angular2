@@ -150,3 +150,40 @@ ct-spinner,
         }
     }
 }
+.intro-wrap {
+    position: relative;
+    width: 300px;
+    height: 600px;
+    margin: 50px 0px;
+    @media (max-width: 767px) {
+        height: 420px;
+        margin: 40px 0px;
+    }
+    &.hidden {
+        display: none;
+    }
+    &__photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        background-image: url('assets/img/intro-bg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    &__video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 86%;
+        border: 2px solid #000;
+        @media (max-width: 767px) {
+            width: 60%;
+        }
+    }
+}
