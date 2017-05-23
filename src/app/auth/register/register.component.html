@@ -9,7 +9,7 @@
         placeholder="Username"
         formControlName="username">
     <span class="osp-chat-form__hint" 
-          *ngIf="!user.get('username').valid && user.get('username').touched">Your name must be at least 6 latin characters and digits</span>
+          *ngIf="!user.get('username').valid && user.get('username').touched">Username must contain at least 6 latin letters or digits</span>
     <input 
         type="email" 
         class="osp-chat-form__input" 
@@ -19,7 +19,7 @@
           *ngIf="!user.get('email').valid && user.get('email').touched">Please enter valid email</span>
     
     <label class="osp-chat-form__input  osp-chat-form__input--label-file" (change)="onFileUpload($event, fileInput)">
-        {{labelFileInputValut}}
+        {{labelFileInputValue}}
         <input type="file" class="osp-chat-form__input  osp-chat-form__input--file" #fileInput>
     </label>
 
@@ -32,7 +32,7 @@
             placeholder="Enter password"
             formControlName="password">
         <span class="osp-chat-form__hint"  
-              *ngIf="!user.get('passwords').get('password').valid && user.get('passwords').get('password').touched">Your password must be at least 8 latin characters and digits</span>
+              *ngIf="!user.get('passwords').get('password').valid && user.get('passwords').get('password').touched">Your password must contain at least 6 latin letters or digits</span>
         <input 
             type="password" 
             class="osp-chat-form__input" 

@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   public user: FormGroup;
   public isPhotoLoading: boolean = false;
   public photoLoadingHint: string = 'Photo is uploading now';
-  public labelFileInputValut: string = 'Upload photo';
+  public labelFileInputValue: string = 'Upload photo';
   private photoURL: string = '';
   public registerErrorHint: string = '';
   constructor(private auth: AppAuthService,
@@ -42,14 +42,14 @@ export class RegisterComponent implements OnInit {
         password: ['',
           [
             Validators.required,
-            Validators.minLength(8),
+            Validators.minLength(6),
             Validators.pattern("[a-zA-Z0-9]*")
           ]
         ],
         passwordConfirmed: ['',
           [
             Validators.required,
-            Validators.minLength(8),
+            Validators.minLength(6),
             Validators.pattern("[a-zA-Z0-9]*")
           ]
         ]
@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit {
       this.isPhotoLoading = true;
       this.photoLoadingHint = 'Photo is uploading now';
       let reader = new FileReader();
-      this.labelFileInputValut = file.name;
+      this.labelFileInputValue = file.name;
       reader.readAsDataURL(file)
       reader.onload = () => {
         this.http.post(API_CONFIG.UPLOAD_IMAGE, { image: reader.result }).subscribe(res => {

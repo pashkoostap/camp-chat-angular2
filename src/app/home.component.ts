@@ -6,7 +6,7 @@ import { Http } from "@angular/http";
   template: `
   <div class='intro-wrap'>
     <div class='intro-wrap__photo'></div>
-    <img src="assets/img/intro-video.gif" class='intro-wrap__video' alt="" />
+    <img src="assets/img/intro-video-new.gif" class='intro-wrap__video' alt="" />
   </div>
         `,
   styles: [`
