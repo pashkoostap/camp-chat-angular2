@@ -24,6 +24,7 @@
       border-radius: 10px;
       position: relative;
       max-height: 100%;
+      overflow: hidden;
       @media (max-width: 1199px) {
           // margin: 50px auto;
           max-width: 970px;
@@ -51,6 +52,8 @@
           padding: 0;
           color: #000000;
           transition: opacity 0.2s ease;
+          background-color: #ededfa;
+          z-index: 2;
           &:hover {
               opacity: 0.5;
           }

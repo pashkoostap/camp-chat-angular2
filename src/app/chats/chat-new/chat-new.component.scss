@@ -5,11 +5,14 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    overflow-y: auto;
+    .new-chat-title {
+        text-align: center;
+        margin: 15px 0px;
+        flex-shrink: 0;
+    }
 }
-.new-chat-title {
-    text-align: center;
-    margin: 15px 0px;
-}
+
 .new-chat-form {
     display: flex;
     flex-direction: column;
@@ -29,6 +32,7 @@
         font-family: "Ubuntu";
         border: 1px solid #ededfa;
         transition: all 0.2s ease;
+        flex-shrink: 0;
         &::-webkit-input-placeholder { /* Chrome */
             color: #000000;
         }
@@ -45,6 +49,7 @@
         }
         &--label-file {
             cursor: pointer;
+            flex-shrink: 0;
             &:hover,
             &:active,
             &:focus {
@@ -58,7 +63,7 @@
             border: 1px solid #3b3e99;
         }
         &.ng-invalid.ng-touched {
-            border: 1px solid #ff0000;
+            border: 1px solid #3b3e99;
         }
         &.filter {
             margin-bottom: 0;
@@ -91,6 +96,7 @@
         transition: background-color 0.2s ease, color 0.2s ease;
         max-width: 280px;
         margin: auto;
+        flex-shrink: 0;
         &[disabled],
         &.disabled {
             background: #7b7da4;
@@ -112,6 +118,7 @@
         padding: 0px 20px;
         position: relative;
         top: -10px;
+        flex-shrink: 0;
         &.hidden {
           display: none;
         }
@@ -125,9 +132,10 @@
     border-radius: 20px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    max-height: 203px;
+    max-height: 182px;
     min-height: 50px;
     background-color: #ededfa;
+    flex-shrink: 0;
 }
 .new-chat-user {
     display: flex;
@@ -139,6 +147,7 @@
     position: relative;
     border-bottom: 1px solid #d7d7e2;
     transition: background-color 0.2s ease;
+    flex-shrink: 0;
     &:hover {
         background-color:#dfdff2;
     }

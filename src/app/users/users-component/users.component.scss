@@ -51,6 +51,7 @@
         width: 50px;
         height: 50px;
         margin: 15px auto 15px 15px;
+        flex-shrink: 0;
         @media (max-width: 767px) {
             margin: 15px auto 15px 0px;
         }
@@ -111,6 +112,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-color: #ededfa;
+    flex-shrink: 0;
+    
   }
   &__info {
     max-width: calc(100% - 70px);
